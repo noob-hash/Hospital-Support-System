@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>OTP</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+
+        <!-- Favicons -->
+        <link href="assets/img/favicon1.png" rel="icon">
+        <link href="assets/img/apple-touch-icon_1.png" rel="apple-touch-icon">
+         <!-- Vendor CSS Files -->
+        <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+        <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <div class="form">
+                <form action="Controller?page=verifyOTP" method="post">
+                    <span>Enter OTP send on your email.</span>
+                    <input type="number" name="OTP" maxlength="6" minlength="6" required />
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

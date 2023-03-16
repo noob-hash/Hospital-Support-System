@@ -1,0 +1,14 @@
+body{
+    background-color: #E9F2FF;
+    overflow-x: hidden;
+}
+
+.grid{
+    display: grid;
+    grid-template-rows: 10vh 90vh;
+}
+
+.divider-grid{
+    display: grid;
+    grid-template-columns: 10vw 90vw;
+}
