@@ -5,6 +5,7 @@
 package Services.DatabaseServices;
 
 import Controllers.Authentication;
+import Controllers.SecureAuth;
 import static Controllers.SecureAuth.createHash;
 import Models.Appoinment;
 import Models.Department;
@@ -30,7 +31,7 @@ import java.util.logging.Logger;
  *
  * @author Subin
  */
-public class UserService implements Authentication {
+public class UserService extends SecureAuth  implements Authentication {
     public User GetUser(int id){
         User user = null;
         try {
@@ -66,6 +67,50 @@ public class UserService implements Authentication {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return user;
+    }
+//    ham tumare hai sanam
+    public void SaveNewUserCredentials(User userParent) {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        
+        String Salt = generateSalt();
+        System.out.println(userParent.getPassword());
+        String encryptedPassword = createHash(userParent.getPassword(), Salt);
+        
+        databaseConnection.InsertData("user", false, userParent.getName(), userParent.getGender().toString(), userParent.getDob().toString(), userParent.getPhone(), userParent.getEmail(), userParent.getAddress(), userParent.getRole().toString());
+        databaseConnection.InsertData("sea", Salt);
+        databaseConnection.InsertData("user_credentials", userParent.getUsername(), encryptedPassword);
+
+    }
+    
+    public void UpdateUserDetails(String TableName, TableData values, TableData condition){
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        if(!(values.columnName).contains("id")){
+            databaseConnection.UpdateData(TableName, condition, values);
+        }
+    }
+
+    public void UpdateUserDetails(String TableName, TableData condition, TableData... values){
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        databaseConnection.UpdateData(TableName, condition, values);
+    }
+    
+    public boolean UserExists(String identifier){
+        boolean exists = false;
+        try {
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            String statement = "Select * from user where Phone = ? or email = ?";
+            PreparedStatement ps = con.prepareStatement(statement);
+            ps.setString(1, identifier);
+            ps.setString(2, identifier);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                exists = true;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return exists;
     }
     
     public List<User> GetUserList(){

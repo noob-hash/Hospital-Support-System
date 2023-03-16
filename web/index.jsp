@@ -78,7 +78,7 @@
       </nav><!-- .navbar -->
       
       <a href="Controller?page=loginPage" class="btn btn-primary text-white m-2 mt-0 mb-0 border-light">Login</a>
-      <a href="Controller?page=register" class="btn btn-light text-black border-1 border-primary m-2 mt-0 mb-0">Sign Up</a>
+      <a href="Controller?page=registerPage" class="btn btn-light text-black border-1 border-primary m-2 mt-0 mb-0">Sign Up</a>
       
     </div>
   </header><!-- End Header -->

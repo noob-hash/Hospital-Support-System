@@ -198,8 +198,6 @@ public class Servlet extends HttpServlet {
                 } catch (SQLException ex) {
                     Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Dashboard-doctor.jsp");
-                dispacher.forward(request, response);
             } else {
                 RequestDispatcher dispacher = request.getRequestDispatcher("index.jsp");
                 dispacher.forward(request, response);
@@ -238,6 +236,40 @@ public class Servlet extends HttpServlet {
 
         }
 
+        if (page.equalsIgnoreCase("addUser")) {
+            String Name = request.getParameter("Name");
+            User.Gender gender = User.Gender.valueOf(request.getParameter("Gender"));
+            String DOB = request.getParameter("DOB");
+            String Phone = request.getParameter("Phone");
+            String Email = request.getParameter("Email");
+            String Address = request.getParameter("Address");
+            String Password = request.getParameter("Password");
+            String ConfirmPassword = request.getParameter("ConfirmPassword");
+            System.out.println(Password + "," + ConfirmPassword);
+            int comparision = Password.compareTo(ConfirmPassword);
+            PrintWriter out = response.getWriter();
+
+            if (comparision == 0) {
+                if (new UserService().UserExists(Phone)) {
+                    out.println("User already exists");
+                    RequestDispatcher dispacher = request.getRequestDispatcher("pages/Register.jsp");
+                    dispacher.include(request, response);
+                } else {
+                    User userInfo = new User(
+                            Name, gender, DOB, Phone,Email, Address, User.Role.P, Phone,Password
+                    );
+                    
+                    new UserService().SaveNewUserCredentials(userInfo);
+                    RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
+                    dispacher.forward(request, response);
+                }
+            } else {
+                out.println("Your password do not match!");
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Register.jsp");
+                dispacher.include(request, response);
+            }
+        }
+        
         if (page.equalsIgnoreCase("appoinmentPage")) {
 
             String sRole = "", cRole = "", cId = "", sId = "";

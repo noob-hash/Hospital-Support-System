@@ -168,7 +168,7 @@
                                             </button>
                                         </div>
                                         <div>
-                                            <p class="mb-0">Already have an account? <a href="Controller?page=login" class=" fw-bold">Login</a>
+                                            <p class="mb-0">Already have an account? <a href="Controller?page=loginPage" class=" fw-bold">Login</a>
                                             </p>
                                         </div>
                                     </form>

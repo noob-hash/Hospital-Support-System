@@ -28,8 +28,7 @@ public class SignupController extends SecureAuth {
         
         String Salt = generateSalt();
         String encryptedPassword = SecureAuth.createHash(userParent.getPassword(), Salt);
-                System.out.println(Salt + " , " + encryptedPassword);
-
+        
         databaseConnection.InsertData(TABLENAME3, false, userParent.getName(), userParent.getGender().toString(), userParent.getDob().toString(), userParent.getPhone(), userParent.getEmail(), userParent.getAddress(), userParent.getRole().toString());
         databaseConnection.InsertData(TABLENAME2, Salt);
         databaseConnection.InsertData(TABLENAME1, userParent.getUsername(), encryptedPassword);

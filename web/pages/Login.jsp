@@ -72,7 +72,7 @@
                                     <a href="#!"><i class="fab fa-google"></i></a>
                                 </div>
                                 <div class="text-center mt-2">
-                                    <p class="mb-0">Don't have an account? <a href="Controller?page=register" class=" fw-bold">Sign Up</a>
+                                    <p class="mb-0">Don't have an account? <a href="Controller?page=registerPage" class=" fw-bold">Sign Up</a>
                                     </p>
                                 </div>
                         </div>
