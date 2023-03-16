@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -72,64 +74,88 @@
     <body>
         <section class="container-fluid bg-light">
             <%@include file="nav-patient.html" %>
-<!--            <div class="p-4 d-flex justify-content-around">
-                <form action="Controller?page=addAppoinment" method="post" role="form" class="needs-validation">
-                    <div class="row">
-                        <div class="col-md-6 form-group mt-3">
-                            <input type="date" name="date" class="form-control datepicker" id="date" required/>
-                            <div class="validate"></div>
-                        </div>
-                        <div class="col-md-6 form-group mt-3">
-                            <input type="time" name="time" class="form-control datepicker" id="time" required/>
-                            <div class="validate"></div>
+            <!--            <div class="p-4 d-flex justify-content-around">
+                            <form action="Controller?page=addAppoinment" method="post" role="form" class="needs-validation">
+                                <div class="row">
+                                    <div class="col-md-6 form-group mt-3">
+                                        <input type="date" name="date" class="form-control datepicker" id="date" required/>
+                                        <div class="validate"></div>
+                                    </div>
+                                    <div class="col-md-6 form-group mt-3">
+                                        <input type="time" name="time" class="form-control datepicker" id="time" required/>
+                                        <div class="validate"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group mt-3">
+                                        <select name="department" id="department" class="form-select">
+                                            <option value="">Select Department</option>
+                                            <option value="Department 1">Department 1</option>
+                                            <option value="Department 2">Department 2</option>
+                                            <option value="Department 3">Department 3</option>
+                                        </select>
+                                        <div class="validate"></div>
+                                    </div>
+                                    <div class="col-md-6 form-group
+            mt-3">
+                                        <select name="doctor" id="doctor" class="form-select">
+                                            <option value="">Select Doctor</option>
+                                            <option value="Doctor 1">Doctor 1</option>
+                                            <option value="Doctor 2">Doctor 2</option>
+                                            <option value="Doctor 3">Doctor 3</option>
+                                        </select>
+                                        <div class="validate"></div>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group mt-3">
+                                    <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+                                    <div class="validate"></div>
+                                </div>
+                                <div class="text-center mt-4 ">
+                                    <button type="submit" class="btn bg-info p-2">Make an Appointment</button>
+                                </div>
+                            </form>
+                        </div>-->
+            <div class="p-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="">
+                            <h5>Appoinment</h5>
+                            <small>Appoinment list</small>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 form-group mt-3">
-                            <select name="department" id="department" class="form-select">
-                                <option value="">Select Department</option>
-                                <option value="Department 1">Department 1</option>
-                                <option value="Department 2">Department 2</option>
-                                <option value="Department 3">Department 3</option>
-                            </select>
-                            <div class="validate"></div>
-                        </div>
-                        <div class="col-md-6 form-group mt-3">
-                            <select name="doctor" id="doctor" class="form-select">
-                                <option value="">Select Doctor</option>
-                                <option value="Doctor 1">Doctor 1</option>
-                                <option value="Doctor 2">Doctor 2</option>
-                                <option value="Doctor 3">Doctor 3</option>
-                            </select>
-                            <div class="validate"></div>
-                        </div>
+                    <div class="col-auto">
+                        <button class="btn btn-info"> Add Appoinment </button>
                     </div>
-
-                    <div class="form-group mt-3">
-                        <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
-                        <div class="validate"></div>
-                    </div>
-                    <div class="text-center mt-4 ">
-                        <button type="submit" class="btn bg-info p-2">Make an Appointment</button>
-                    </div>
-                </form>
-            </div>-->
-<div>
-    <table>
-        <c:forEach var="appoinment" items="${appoinmentList}">
+                </div>
+                <table class="table">
+                    <thead>
+                        <td>Image</td>
+                        <td>Name</td>
+                        <td>Gender</td>
+                        <td>Age</td>
+                        <td>Phone</td>
+                        <td>Address</td>
+                        <td>Date</td>
+                        <td>Time</td>
+                        <td>Action</td>
+                    </thead>
+                    <c:forEach var="appoinment" items="${appoinmentList}">
                         <tr>
-                            <td>${appoinment.user.id }</td>
+                            <td>${appoinment.user.id}</td>
                             <td>${appoinment.user.name}</td>
-                            <td>${appoinment.user.phone}</td>
-                            <td>${appoinmentuser.role}</td>
-                            <td>${appoinment.user.address}</td>
                             <td>${appoinment.user.gender}</td>
                             <td>${appoinment.user.age}</td>
-                            <td><a href="UserServlet?id="${user.id}>Delete</a></td>
+                            <td>${appoinment.user.phone}</td>
+                            <td>${appoinment.user.address}</td>
+                            <td>${appoinment.sechedule.date}</td>
+                            <td>${appoinment.sechedule.visitTime} - ${appoinment.sechedule.endTime}</td>
+                            <td><a href="UserServlet?id="${appoinmentuser.id}>Delete</a></td>
                         </tr>
                     </c:forEach>
-    </table>
-</div>
+                </table>
+            </div>
         </section>
     </body>
 </html>

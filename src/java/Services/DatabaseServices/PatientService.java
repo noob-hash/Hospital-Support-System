@@ -108,6 +108,7 @@ public class PatientService {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Appoinment appoinment = new Appoinment(new User(rs.getInt("Id"), rs.getString("Name"), User.Gender.valueOf(rs.getString("Gender")), rs.getString("D_O_B"),rs.getString("Phone"),rs.getString("email"),rs.getString("Address"),User.Role.valueOf(rs.getString("Role"))), new Schedule(rs.getString("date"),rs.getString("startTime"),rs.getString("endTime")), new Doctor());         
+                appoinmentList.add(appoinment);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
