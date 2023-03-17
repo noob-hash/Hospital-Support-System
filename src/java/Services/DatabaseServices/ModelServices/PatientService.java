@@ -2,13 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Services.DatabaseServices;
+package Services.DatabaseServices.ModelServices;
 
 import Models.Appoinment;
 import Models.Doctor;
 import Models.Patient;
 import Models.Schedule;
 import Models.User;
+import Services.DatabaseServices.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,6 +67,10 @@ public class PatientService {
         return patientList;
     }
 
+    /**
+     * 
+     * @return list of all appoinments (needs fixing sql query)
+     */
     public List<Appoinment> AppoinmentList() {
         List<Appoinment> appoinmentList = new ArrayList<>();
         try {
@@ -84,6 +89,10 @@ public class PatientService {
         return appoinmentList;
     }
 
+    /**
+     * 
+     * @param appoinment model is passed using which data is inserted to database
+     */
     public void MakeAppoinment(Appoinment appoinment) {
         try {
             Connection con = new DatabaseConnection().ConnectionEstablishment();
@@ -109,6 +118,11 @@ public class PatientService {
         }
     }
 
+    /**
+     * 
+     * @param id phone number or email of user you want appoinment of (needs fixing)
+     * @return List of all appoinments of said user
+     */
     public List<Appoinment> AppoinmentList(String id) {
         List<Appoinment> appoinmentList = new ArrayList<>();
         try {
@@ -128,6 +142,10 @@ public class PatientService {
         return appoinmentList;
     }
 
+    /**
+     * 
+     * @return array of patient count for a year in month wise (needs to complete sql) 
+     */
     public int[] PatientCount() {
         int[] Result = new int[12];
         try {

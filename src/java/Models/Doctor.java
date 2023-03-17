@@ -4,17 +4,33 @@
  */
 package Models;
 
-
 /**
  *
  * @author Subin
  */
 public class Doctor extends User {
-   
-   private User user;
+
+    private User user;
     private String Speacialization;
     private String Education;
 
+    /**
+     *
+     * @param Speacialization
+     * @param Education
+     * 
+     * refer to super class User
+     * @param id user id
+     * @param name
+     * @param dob
+     * @param gender
+     * @param phone
+     * @param email
+     * @param address
+     * @param role 
+     * @param username
+     * @param password
+     */
     public Doctor(String Speacialization, String Education, int id, String name, String dob, Gender gender, String phone, String email, String address, Role role, String username, String password) {
         super(id, name, gender, dob, phone, email, address, role, username, password);
         this.Speacialization = Speacialization;
@@ -35,7 +51,7 @@ public class Doctor extends User {
         this.Education = Education;
         this.user = new User(name, gender, dob, phone, email, address, role, username);
     }
-    
+
     public Doctor(int id, String name, String dob, Gender gender, String phone, String email, String address, Role role, String username, String Speacialization, String Education) {
         super(id, name, gender, dob, phone, email, address, role, username);
         this.Speacialization = Speacialization;
@@ -45,7 +61,7 @@ public class Doctor extends User {
 
     public Doctor() {
     }
-    
+
     public String getSpeacialization() {
         return Speacialization;
     }
@@ -63,7 +79,7 @@ public class Doctor extends User {
     }
 
     public User getUser() {
-        
+
         return user;
     }
 

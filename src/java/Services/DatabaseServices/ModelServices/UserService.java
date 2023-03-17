@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Services.DatabaseServices;
+package Services.DatabaseServices.ModelServices;
 
 import Controllers.Authentication;
 import Controllers.SecureAuth;
@@ -11,6 +11,7 @@ import Models.Appoinment;
 import Models.Department;
 import Models.TableData;
 import Models.User;
+import Services.DatabaseServices.DatabaseConnection;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
