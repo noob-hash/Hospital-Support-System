@@ -65,7 +65,45 @@ r<%--
                 <%@ include  file="nav-doctor.html" %>
                 </div>
                 <div class="flex">
-                    
+                    <div class="Users">
+                        <div>
+                            <div><h3>Users</h3></div>
+                            <div>
+                                <span>Sort By:</span>
+                                <div>
+                                    <small>Id</small>
+                                    <small>Name</small>
+                                    <small>Age</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <table class="table">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Role</th>
+                                    <th>Address</th>
+                                    <th>Gender</th>
+                                    <th>Age</th>
+                                    <th>Delete</th>
+                                </tr>
+                                <c:forEach var="user" items="${UserData}">
+                                    <tr>
+                                        <td>${user.id }</td>
+                                        <td>${user.name}</td>
+                                        <td>${user.phone}</td>
+                                        <td>${user.role}</td>
+                                        <td>${user.address}</td>
+                                        <td>${user.gender}</td>
+                                        <td>${user.age}</td>
+                                        <td><a href="UserServlet?id="${user.id}>Delete</a></td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
+                    </div>
                     <div class="small-grid">
                         <div class="NewPatient">
 

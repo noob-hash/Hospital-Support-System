@@ -298,8 +298,25 @@ public class Servlet extends HttpServlet {
 
                 List<Appoinment> appoinmentList = new PatientService().AppoinmentList();
                 request.setAttribute("appoinmentList", appoinmentList);
+                                
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Appoinment-admin.jsp");
                 dispacher.forward(request, response);
+            }
+            if (sRole.equalsIgnoreCase("D") || cRole.equalsIgnoreCase("D")) {
+
+                List<User> userData = new ArrayList<>();
+                try {
+                    ResultSet result = new DatabaseConnection().GetData("user", new TableData("Role", "P"), new TableData("Role", "P"));
+                    while (result.next()) {
+                        User userP = new User(Integer.parseInt(result.getString("Id")), result.getString("Name"), User.Gender.valueOf(result.getString("Gender")), result.getString("D_O_B"), result.getString("Phone"), result.getString("email"), result.getString("Address"), User.Role.valueOf(result.getString("Role")));
+                        userData.add(userP);
+                    }
+                    request.setAttribute("UserData", userData);
+                    RequestDispatcher dispacher = request.getRequestDispatcher("pages/Appoinment-doctor.jsp");
+                    dispacher.forward(request, response);
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if (sRole.equalsIgnoreCase("P") || cRole.equalsIgnoreCase("P")) {
 

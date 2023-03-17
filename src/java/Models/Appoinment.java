@@ -18,6 +18,11 @@ public class Appoinment {
         this.sechedule = sechedule;
         this.doctor = doctor;
     }
+    
+    public Appoinment(Schedule sechedule, Doctor doctor) {
+        this.sechedule = sechedule;
+        this.doctor = doctor;
+    }
 
     public User getUser() {
         return user;

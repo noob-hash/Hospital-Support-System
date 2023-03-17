@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,10 +19,10 @@
         <link href="assets/img/favicon1.png" rel="icon">
         <link href="assets/img/apple-touch-icon_1.png" rel="apple-touch-icon">
     </head>
-     <!-- Vendor CSS Files -->
-        <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-        <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -72,6 +74,68 @@
 <body>
     <section class="container-fluid">
         <%@include  file="nav-admin.jsp"%>
-    </section>
+        <div class="p-4">
+            <div class="row">
+                <div class="col">
+                    <div class="">
+                        <h5>Appoinment</h5>
+                        <small>Appoinment list</small>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-info"> Add Appoinment </button>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <td>Image</td>
+                <td>Name</td>
+                <td>Gender</td>
+                <td>Age</td>
+                <td>Phone</td>
+                <td>Address</td>
+                <td>Date</td>
+                <td>Time</td>
+                <td>Action</td>
+                </thead>
+                <c:forEach var="appoinment" items="${appoinmentList}">
+                    <tr>
+                        <td>${appoinment.user.id}</td>
+                        <td>${appoinment.user.name}</td>
+                        <td>${appoinment.user.phone}</td>
+                        <td>${appoinment.user.address}</td>
+                        <td>${appoinment.sechedule.date}</td>
+                        <td>${appoinment.sechedule.visitTime} - ${appoinment.sechedule.endTime}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </c:forEach>
+
+            </table>
+        </div>
+    </section> <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+
+
 </body>
 </html>
