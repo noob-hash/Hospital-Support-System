@@ -23,6 +23,7 @@
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -79,11 +80,13 @@
                 <div class="col">
                     <div class="">
                         <h5>Appoinment</h5>
-                        <small>Appoinment list</small>
+                        <small>Admin > Appoinment list</small>
                     </div>
                 </div>
                 <div class="col-auto">
-                    <button class="btn btn-info"> Add Appoinment </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Add Appoinment
+                    </button>
                 </div>
             </div>
             <table class="table">
@@ -107,7 +110,7 @@
                         <td>${appoinment.sechedule.date}</td>
                         <td>${appoinment.sechedule.visitTime} - ${appoinment.sechedule.endTime}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 Delete
                             </button>
                         </td>
@@ -116,26 +119,35 @@
 
             </table>
         </div>
-    </section> <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    </section>
+        
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    Are you sure you want to delete?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Confirm</button>
                 </div>
             </div>
         </div>
+    </div>
+    
+    <script>
+        var myModal = document.getElementById('myModal');
+        var myInput = document.getElementById('myInput');
 
+        myModal.addEventListener('shown.bs.modal', function () {
+            myInput.focus();
+        });
+    </script>
 
 </body>
 </html>

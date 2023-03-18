@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Services.DatabaseServices.ModelServices;
+package Services.ModelServices;
 
+import Models.Department;
 import Models.Doctor;
 import Models.User;
 import Services.DatabaseServices.DatabaseConnection;
@@ -42,6 +43,51 @@ public class DoctorService {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return doctor;
+    }
+    
+    /**
+     * 
+     * @return all departments in database as list of said model
+     */
+    public List<Department> DepartmentList(){
+        List<Department> departmentList = new ArrayList<>();
+        
+        try {
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            String statement = "Select * from department;";
+            PreparedStatement ps = con.prepareStatement(statement);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Department department = new Department(rs.getInt("id"),rs.getString("Name"),rs.getString("Contact"), rs.getString("Details"));
+                departmentList.add(department);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return departmentList;
+    }
+    
+    /**
+     * 
+     * @param id of department
+     * @return department model
+     */
+    public Department GetDepartment(int id){
+        Department department = null;
+        try {
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            String statement = "Select * from department where id = '" + id + "';";
+            PreparedStatement ps = con.prepareStatement(statement);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                department = new Department(rs.getInt("id"),rs.getString("Name"),rs.getString("Contact"), rs.getString("Details"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return department;
     }
     
     /**

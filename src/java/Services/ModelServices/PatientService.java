@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Services.DatabaseServices.ModelServices;
+package Services.ModelServices;
 
 import Models.Appoinment;
 import Models.Doctor;
@@ -51,15 +51,16 @@ public class PatientService {
      *
      * @return List of all existing Patient user
      */
-    public List<Patient> PatientList() {
-        List<Patient> patientList = new ArrayList<>();
+    public List<User> PatientList() {
+        List<User> patientList = new ArrayList<>();
         try {
             Connection con = new DatabaseConnection().ConnectionEstablishment();
             String statement = "Select * from user where Role = 'P'";
             PreparedStatement ps = con.prepareStatement(statement);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Patient patient = new Patient(rs.getInt("Id"), rs.getString("Name"), rs.getString("D_O_B"), User.Gender.valueOf(rs.getString("Gender")), rs.getString("Phone"), rs.getString("email"), rs.getString("Address"), User.Role.valueOf(rs.getString("Role")), rs.getString("Phone"));
+                User patient = new User(rs.getInt("Id"), rs.getString("Name"), User.Gender.valueOf(rs.getString("Gender")), rs.getString("D_O_B"), rs.getString("Phone"), rs.getString("email"), rs.getString("Address"), User.Role.valueOf(rs.getString("Role")), rs.getString("Phone"));
+                patientList.add(patient);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);

@@ -17,10 +17,12 @@
         <link href="assets/img/favicon1.png" rel="icon">
         <link href="assets/img/apple-touch-icon_1.png" rel="apple-touch-icon">
     </head>
-     <!-- Vendor CSS Files -->
-        <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-        <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
     <style>
         * {
             margin: 0;
@@ -28,13 +30,10 @@
             font-family: "Montserrat", sans-serif;
         }
         .page-action{
-            bottom: 1.71429rem;
             display: flex;
-            height: 60px!important;
             justify-content: center;
             position: fixed!important;
             right: 1.42857rem;
-            width: 60px!important;
             z-index: 997;
         }
         a{
@@ -96,10 +95,176 @@
 <body>
     <section class="container-fluid">
         <%@include  file="nav-admin.jsp"%>
-        <div class="">
+        <div class="collapse position-absolute top-0" id="collapseExample">
+            <div class="card card-body bg-light bg-opacity-75">
+                <div class="container py-5 h-100">
+                    <div
+                        class="row d-flex justify-content-center align-items-center h-100"
+                        >
+                        <div class="col-lg-8 col-xl-6">
+                            <div class="card rounded-3">
+                                <img
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+                                    class="w-100"
+                                    style="
+                                    border-top-left-radius: 0.3rem;
+                                    border-top-right-radius: 0.3rem;
+                                    "
+                                    alt="Sample photo"
+                                    />
+                                <div class="card-body p-md-3">
+                                    <h3>Registration Info</h3>
+
+                                    <form action="Controller?page=addDoctor" method="post" class="px-md-2">
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="Name">Full Name</label>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    name="Name"
+                                                    id="Name"
+                                                    aria-describedby="emailHelp"
+                                                    placeholder="Enter fullname"
+                                                    />
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="Gender">Gender</label><br />
+                                                <div class="mt-2">
+                                                    <input
+                                                        type="radio"
+                                                        name="Gender"
+                                                        id="Male"
+                                                        value="M"
+                                                        />
+                                                    <label for="Male">Male</label>
+                                                    <input
+                                                        type="radio"
+                                                        name="Gender"
+                                                        id="Female"
+                                                        value="F"
+                                                        />
+                                                    <label for="Female">Female</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label for="Email1">Email address</label>
+                                                    <input
+                                                        type="email"
+                                                        class="form-control"
+                                                        name="Email"
+                                                        id="Email"
+                                                        aria-describedby="emailHelp"
+                                                        placeholder="Enter email"
+                                                        />
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <label for="Phone">Contact</label>
+                                                    <input
+                                                        type="text"
+                                                        inputmode="numeric"
+                                                        pattern="[0-9]+"
+                                                        class="form-control"
+                                                        name="Phone"
+                                                        id="Phnoe"
+                                                        aria-describedby="emailHelp"
+                                                        placeholder="Enter phone"
+                                                        />
+                                                </div>
+                                            </div>
+                                            <small id="emailHelp" class="form-text text-muted"
+                                                   >We'll never share your email and contact with anyone
+                                                else.</small
+                                            >
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <label for="dob">Birth Date</label>
+                                                <input type="date" name="DOB" class="form-control" id="dob" />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label for="address">Address</label>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="address"
+                                                    name="Address"
+                                                    placeholder="Enter address"
+                                                    />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <label for="specialization">Specialization</label>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="specialization"
+                                                    name="Specialization"
+                                                    placeholder="Enter Specialization"
+                                                    />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label for="department">Department</label>
+                                                <select
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="department"
+                                                    name="Department"
+                                                    >
+                                                    <option>
+                                                        a
+                                                    </option>
+                                                    <option name="" id="">2</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="Education">Education</label><br>
+                                            <textarea name="education" id="Education" name="Education" class="form-control"
+                                                      cols="65" rows="5" placeholder="Enter education achieved"
+                                                      style="resize: none;">                    
+                                            </textarea>
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            class="btn btn-success btn-lg mt-4 mb-1"
+                                            >
+                                            Submit
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-4">
+            <div class="row">
+                <div class="col">
+                    <div class="">
+                        <h5>Doctor</h5>
+                        <small>Admin > Doctor List</small>
+                    </div>
+                </div>
+                <div class="col-auto page-action">
+                    <button  class="btn btn-light bg-info"
+                             type="button"
+                             data-toggle="collapse"
+                             data-target="#collapseExample"
+                             aria-expanded="false"
+                             aria-controls="collapseExample">
+                        Add Doctor
+                    </button>
+                </div>
+            </div>
             <div class="row p-2 gap-2">
                 <c:forEach var="doctor" items="${doctorList}">
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-sm-12 col-md-4 p-4 border bg-white ">
                         <div class="contact ">
                             <div class="img-box">
                                 <img width="400" src="content/doctor-400-1.jpg" height="400" alt="avatar">
@@ -121,166 +286,11 @@
                         </div>
                     </div>
                 </c:forEach>
-                <div class="collapse position-absolute top-0" id="collapseExample">
-                    <div class="card card-body bg-light bg-opacity-75">
-                        <div class="container py-5 h-100">
-                            <div
-                                class="row d-flex justify-content-center align-items-center h-100"
-                                >
-                                <div class="col-lg-8 col-xl-6">
-                                    <div class="card rounded-3">
-                                        <img
-                                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
-                                            class="w-100"
-                                            style="
-                                            border-top-left-radius: 0.3rem;
-                                            border-top-right-radius: 0.3rem;
-                                            "
-                                            alt="Sample photo"
-                                            />
-                                        <div class="card-body p-md-3">
-                                            <h3>Registration Info</h3>
 
-                                            <form action="Controller?page=addDoctor" method="post" class="px-md-2">
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label for="Name">Full Name</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            name="Name"
-                                                            id="Name"
-                                                            aria-describedby="emailHelp"
-                                                            placeholder="Enter fullname"
-                                                            />
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="Gender">Gender</label><br />
-                                                        <div class="mt-2">
-                                                            <input
-                                                                type="radio"
-                                                                name="Gender"
-                                                                id="Male"
-                                                                value="M"
-                                                                />
-                                                            <label for="Male">Male</label>
-                                                            <input
-                                                                type="radio"
-                                                                name="Gender"
-                                                                id="Female"
-                                                                value="F"
-                                                                />
-                                                            <label for="Female">Female</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <label for="Email1">Email address</label>
-                                                            <input
-                                                                type="email"
-                                                                class="form-control"
-                                                                name="Email"
-                                                                id="Email"
-                                                                aria-describedby="emailHelp"
-                                                                placeholder="Enter email"
-                                                                />
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <label for="Phone">Contact</label>
-                                                            <input
-                                                                type="text"
-                                                                inputmode="numeric"
-                                                                pattern="[0-9]+"
-                                                                class="form-control"
-                                                                name="Phone"
-                                                                id="Phnoe"
-                                                                aria-describedby="emailHelp"
-                                                                placeholder="Enter phone"
-                                                                />
-                                                        </div>
-                                                    </div>
-                                                    <small id="emailHelp" class="form-text text-muted"
-                                                           >We'll never share your email and contact with anyone
-                                                        else.</small
-                                                    >
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <label for="dob">Birth Date</label>
-                                                        <input type="date" name="DOB" class="form-control" id="dob" />
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <label for="address">Address</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="address"
-                                                            name="Address"
-                                                            placeholder="Enter address"
-                                                            />
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <label for="specialization">Specialization</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="specialization"
-                                                            name="Specialization"
-                                                            placeholder="Enter Specialization"
-                                                            />
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <label for="department">Department</label>
-                                                        <select
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="department"
-                                                            name="Department"
-                                                            >
-                                                            <option>
-                                                                a
-                                                            </option>
-                                                            <option name="" id="">2</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <label for="Education">Education</label><br>
-                                                    <textarea name="education" id="Education" name="Education" class="form-control"
-                                                              cols="65" rows="5" placeholder="Enter education achieved"
-                                                              style="resize: none;">                    
-                                                    </textarea>
-                                                </div>
-                                                <button
-                                                    type="submit"
-                                                    class="btn btn-success btn-lg mt-4 mb-1"
-                                                    >
-                                                    Submit
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="page-action ">
-                    <button class="btn btn-light rounded-circle"
-                            type="button"
-                            data-toggle="collapse"
-                            data-target="#collapseExample"
-                            aria-expanded="false"
-                            aria-controls="collapseExample" >
-                        <i class="fa-solid fa-user-plus"></i>
-                    </button>
-                </div>
             </div>
         </div>
+
     </section>
+
 </body>
 </html>

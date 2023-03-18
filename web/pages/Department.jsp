@@ -17,10 +17,10 @@
         <link href="assets/img/favicon1.png" rel="icon">
         <link href="assets/img/apple-touch-icon_1.png" rel="apple-touch-icon">
     </head>
-     <!-- Vendor CSS Files -->
-        <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-        <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -31,13 +31,10 @@
             display: none;
         }
         .page-action{
-            bottom: 1.71429rem;
             display: flex;
-            height: 60px!important;
             justify-content: center;
             position: fixed!important;
             right: 1.42857rem;
-            width: 60px!important;
             z-index: 997;
         }
         a{
@@ -99,7 +96,90 @@
 <body>
     <section class="container-fluid">
         <%@include  file="nav-admin.jsp"%>
-        <div class="">
+        <div class="collapse position-absolute top-0" id="collapseExample">
+            <div class="card card-body bg-light bg-opacity-75">
+                <div class="container py-5 h-100">
+                    <div
+                        class="row d-flex justify-content-center align-items-center h-100"
+                        >
+                        <div class="col-lg-8 col-xl-6">
+                            <div class="card rounded-3">
+                                <img
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+                                    class="w-100"
+                                    style="
+                                    border-top-left-radius: 0.3rem;
+                                    border-top-right-radius: 0.3rem;
+                                    "
+                                    alt="Sample photo"
+                                    />
+                                <div class="card-body p-md-3">
+                                    <h3>Registration Info</h3>
+
+                                    <form action="Controller?page=addDepartment" method="POST" class="px-md-2">
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="Name">Name</label>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    name="Name"
+                                                    id="Name"
+                                                    placeholder="Enter department name"
+                                                    />
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="Contact">Contact</label>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="Contact"
+                                                    name="Contact"
+                                                    placeholder="Enter contact"
+                                                    />
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="Descciption">Descciption</label><br>
+                                            <textarea name="Descciption" id="Descciption" class="form-control"
+                                                      cols="65" rows="5" placeholder="Enter Descciption"
+                                                      style="resize: none;">                    
+                                            </textarea>
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            class="btn btn-success btn-lg mt-4 mb-1"
+                                            >
+                                            Submit
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-4">
+            <div class="row">
+                <div class="col">
+                    <div class="">
+                        <h5>Department</h5>
+                        <small>Admin > Department List</small>
+                    </div>
+                </div>
+                <div class="col-auto page-action">
+                    <button  class="btn btn-light bg-info"
+                             type="button"
+                             data-toggle="collapse"
+                             data-target="#collapseExample"
+                             aria-expanded="false"
+                             aria-controls="collapseExample">
+                        Add Department
+                    </button>
+                </div>
+            </div>
             <div class="row p-2 gap-2">
                 <c:forEach var="department" items="${departmentList}">
                     <div class="col-sm-12 col-md-4 bg-white rounded-2 p-2">
@@ -120,84 +200,11 @@
                         </div>
                     </div>
                 </c:forEach>
-                <div class="collapse position-absolute top-0" id="collapseExample">
-                    <div class="card card-body bg-light bg-opacity-75">
-                        <div class="container py-5 h-100">
-                            <div
-                                class="row d-flex justify-content-center align-items-center h-100"
-                                >
-                                <div class="col-lg-8 col-xl-6">
-                                    <div class="card rounded-3">
-                                        <img
-                                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
-                                            class="w-100"
-                                            style="
-                                            border-top-left-radius: 0.3rem;
-                                            border-top-right-radius: 0.3rem;
-                                            "
-                                            alt="Sample photo"
-                                            />
-                                        <div class="card-body p-md-3">
-                                            <h3>Registration Info</h3>
 
-                                            <form action="Controller?page=addDepartment" method="POST" class="px-md-2">
-                                                <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label for="Name">Name</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            name="Name"
-                                                            id="Name"
-                                                            placeholder="Enter department name"
-                                                            />
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="Contact">Contact</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="Contact"
-                                                            name="Contact"
-                                                            placeholder="Enter contact"
-                                                            />
-                                                    </div>
-                                                </div>
-                                                
-                                                <div>
-                                                    <label for="Descciption">Descciption</label><br>
-                                                    <textarea name="Descciption" id="Descciption" class="form-control"
-                                                              cols="65" rows="5" placeholder="Enter Descciption"
-                                                              style="resize: none;">                    
-                                                    </textarea>
-                                                </div>
-                                                <button
-                                                    type="submit"
-                                                    class="btn btn-success btn-lg mt-4 mb-1"
-                                                    >
-                                                    Submit
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="page-action ">
-                    <button class="btn btn-light rounded-circle"
-                            type="button"
-                            data-toggle="collapse"
-                            data-target="#collapseExample"
-                            aria-expanded="false"
-                            aria-controls="collapseExample" >
-                        <i class="fa-solid fa-user-plus"></i>
-                    </button>
-                </div>
+
             </div>
         </div>
     </section>
-    
+
 </body>
 </html>

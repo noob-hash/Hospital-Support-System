@@ -7,13 +7,14 @@ package Controllers;
 import Models.Appoinment;
 import Models.Department;
 import Models.Doctor;
+import Models.Patient;
 import Models.Schedule;
 import Models.TableData;
 import Models.User;
 import Services.DatabaseServices.DatabaseConnection;
-import Services.DatabaseServices.ModelServices.DoctorService;
-import Services.DatabaseServices.ModelServices.PatientService;
-import Services.DatabaseServices.ModelServices.UserService;
+import Services.ModelServices.DoctorService;
+import Services.ModelServices.PatientService;
+import Services.ModelServices.UserService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import java.io.IOException;
@@ -423,8 +424,17 @@ public class Servlet extends HttpServlet {
                 dispacher.forward(request, response);
             }
 
-            RequestDispatcher dispacher = request.getRequestDispatcher("pages/DoctorList.jsp");
-            dispacher.forward(request, response);
+            if (sRole.equalsIgnoreCase("A") || cRole.equalsIgnoreCase("A")) {
+
+                List<User> patientList = new PatientService().PatientList();
+                request.setAttribute("patientList", patientList);
+
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Patient-admin.jsp");
+                dispacher.forward(request, response);
+            } else {
+                RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=logout");
+                dispacher.forward(request, response);
+            }
         }
 
         if (page.equalsIgnoreCase("logout")) {
