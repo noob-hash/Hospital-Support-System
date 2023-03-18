@@ -128,7 +128,7 @@
 
                             </td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">${patient.age}Delete</button>
+                                <button type="button" class="btn btn-primary" onclick="DeleteAction(${patient.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
                             </td>
                         </tr>
                     </c:forEach>
@@ -150,7 +150,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger">Confirm</button>
+                    <form action="Controller?page=deletePatient" method="post">
+                        <input type="hidden"  name="delete" id="myInput" />
+                        <button type="submit" class="btn btn-danger">Confirm</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -158,12 +161,11 @@
 
 
     <script>
-        var myModal = document.getElementById('myModal');
-        var myInput = document.getElementById('myInput');
-
-        myModal.addEventListener('shown.bs.modal', function () {
-            myInput.focus();
-        });
+        function DeleteAction(a){
+            const deleteForm = document.getElementById("myInput");
+            deleteForm.value=a;
+        }
+        
     </script>
     
 </body>

@@ -110,9 +110,9 @@
                         <td>${appoinment.sechedule.date}</td>
                         <td>${appoinment.sechedule.visitTime} - ${appoinment.sechedule.endTime}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                Delete
-                            </button>
+                            <td>
+                                <button type="button" class="btn btn-primary" onclick="DeleteAction(${appoinment.sechdule.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+                            </td>
                         </td>
                     </tr>
                 </c:forEach>
@@ -120,7 +120,7 @@
             </table>
         </div>
     </section>
-        
+
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -134,19 +134,20 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Confirm</button>
+                    <form action="Controller?page=deletePatient" method="post">
+                        <input type="hidden"  name="delete" id="myInput" />
+                        <button type="submit" class="btn btn-danger">Confirm</button>
+                    </form> 
                 </div>
             </div>
         </div>
     </div>
-    
-    <script>
-        var myModal = document.getElementById('myModal');
-        var myInput = document.getElementById('myInput');
 
-        myModal.addEventListener('shown.bs.modal', function () {
-            myInput.focus();
-        });
+    <script>
+        function DeleteAction(a) {
+            const deleteForm = document.getElementById("myInput");
+            deleteForm.value = a;
+        }
     </script>
 
 </body>
