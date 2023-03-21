@@ -70,6 +70,16 @@
                 overflow-x: hidden
             }
         </style>
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+    ></script>
         <style>
             @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
         </style>
@@ -77,7 +87,10 @@
     <body>
         <section class="container-fluid bg-light">
             <%@include file="nav-patient.html" %>
-            <!--            <div class="p-4 d-flex justify-content-around">
+            <div class="collapse position-absolute" id="collapseExample">
+                <div class="card card-body bg-light bg-opacity-75">
+                    <div class="container py-5 h-100">
+                        <div class="p-4 d-flex justify-content-around">
                             <form action="Controller?page=addAppoinment" method="post" role="form" class="needs-validation">
                                 <div class="row">
                                     <div class="col-md-6 form-group mt-3">
@@ -90,27 +103,17 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6 form-group mt-3">
-                                        <select name="department" id="department" class="form-select">
-                                            <option value="">Select Department</option>
-                                            <option value="Department 1">Department 1</option>
-                                            <option value="Department 2">Department 2</option>
-                                            <option value="Department 3">Department 3</option>
-                                        </select>
-                                        <div class="validate"></div>
-                                    </div>
-                                    <div class="col-md-6 form-group
-            mt-3">
+                                    <div class="col-12 form-group mt-3">
                                         <select name="doctor" id="doctor" class="form-select">
                                             <option value="">Select Doctor</option>
-                                            <option value="Doctor 1">Doctor 1</option>
-                                            <option value="Doctor 2">Doctor 2</option>
-                                            <option value="Doctor 3">Doctor 3</option>
+                                            <c:forEach var="Doctor" items="${doctorList}">
+                                                <option value="${Doctor.user.id}"> - ${Doctor.user.name}</option>
+                                            </c:forEach>    
                                         </select>
                                         <div class="validate"></div>
                                     </div>
                                 </div>
-            
+
                                 <div class="form-group mt-3">
                                     <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
                                     <div class="validate"></div>
@@ -119,17 +122,28 @@
                                     <button type="submit" class="btn bg-info p-2">Make an Appointment</button>
                                 </div>
                             </form>
-                        </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="p-4">
                 <div class="row">
                     <div class="col">
                         <div class="">
                             <h5>Appoinment</h5>
-                            <small>Admin > Appoinment</small>
+                            <small>Patient > Appoinment</small>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <button class="btn btn-info"> Add Appoinment </button>
+                    <div class="col-auto page-action">
+                        <button  class="btn btn-light bg-info"
+                                 type="button"
+                                 data-toggle="collapse"
+                                 data-target="#collapseExample"
+                                 aria-expanded="false"
+                                 aria-controls="collapseExample">
+                            Add Appoinment
+                        </button>
                     </div>
                 </div>
                 <table class="table">
@@ -155,8 +169,7 @@
                             <td>${appoinment.sechedule.date}</td>
                             <td>${appoinment.sechedule.visitTime} - ${appoinment.sechedule.endTime}</td>
                             <td>
-                            <td>
-                                <button type="button" class="btn btn-primary" onclick="DeleteAction(${appoinment.schedule.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+                                <button type="button" class="btn btn-primary" onclick="DeleteAction(${appoinment.sechedule.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
                             </td>
                         </tr>
                     </c:forEach>
@@ -176,7 +189,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <form action="Controller?page=deletePatient" method="post">
+                            <form action="Controller?page=deleteAppoinment" method="post">
                                 <input type="hidden"  name="delete" id="myInput" />
                                 <button type="submit" class="btn btn-danger">Confirm</button>
                             </form> 

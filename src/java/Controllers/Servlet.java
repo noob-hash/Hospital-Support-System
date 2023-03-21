@@ -325,6 +325,10 @@ public class Servlet extends HttpServlet {
 
                 List<Appoinment> appoinmentList = new PatientService().AppoinmentList(sId);
                 request.setAttribute("appoinmentList", appoinmentList);
+                
+                List<Doctor> doctorList = new DoctorService().DoctorList();
+                request.setAttribute("doctorList", doctorList);
+                
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Appoinment-patient.jsp");
                 dispacher.forward(request, response);
             } else {
@@ -439,6 +443,13 @@ public class Servlet extends HttpServlet {
             }
         }
 
+        if(page.equalsIgnoreCase("deleteAppoinment")){
+            
+            new PatientService().DeleteAppoinment(Integer.parseInt(request.getParameter("delete")));
+            RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=appoinmentPage");
+            dispacher.forward(request, response);
+        }
+        
         if (page.equalsIgnoreCase("logout")) {
             new UserService().logOut(request, response);
         }
