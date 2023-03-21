@@ -70,85 +70,85 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
         />
-
-</head>
-<body>
-    <section class="container-fluid">
-        <%@include  file="nav-admin.jsp"%>
-        <div class="p-4">
-            <div class="row">
-                <div class="col">
-                    <div class="">
-                        <h5>Appoinment</h5>
-                        <small>Admin > Appoinment list</small>
+    <body>
+        <section class="container-fluid">
+            <%@include  file="nav-admin.jsp"%>
+            <div class="p-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="">
+                            <h5>Appoinment</h5>
+                            <small>Admin > Appoinment list</small>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Add Appoinment
+                        </button>
                     </div>
                 </div>
-                <div class="col-auto">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        Add Appoinment
-                    </button>
-                </div>
-            </div>
-            <table class="table">
-                <thead>
-                <td>Image</td>
-                <td>Name</td>
-                <td>Gender</td>
-                <td>Age</td>
-                <td>Phone</td>
-                <td>Address</td>
-                <td>Date</td>
-                <td>Time</td>
-                <td>Action</td>
-                </thead>
-                <c:forEach var="appoinment" items="${appoinmentList}">
-                    <tr>
-                        <td>${appoinment.user.id}</td>
-                        <td>${appoinment.user.name}</td>
-                        <td>${appoinment.user.phone}</td>
-                        <td>${appoinment.user.address}</td>
-                        <td>${appoinment.sechedule.date}</td>
-                        <td>${appoinment.sechedule.visitTime} - ${appoinment.sechedule.endTime}</td>
-                        <td>
+                <table class="table">
+                    <thead>
+                    <td>Image</td>
+                    <td>Name</td>
+                    <td>Gender</td>
+                    <td>Age</td>
+                    <td>Phone</td>
+                    <td>Address</td>
+                    <td>Date</td>
+                    <td>Time</td>
+                    <td>Action</td>
+                    </thead>
+                    <c:forEach var="appoinment" items="${appoinmentList}">
+                        <tr>
+                            <td>${appoinment.user.id}</td>
+                            <td>${appoinment.user.name}</td>
+                            <td>${appoinment.user.gender}</td>
+                            <td>${appoinment.user.age}</td>
+                            <td>${appoinment.user.phone}</td>
+                            <td>${appoinment.user.address}</td>
+                            <td>${appoinment.sechedule.date}</td>
+                            <td>${appoinment.sechedule.visitTime} - ${appoinment.sechedule.endTime}</td>
                             <td>
-                                <button type="button" class="btn btn-primary" onclick="DeleteAction(${appoinment.sechdule.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+                            <td>
+                                <button type="button" class="btn btn-primary" onclick="DeleteAction(${appoinment.sechedule.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
                             </td>
-                        </td>
-                    </tr>
-                </c:forEach>
+                            </td>
+                        </tr>
+                    </c:forEach>
 
-            </table>
-        </div>
-    </section>
+                </table>
+            </div>
+        </section>
 
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <form action="Controller?page=deletePatient" method="post">
-                        <input type="hidden"  name="delete" id="myInput" />
-                        <button type="submit" class="btn btn-danger">Confirm</button>
-                    </form> 
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <form action="Controller?page=deleteAppoinment" method="post">
+                            <input type="hidden"  name="delete" id="myInput" />
+                            <button type="submit" class="btn btn-danger">Confirm</button>
+                        </form> 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        function DeleteAction(a) {
-            const deleteForm = document.getElementById("myInput");
-            deleteForm.value = a;
-        }
-    </script>
+        <script>
+            function DeleteAction(a) {
+                const deleteForm = document.getElementById("myInput");
+                deleteForm.value = a;
+            }
+        </script>
 
-</body>
+    </body>
 </html>

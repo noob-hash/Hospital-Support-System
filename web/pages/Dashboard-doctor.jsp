@@ -18,14 +18,13 @@ r<%--
         <!-- Favicons -->
         <link href="assets/img/favicon1.png" rel="icon">
         <link href="assets/img/apple-touch-icon_1.png" rel="apple-touch-icon">
-        <link rel="stylesheet" href="Base.css"> 
-        <link rel="stylesheet" href="index.css">
+        
     </head>
-    
-         <!-- Vendor CSS Files -->
-        <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-        <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -61,11 +60,20 @@ r<%--
         }
     </style>
     <body>
-        <section class="grid">
-                <%@ include  file="nav-doctor.html" %>
+        <section>
+            <%@ include  file="nav-doctor.html" %>
+            <div class="p-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="">
+                            <h5>Dashboard</h5>
+                            <small>Doctor > Dashboard</small>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="flex">
-                    
+
                     <div class="small-grid">
                         <div class="NewPatient">
 
@@ -76,6 +84,7 @@ r<%--
                     </div>
                 </div>
             </div>
-        </section>
-    </body>
+        </div>
+    </section>
+</body>
 </html>
