@@ -63,16 +63,140 @@
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
     </style>
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-        />
+    ></script>
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+    ></script>
     <body>
         <section class="container-fluid">
             <%@include  file="nav-admin.jsp"%>
+            <div class="collapse position-absolute w-100 top-0" id="collapseExample">
+                <div class="card card-body bg-light bg-opacity-75">
+                    <div class="container py-5 h-100">
+                        <div class="p-4 d-flex justify-content-center align-items-center">
+                            <form action="Controller?page=addAppoinment" method="post" role="form" class="needs-validation">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="Name">Full Name</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="Name"
+                                            id="Name"
+                                            aria-describedby="emailHelp"
+                                            placeholder="Enter fullname"
+                                            />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="Gender">Gender</label><br />
+                                        <div class="mt-2">
+                                            <input
+                                                type="radio"
+                                                name="Gender"
+                                                id="Male"
+                                                value="M"
+                                                />
+                                            <label for="Male">Male</label>
+                                            <input
+                                                type="radio"
+                                                name="Gender"
+                                                id="Female"
+                                                value="F"
+                                                />
+                                            <label for="Female">Female</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label for="Email1">Email address</label>
+                                            <input
+                                                type="email"
+                                                class="form-control"
+                                                name="Email"
+                                                id="Email"
+                                                aria-describedby="emailHelp"
+                                                placeholder="Enter email"
+                                                />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label for="Phone">Contact</label>
+                                            <input
+                                                type="text"
+                                                inputmode="numeric"
+                                                pattern="[0-9]+"
+                                                class="form-control"
+                                                name="Phone"
+                                                id="Phnoe"
+                                                aria-describedby="emailHelp"
+                                                placeholder="Enter phone"
+                                                />
+                                        </div>
+                                    </div>
+                                    <small id="emailHelp" class="form-text text-muted"
+                                           >We'll never share your email and contact with anyone
+                                        else.</small
+                                    >
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label for="dob">Birth Date</label>
+                                        <input type="date" name="DOB" class="form-control" id="dob" />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="address">Address</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="address"
+                                            name="Address"
+                                            placeholder="Enter address"
+                                            />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group mt-3">
+                                        <label for="date">Date</label>
+                                        <input type="date" name="date" class="form-control datepicker" id="date" required/>
+                                        <div class="validate"></div>
+                                    </div>
+                                    <div class="col-md-6 form-group mt-3">
+                                        <label for="time">Time</label>
+                                        <input type="time" name="time" class="form-control datepicker" id="time" required/>
+                                        <div class="validate"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 form-group mt-3">
+                                        <select name="doctor" id="doctor" class="form-select">
+                                            <option value="">Select Doctor</option>
+                                            <c:forEach var="Doctor" items="${doctorList}">
+                                                <option value="${Doctor.user.id}"> - ${Doctor.user.name}</option>
+                                            </c:forEach>    
+                                        </select>
+                                        <div class="validate"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+                                    <div class="validate"></div>
+                                </div>
+                                <div class="text-center mt-4 ">
+                                    <button type="submit" class="btn bg-info p-2">Make an Appointment</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="p-4">
                 <div class="row">
                     <div class="col">
@@ -81,8 +205,13 @@
                             <small>Admin > Appoinment list</small>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <div class="col-auto page-action">
+                        <button  class="btn btn-light bg-info"
+                                 type="button"
+                                 data-toggle="collapse"
+                                 data-target="#collapseExample"
+                                 aria-expanded="false"
+                                 aria-controls="collapseExample">
                             Add Appoinment
                         </button>
                     </div>
@@ -110,7 +239,6 @@
                             <td>${appoinment.sechedule.date}</td>
                             <td>${appoinment.sechedule.visitTime} - ${appoinment.sechedule.endTime}</td>
                             <td>
-                            <td>
                                 <button type="button" class="btn btn-primary" onclick="DeleteAction(${appoinment.sechedule.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
                             </td>
                             </td>
@@ -126,7 +254,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Conform Action</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

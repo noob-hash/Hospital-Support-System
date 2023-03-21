@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Appoinment</title>
+        <title>Records</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
 
