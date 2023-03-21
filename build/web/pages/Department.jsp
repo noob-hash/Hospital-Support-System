@@ -180,18 +180,18 @@
                     </button>
                 </div>
             </div>
-            <div class="row p-2 gap-2">
+            <div class="row p-2 gap-2 container-fluid">
                 <c:forEach var="department" items="${departmentList}">
-                    <div class="col-sm-12 col-md-4 bg-white rounded-2 p-2">
+                    <div class="col-sm-12 col-md-6 col-lg-4 p-4 bg-white rounded-2 p-2">
                         <div class="contact ">
                             <div class="img-box">
-                                <img width="400" src="content/doctor-400-1.jpg" height="400" alt="avatar">
+                                <img width="310" src="assets/img/departments-1.jpg" height="300" alt="avatar">
                             </div><div class="info-box">
                                 <h4 class="name">${department.name}</h4>
                                 <small class="contact">${department.contact}</small>
                                 <p class="role">${department.detail}</p>
 
-                                <div class="button-box">
+                                <div class="button-box row">
                                     <button type="button" class="btn btn-primary">
                                         <span>More</span>
                                     </button>

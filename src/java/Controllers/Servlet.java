@@ -175,6 +175,7 @@ public class Servlet extends HttpServlet {
                         User userP = new User(Integer.parseInt(result.getString("Id")), result.getString("Name"), User.Gender.valueOf(result.getString("Gender")), result.getString("D_O_B"), result.getString("Phone"), result.getString("email"), result.getString("Address"), User.Role.valueOf(result.getString("Role")));
                         userData.add(userP);
                     }
+                    
                     request.setAttribute("UserData", userData);
                     RequestDispatcher dispacher = request.getRequestDispatcher("pages/Dashboard-admin.jsp");
                     dispacher.forward(request, response);
@@ -182,6 +183,7 @@ public class Servlet extends HttpServlet {
                     Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else if (sRole.equalsIgnoreCase("P") || cRole.equalsIgnoreCase("P")) {
+                
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Dashboard-patient.jsp");
                 dispacher.forward(request, response);
             } else if (sRole.equalsIgnoreCase("D") || cRole.equalsIgnoreCase("D")) {

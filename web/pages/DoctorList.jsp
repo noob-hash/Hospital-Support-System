@@ -262,12 +262,13 @@
                     </button>
                 </div>
             </div>
-            <div class="row p-2 gap-2">
+            <div class=" container-fluid">
+                <div class="row p-2 gap-2">
                 <c:forEach var="doctor" items="${doctorList}">
-                    <div class="col-sm-12 col-md-4 p-4 border bg-white ">
+                    <div class="col-sm-12 col-md-6 col-lg-4  p-4 border bg-white ">
                         <div class="contact ">
                             <div class="img-box">
-                                <img width="400" src="content/doctor-400-1.jpg" height="400" alt="avatar">
+                                <img width="300" src="assets/img/doctors/doctors-1.jpg" height="300" alt="avatar">
                             </div><div class="info-box">
                                 <h4 class="name">${doctor.name}</h4>
                                 <small class="name">${doctor.speacialization}</small>
@@ -277,8 +278,8 @@
                                     <a href="#" class="link icofont-twitter"></a>
                                 </div>
                                 <p class="address">${doctor.address}</p>
-                                <div class="button-box">
-                                    <button type="button" class="ant-btn ant-btn-primary">
+                                <div class="button-box row">
+                                    <button type="button" class="btn btn-primary">
                                         <span>View profile</span>
                                     </button>
                                 </div>
@@ -288,6 +289,8 @@
                 </c:forEach>
 
             </div>
+            </div>
+            
         </div>
 
     </section>

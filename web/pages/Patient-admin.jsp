@@ -58,7 +58,7 @@
             top: 10%;
             width: 85%;
             height: 90%;
-            overflow-x: hidden
+            overflow-x: auto
         }
     </style>
     <style>

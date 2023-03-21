@@ -125,7 +125,7 @@
                     <div class="col">
                         <div class="">
                             <h5>Appoinment</h5>
-                            <small>Appoinment list</small>
+                            <small>Admin > Appoinment</small>
                         </div>
                     </div>
                     <div class="col-auto">
