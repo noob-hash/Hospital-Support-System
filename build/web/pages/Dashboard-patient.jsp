@@ -77,6 +77,13 @@
     <body>
         <section id="page" class="cotainer-fluid">
             <%@include file="nav-patient.html" %>
+            <div class="p-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="">
+                            <h5>Dashboard</h5>
+                            <small>Doctor > Dashboard</small>
+                        </div>
             <div class="p-4 d-flex justify-content-around row">
                 <div class="shadow bg-white rounded col-lg-2 col-sm-12 p-3 mb-4">
                     <div></div>
@@ -150,7 +157,7 @@
                     </c:forEach>
                 </table>
             </div>
-        </main>
+        </div>
     </section>
     <script type="module" src="acquisitions.js"></script>
 </body>

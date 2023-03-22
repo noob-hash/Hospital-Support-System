@@ -184,7 +184,7 @@ public class Servlet extends HttpServlet {
                 }
             } else if (sRole.equalsIgnoreCase("P") || cRole.equalsIgnoreCase("P")) {
                 
-                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Dashboard-patient.jsp");
+                RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=appoinmentPage");
                 dispacher.forward(request, response);
             } else if (sRole.equalsIgnoreCase("D") || cRole.equalsIgnoreCase("D")) {
 
@@ -290,7 +290,7 @@ public class Servlet extends HttpServlet {
                     }
                 }
             }
-            if(cId != null){
+            if(!cId.isBlank()){
                 sId = cId;
             }
             if (sRole == null && cRole == null) {
