@@ -7,6 +7,7 @@ package Controllers;
 import Models.Appoinment;
 import Models.Department;
 import Models.Doctor;
+import Models.MedicalRecord;
 import Models.Patient;
 import Models.Schedule;
 import Models.TableData;
@@ -98,6 +99,16 @@ public class Servlet extends HttpServlet {
 
         if (page.equalsIgnoreCase("RegisterPage")) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Register.jsp");
+            dispatcher.include(request, response);
+        }
+        
+        if (page.equalsIgnoreCase("addRecord")) {
+            Patient p = new PatientService().GetPatient(Integer.parseInt(request.getParameter("record")));
+//            Patient patient, String bloodPressure, String heartPressure, String height, int weight, String[] symptoms, String[] diagnosis, String[] treatment
+                System.out.println("AP");
+            MedicalRecord rc = new MedicalRecord( p, request.getParameter("bp"),request.getParameter("hb"),request.getParameter("height"),Integer.parseInt(request.getParameter("height")),request.getParameter("symptoms"),request.getParameter("diagnostics"),request.getParameter("treatment"));
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Controller?page=record");
             dispatcher.include(request, response);
         }
 

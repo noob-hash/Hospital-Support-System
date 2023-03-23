@@ -20,15 +20,15 @@ public class MedicalRecord {
     private String height;
     private int weight;
     
-    private String[] symptoms;
-    private String[] diagnosis;
-    private String[] treatment;
-    private MedicalProduct[] medicines;
+    private String symptoms;
+    private String diagnosis;
+    private String treatment;
+    private MedicalProduct medicines;
     
-    private LabReport[] labreports;
+    private LabReport labreports;
 
 
-    public MedicalRecord(Patient patient, LocalDate date, String bloodPressure, String heartPressure, String height, int weight, String[] symptoms, String[] diagnosis, String[] treatment, MedicalProduct[] medicines, LabReport[] labreports) {
+    public MedicalRecord(Patient patient, LocalDate date, String bloodPressure, String heartPressure, String height, int weight, String symptoms, String diagnosis, String treatment, MedicalProduct medicines, LabReport labreports) {
         this.patient = patient;
         this.date = date;
         this.bloodPressure = bloodPressure;
@@ -42,7 +42,7 @@ public class MedicalRecord {
         this.labreports = labreports;
     }
 
-    public MedicalRecord(Patient patient, LocalDate date, String bloodPressure, String heartPressure, String height, int weight, String[] symptoms, String[] diagnosis, String[] treatment, MedicalProduct[] medicines) {
+    public MedicalRecord(Patient patient, LocalDate date, String bloodPressure, String heartPressure, String height, int weight, String symptoms, String diagnosis, String treatment, MedicalProduct medicines) {
         this.patient = patient;
         this.date = date;
         this.bloodPressure = bloodPressure;
@@ -55,9 +55,20 @@ public class MedicalRecord {
         this.medicines = medicines;
     }
 
-    public MedicalRecord(Patient patient, LocalDate date, String bloodPressure, String heartPressure, String height, int weight, String[] symptoms, String[] diagnosis, String[] treatment) {
+    public MedicalRecord(Patient patient, LocalDate date, String bloodPressure, String heartPressure, String height, int weight, String symptoms, String diagnosis, String treatment) {
         this.patient = patient;
         this.date = date;
+        this.bloodPressure = bloodPressure;
+        this.heartPressure = heartPressure;
+        this.height = height;
+        this.weight = weight;
+        this.symptoms = symptoms;
+        this.diagnosis = diagnosis;
+        this.treatment = treatment;
+    }
+    
+    public MedicalRecord(Patient patient, String bloodPressure, String heartPressure, String height, int weight, String symptoms, String diagnosis, String treatment) {
+        this.patient = patient;
         this.bloodPressure = bloodPressure;
         this.heartPressure = heartPressure;
         this.height = height;
@@ -115,43 +126,43 @@ public class MedicalRecord {
         this.weight = weight;
     }
 
-    public String[] getSymptoms() {
+    public String getSymptoms() {
         return symptoms;
     }
 
-    public void setSymptoms(String[] symptoms) {
+    public void setSymptoms(String symptoms) {
         this.symptoms = symptoms;
     }
 
-    public String[] getDiagnosis() {
+    public String getDiagnosis() {
         return diagnosis;
     }
 
-    public void setDiagnosis(String[] diagnosis) {
+    public void setDiagnosis(String diagnosis) {
         this.diagnosis = diagnosis;
     }
 
-    public String[] getTreatment() {
+    public String getTreatment() {
         return treatment;
     }
 
-    public void setTreatment(String[] treatment) {
+    public void setTreatment(String treatment) {
         this.treatment = treatment;
     }
 
-    public MedicalProduct[] getMedicines() {
+    public MedicalProduct getMedicines() {
         return medicines;
     }
 
-    public void setMedicines(MedicalProduct[] medicines) {
+    public void setMedicines(MedicalProduct medicines) {
         this.medicines = medicines;
     }
 
-    public LabReport[] getLabreports() {
+    public LabReport getLabreports() {
         return labreports;
     }
 
-    public void setLabreports(LabReport[] labreports) {
+    public void setLabreports(LabReport labreports) {
         this.labreports = labreports;
     }
     

@@ -74,7 +74,20 @@
                             Hello
                         </div>
                         <div class="col-lg-6 col-md-4 col-sm-12">
-                            World
+                            <form method="post" action="Controller?page=addRecord">
+                                <input type="hidden" name="record" value="<%=request.getParameter("record")%>"/>
+                                <input type="number" name="bp" placeholder="BP" />
+                            <input type="number" name="hb" placeholder="HB" />
+                            <input type="number" name="height" placeholder="height" />
+                            <input type="number" name="weight" placeholder="weight" />
+                            <textarea name="symptons" placeholder="symptoms"></textarea>
+                            <textarea name="diagnostics" placeholder="Diagnostics" ></textarea>
+                            <textarea name="report" placeholder="report" ></textarea>
+                            <textarea name="tp" placeholder="tp"></textarea>
+                            <textarea name="medication" placeholder="medication"></textarea>
+                            <input type="text" name="UID" placeholder="UID" /></br>
+                            <input type="submit" value="Submit" />
+                            </form>
                         </div>
                     </div>
                 </div>

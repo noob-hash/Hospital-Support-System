@@ -94,7 +94,8 @@ r<%--
                                         <td>
                                             <form method="post" action="Controller?page=record">
                                                 <input type="hidden"  name="record" value="${appoinment.user.id}" id="myInput" />
-                                                <button type="submit" class="btn btn-info">View Record</button>                                            </form>
+                                                <button type="submit" class="btn btn-info">View Record</button>
+                                            </form>
                                         </td>
                                         </td>
                                     </tr>
