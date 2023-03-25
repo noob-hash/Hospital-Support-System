@@ -117,15 +117,16 @@ public class PatientService {
         return appoinmentList;
     }
     
-    public List<MedicalRecord> PatientHistory() {
+    public List<MedicalRecord> PatientHistory(int id) {
         List<MedicalRecord> recordList = new ArrayList<>();
         try {
             Connection con = new DatabaseConnection().ConnectionEstablishment();
-            String statement = "Select * from schedule inner join user on schedule.user = user.Id where role='P';";
+            String statement = "Select * from history where U_ID = ?;";
             PreparedStatement ps = con.prepareStatement(statement);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                MedicalRecord record = new MedicalRecord( new PatientService().GetPatient(Integer.parseInt(rs.getString("U_ID"))), rs.getString("bp"),rs.getString("hb"),rs.getString("height"),Integer.parseInt(rs.getString("height")),rs.getString("symptons"),rs.getString("diagnostics"),rs.getString("tp"));
+                MedicalRecord record = new MedicalRecord( new PatientService().GetPatient(Integer.parseInt(rs.getString("U_ID"))), rs.getString("BP"),rs.getString("HB"),rs.getString("Height"),Integer.parseInt(rs.getString("Weight")),rs.getString("Symptons"),rs.getString("Diagnostics"),rs.getString("TP"));
                 recordList.add(record);
             }
         } catch (SQLException ex) {

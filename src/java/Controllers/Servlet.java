@@ -107,7 +107,7 @@ public class Servlet extends HttpServlet {
             Patient p = new PatientService().GetPatient(Integer.parseInt(request.getParameter("record")));
 //            Patient patient, String bloodPressure, String heartPressure, String height, int weight, String[] symptoms, String[] diagnosis, String[] treatment
 
-            MedicalRecord rc = new MedicalRecord( p, request.getParameter("bp"),request.getParameter("hb"),request.getParameter("height"),Integer.parseInt(request.getParameter("height")),request.getParameter("symptons"),request.getParameter("diagnostics"),request.getParameter("tp"));
+            MedicalRecord rc = new MedicalRecord( p, request.getParameter("bp"),request.getParameter("hb"),request.getParameter("height"),Integer.parseInt(request.getParameter("weight")),request.getParameter("symptons"),request.getParameter("diagnostics"),request.getParameter("tp"));
             new PatientService().addRecord(rc);
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("Controller?page=record");
