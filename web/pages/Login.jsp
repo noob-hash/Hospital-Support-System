@@ -49,11 +49,11 @@
 
                                 <div class="form-outline form-white">
                                     <label class="form-label " for="username">Username/Email</label>
-                                    <input type="text" id="username" name="username" class="form-control form-control-lg" />
+                                    <input required type="text" id="username" name="username" class="form-control form-control-lg" />
                                 </div>
                                 <div class="form-outline form-white mb-4">
                                     <label class="form-label" for="password">Password</label>
-                                    <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                                    <input required type="password" id="password" name="password" class="form-control form-control-lg" />
                                 </div>
                                 <div>
                                     <input type="checkbox" name="Remember" id="Remenber" />

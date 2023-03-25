@@ -60,7 +60,7 @@
                                         <div class="row">
                                             <div class="form-group col-md-6">
                                                 <label for="Name">Full Name</label>
-                                                <input
+                                                <input required
                                                     type="text"
                                                     class="form-control"
                                                     id="Name"
@@ -72,14 +72,14 @@
                                             <div class="form-group col-md-6">
                                                 <label for="Email1">Gender</label><br />
                                                 <div class="mt-2">
-                                                    <input
+                                                    <input required
                                                         type="radio"
                                                         name="Gender"
                                                         id="Male"
                                                         value="M"
                                                         />
                                                     <label for="Male">Male</label>
-                                                    <input
+                                                    <input required
                                                         type="radio"
                                                         name="Gender"
                                                         id="Female"
@@ -93,7 +93,7 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <label for="Email1">Email address</label>
-                                                    <input
+                                                    <input required
                                                         type="email"
                                                         class="form-control"
                                                         id="Email"
@@ -104,7 +104,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="Phone">Contact</label>
-                                                    <input
+                                                    <input required
                                                         type="text"
                                                         inputmode="numeric"
                                                         pattern="[0-9]+"
@@ -124,11 +124,11 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <label for="dob">Birth Date</label>
-                                                <input type="date" name="DOB" class="form-control" id="dob" />
+                                                <input required type="date" name="DOB" class="form-control" id="dob" />
                                             </div>
                                             <div class="col-lg-6">
                                                 <label for="address">Address</label>
-                                                <input
+                                                <input required
                                                     type="text"
                                                     class="form-control"
                                                     name="Address"
@@ -140,7 +140,7 @@
                                          <div class="row">
                                             <div class="col-lg-6">
                                                 <label for="Password">Password</label>
-                                                <input
+                                                <input required
                                                     type="password"
                                                     class="form-control"
                                                     name="Password"
@@ -150,7 +150,7 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <label for="confirmPwd">Confirm Password</label>
-                                                <input
+                                                <input required
                                                     type="password"
                                                     class="form-control"
                                                     name="ConfirmPassword"

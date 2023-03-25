@@ -13,6 +13,7 @@ import Models.Schedule;
 import Models.TableData;
 import Models.User;
 import Services.DatabaseServices.DatabaseConnection;
+import Services.DatabaseServices.DatabaseService;
 import Services.ModelServices.DoctorService;
 import Services.ModelServices.PatientService;
 import Services.ModelServices.UserService;
@@ -105,8 +106,9 @@ public class Servlet extends HttpServlet {
         if (page.equalsIgnoreCase("addRecord")) {
             Patient p = new PatientService().GetPatient(Integer.parseInt(request.getParameter("record")));
 //            Patient patient, String bloodPressure, String heartPressure, String height, int weight, String[] symptoms, String[] diagnosis, String[] treatment
-                System.out.println("AP");
-            MedicalRecord rc = new MedicalRecord( p, request.getParameter("bp"),request.getParameter("hb"),request.getParameter("height"),Integer.parseInt(request.getParameter("height")),request.getParameter("symptoms"),request.getParameter("diagnostics"),request.getParameter("treatment"));
+
+            MedicalRecord rc = new MedicalRecord( p, request.getParameter("bp"),request.getParameter("hb"),request.getParameter("height"),Integer.parseInt(request.getParameter("height")),request.getParameter("symptons"),request.getParameter("diagnostics"),request.getParameter("tp"));
+            new PatientService().addRecord(rc);
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("Controller?page=record");
             dispatcher.include(request, response);
@@ -181,7 +183,7 @@ public class Servlet extends HttpServlet {
             if (sRole.equalsIgnoreCase("A") || cRole.equalsIgnoreCase("A")) {
                 List<User> userData = new ArrayList<>();
                 try {
-                    ResultSet result = new DatabaseConnection().GetData("user", new TableData("Role", "P"), new TableData("Role", "P"));
+                    ResultSet result = new DatabaseService().GetData("user", new TableData("Role", "P"), new TableData("Role", "P"));
                     while (result.next()) {
                         User userP = new User(Integer.parseInt(result.getString("Id")), result.getString("Name"), User.Gender.valueOf(result.getString("Gender")), result.getString("D_O_B"), result.getString("Phone"), result.getString("email"), result.getString("Address"), User.Role.valueOf(result.getString("Role")));
                         userData.add(userP);
@@ -191,7 +193,7 @@ public class Servlet extends HttpServlet {
                     RequestDispatcher dispacher = request.getRequestDispatcher("pages/Dashboard-admin.jsp");
                     dispacher.forward(request, response);
                 } catch (SQLException ex) {
-                    Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    ex.printStackTrace();
                 }
             } else if (sRole.equalsIgnoreCase("P") || cRole.equalsIgnoreCase("P")) {
                 
@@ -201,7 +203,7 @@ public class Servlet extends HttpServlet {
 
                 List<User> userData = new ArrayList<>();
                 try {
-                    ResultSet result = new DatabaseConnection().GetData("user", new TableData("Role", "P"), new TableData("Role", "P"));
+                    ResultSet result = new DatabaseService().GetData("user", new TableData("Role", "P"), new TableData("Role", "P"));
                     while (result.next()) {
                         User userP = new User(Integer.parseInt(result.getString("Id")), result.getString("Name"), User.Gender.valueOf(result.getString("Gender")), result.getString("D_O_B"), result.getString("Phone"), result.getString("email"), result.getString("Address"), User.Role.valueOf(result.getString("Role")));
                         userData.add(userP);
@@ -210,7 +212,7 @@ public class Servlet extends HttpServlet {
                     RequestDispatcher dispacher = request.getRequestDispatcher("pages/Dashboard-doctor.jsp");
                     dispacher.forward(request, response);
                 } catch (SQLException ex) {
-                    Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    ex.printStackTrace();
                 }
             } else {
                 RequestDispatcher dispacher = request.getRequestDispatcher("index.jsp");

@@ -12,6 +12,7 @@ import Models.Department;
 import Models.TableData;
 import Models.User;
 import Services.DatabaseServices.DatabaseConnection;
+import Services.DatabaseServices.DatabaseService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -71,28 +72,28 @@ public class UserService extends SecureAuth  implements Authentication {
     }
 //    ham tumare hai sanam
     public void SaveNewUserCredentials(User userParent) {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
+        DatabaseService databaseService = new DatabaseService();
         
         String Salt = generateSalt();
         System.out.println(userParent.getPassword());
         String encryptedPassword = createHash(userParent.getPassword(), Salt);
         
-        databaseConnection.InsertData("user", false, userParent.getName(), userParent.getGender().toString(), userParent.getDob().toString(), userParent.getPhone(), userParent.getEmail(), userParent.getAddress(), userParent.getRole().toString());
-        databaseConnection.InsertData("sea", Salt);
-        databaseConnection.InsertData("user_credentials", userParent.getUsername(), encryptedPassword);
+        databaseService.InsertData("user", false, userParent.getName(), userParent.getGender().toString(), userParent.getDob().toString(), userParent.getPhone(), userParent.getEmail(), userParent.getAddress(), userParent.getRole().toString());
+        databaseService.InsertData("sea", Salt);
+        databaseService.InsertData("user_credentials", userParent.getUsername(), encryptedPassword);
 
     }
     
     public void UpdateUserDetails(String TableName, TableData values, TableData condition){
-        DatabaseConnection databaseConnection = new DatabaseConnection();
+        DatabaseService databaseService = new DatabaseService();
         if(!(values.columnName).contains("id")){
-            databaseConnection.UpdateData(TableName, condition, values);
+            databaseService.UpdateData(TableName, condition, values);
         }
     }
 
     public void UpdateUserDetails(String TableName, TableData condition, TableData... values){
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        databaseConnection.UpdateData(TableName, condition, values);
+        DatabaseService databaseService = new DatabaseService();
+        databaseService.UpdateData(TableName, condition, values);
     }
     
     public boolean UserExists(String identifier){
@@ -151,8 +152,8 @@ public class UserService extends SecureAuth  implements Authentication {
     
     private static String getStoredHash(String username) {
         try {
-            DatabaseConnection databaseConnection = new DatabaseConnection();
-            ResultSet rs = databaseConnection.GetData("user_credentials", new TableData("Username",username), "Password");
+            DatabaseService databaseService = new DatabaseService();
+            ResultSet rs = databaseService.GetData("user_credentials", new TableData("Username",username), "Password");
 
             if (rs.next()) {
                 return rs.getString("password");
@@ -165,15 +166,15 @@ public class UserService extends SecureAuth  implements Authentication {
     
     @Override
     public boolean LogIn(String username, String password) {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
+        DatabaseService databaseService = new DatabaseService();
         String salt = null, storedHash = null, providedHash = null;
         boolean Result = false;
         try {
-            ResultSet UId = databaseConnection.GetData("user_credentials", new TableData("username", username), "UniqueId");
+            ResultSet UId = databaseService.GetData("user_credentials", new TableData("username", username), "UniqueId");
             
             while(UId.next()) {
                 String UniqueId = UId.getString("UniqueId");
-                ResultSet s = databaseConnection.GetData("sea", new TableData("SaltId", UniqueId), "Salt");
+                ResultSet s = databaseService.GetData("sea", new TableData("SaltId", UniqueId), "Salt");
                 s.next();
                 salt = s.getString("Salt");
                 // retrieve hashed and salted password from database
