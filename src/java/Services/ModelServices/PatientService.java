@@ -121,12 +121,12 @@ public class PatientService {
         List<MedicalRecord> recordList = new ArrayList<>();
         try {
             Connection con = new DatabaseConnection().ConnectionEstablishment();
-            String statement = "Select * from history where U_ID = ?;";
+            String statement = "Select * from history where U_ID = ? ORDER by DOD DESC LIMIT 1;";
             PreparedStatement ps = con.prepareStatement(statement);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                MedicalRecord record = new MedicalRecord( new PatientService().GetPatient(Integer.parseInt(rs.getString("U_ID"))), rs.getString("BP"),rs.getString("HB"),rs.getString("Height"),Integer.parseInt(rs.getString("Weight")),rs.getString("Symptons"),rs.getString("Diagnostics"),rs.getString("TP"));
+                MedicalRecord record = new MedicalRecord( new PatientService().GetPatient(Integer.parseInt(rs.getString("U_ID"))), rs.getString("BP"),rs.getString("HB"),rs.getString("Height"),Integer.parseInt(rs.getString("Weight")),rs.getString("Symptoms"),rs.getString("Diagnostics"),rs.getString("TP"), rs.getString("DOD"));
                 recordList.add(record);
             }
         } catch (SQLException ex) {
@@ -134,6 +134,8 @@ public class PatientService {
         }
         return recordList;
     }
+    
+    
     
     /**
      * 

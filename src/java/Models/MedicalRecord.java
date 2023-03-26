@@ -4,7 +4,16 @@
  */
 package Models;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -76,6 +85,18 @@ public class MedicalRecord {
         this.symptoms = symptoms;
         this.diagnosis = diagnosis;
         this.treatment = treatment;
+    }
+    
+    public MedicalRecord(Patient patient, String bloodPressure, String heartPressure, String height, int weight, String symptoms, String diagnosis, String treatment, String date) {
+        this.patient = patient;
+        this.bloodPressure = bloodPressure;
+        this.heartPressure = heartPressure;
+        this.height = height;
+        this.weight = weight;
+        this.symptoms = symptoms;
+        this.diagnosis = diagnosis;
+        this.treatment = treatment;
+        setDate(date);
     }
 
     public Patient getPatient() {
@@ -164,6 +185,22 @@ public class MedicalRecord {
 
     public void setLabreports(LabReport labreports) {
         this.labreports = labreports;
+    }
+    
+    public void setDate(String dateApp) {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+            //formatting user input date and saving it as Date type
+            Date date = dateFormat.parse(dateApp);
+            //converting obrained Date object abve to LocalDate Object as it is data type we need
+            Instant instant = date.toInstant();
+            ZonedDateTime zone = instant.atZone(ZoneId.systemDefault());
+            LocalDate dateAppoinment = zone.toLocalDate();
+            //setting dob
+            this.date = dateAppoinment;
+        } catch (ParseException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

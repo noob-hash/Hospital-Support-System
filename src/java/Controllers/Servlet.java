@@ -457,6 +457,10 @@ public class Servlet extends HttpServlet {
         }
         
         if(page.equalsIgnoreCase("record")){
+            
+            List<MedicalRecord> recordList = new PatientService().PatientHistory(Integer.parseInt(request.getParameter("record")));
+            request.setAttribute("recordList", recordList);
+            
             RequestDispatcher dispacher = request.getRequestDispatcher("pages/Record-doctor.jsp");
             dispacher.forward(request, response);
         }

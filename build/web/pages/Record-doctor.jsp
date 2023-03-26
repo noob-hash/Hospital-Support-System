@@ -71,6 +71,9 @@
 
                     <div class="row justify-space-between">
                         <div class="col-lg-6 col-md-4 col-sm-12">
+                            <c:forEach var="record" items="${recordList}">
+                                ${record.patient.name}
+                            </c:forEach>
                             <span class="text-danger">No report available</span>
                         </div>
                         <div class="col-lg-6 col-md-4 col-sm-12">
