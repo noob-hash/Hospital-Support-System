@@ -119,7 +119,7 @@
                                         <div class="row">
                                             <div class="form-group col-md-6">
                                                 <label for="Name">Full Name</label>
-                                                <input
+                                                <input required
                                                     type="text"
                                                     class="form-control"
                                                     name="Name"
@@ -152,7 +152,7 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <label for="Email1">Email address</label>
-                                                    <input
+                                                    <input required
                                                         type="email"
                                                         class="form-control"
                                                         name="Email"
@@ -163,9 +163,9 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="Phone">Contact</label>
-                                                    <input
+                                                    <input required
                                                         type="text"
-                                                        inputmode="numeric"
+                                                        input requiredmode="numeric"
                                                         pattern="[0-9]+"
                                                         class="form-control"
                                                         name="Phone"
@@ -183,11 +183,11 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <label for="dob">Birth Date</label>
-                                                <input type="date" name="DOB" class="form-control" id="dob" />
+                                                <input required type="date" name="DOB" class="form-control" id="dob" />
                                             </div>
                                             <div class="col-lg-6">
                                                 <label for="address">Address</label>
-                                                <input
+                                                <input required
                                                     type="text"
                                                     class="form-control"
                                                     id="address"
@@ -199,7 +199,7 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <label for="specialization">Specialization</label>
-                                                <input
+                                                <input required
                                                     type="text"
                                                     class="form-control"
                                                     id="specialization"

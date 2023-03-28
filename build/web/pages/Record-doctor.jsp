@@ -64,39 +64,86 @@
                 <div class="row">
                     <div class="col">
                         <div class="">
-                            <h5>Record</h5>
+                            <h5>Record</h5> 
                             <small>Doctor > Medical Record</small>
                         </div>
                     </div>
 
                     <div class="row justify-space-between">
                         <div class="col-lg-6 col-md-4 col-sm-12">
-                            <c:forEach var="record" items="${recordList}">
-                                ${record.patient.name}
-                            </c:forEach>
-                            <span class="text-danger">No report available</span>
+                            <c:choose>
+                                <c:when test="${empty recordList}">
+                                    <span class="text-danger">No report available</span>
+
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach var="record" items="${recordList}">
+                                        <div>
+                                            <div class="row">
+                                                <h1>${record.patient.name}</h1>
+                                                <small>${record.date}</small>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    Blood Pressure<br>
+                                                    ${record.bloodPressure}
+                                                </div>
+                                                <div class="col-3">
+                                                    Heart Beat<br>
+                                                    ${record.heartPressure}
+                                                </div>
+                                                <div class="col-3">
+                                                    Height<br>
+                                                    ${record.height}
+                                                </div>
+                                                <div class="col-3">
+                                                    Weight<br>
+                                                    ${record.weight}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <b>Symptoms</b>
+                                                ${record.symptoms}
+                                            </div>
+                                            <div class="row">
+                                                <b>Diagnosis</b>
+                                                ${record.diagnosis}
+                                            </div>
+                                            <div class="row">
+                                                <b>Treatment</b>
+                                                ${record.treatment}
+                                            </div>
+                                            <div class="row">
+                                                <b>Medication</b>
+                                                ${record.medicines}
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
+
                         </div>
                         <div class="col-lg-6 col-md-4 col-sm-12">
                             <form method="post" class="mb-md-2 mt-md-4 pb-2" action="Controller?page=addRecord">
-                                <input type="hidden" name="record" value="<%=request.getParameter("record")%>"/>
+                                <input required type="hidden" name="record" value="<%=request.getParameter("record")%>"/>
                                 <div class="row gap-3">
                                     <div class="form-outline form-white col-4">
                                         <label for="bp">Blood Pressure</label>
-                                        <input type="text" name="bp" id="bp"" placeholder="BP" required/>
+                                        <input required type="text" name="bp" id="bp"" placeholder="BP" required/>
                                     </div>
                                     <div class="form-outline form-white col-4 gap-3">
                                         <label for="hb">Heart Beat</label>
-                                        <input type="text" id="hb" name="hb" placeholder="HB" required/>
+                                        <input required type="text" id="hb" name="hb" placeholder="HB" required/>
                                     </div>
                                 </div>
                                 <div class="row space-between">
                                     <div class="form-outline form-white col-4">
                                         <label for="beight">Height</label>
-                                        <input type="text" id="height" name="height" placeholder="height" required/>
+                                        <input required type="text" id="height" name="height" placeholder="height" required/>
                                     </div>
                                     <div class="form-outline form-white col-4 gap-3">
                                         <label for="weight">Weight</label>
-                                        <input type="number" id="weight" name="weight" placeholder="weight" required/>
+                                        <input required type="number" id="weight" name="weight" placeholder="weight" required/>
                                     </div>
                                 </div>
                                 <div class="form-outline form-white row">

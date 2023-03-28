@@ -13,6 +13,9 @@
         <meta content="" name="description">
         <meta content="" name="keywords">
 
+        <!-- Used for login through google api -->
+        <meta name="google-signin-client_id" content="668452761339-j6gv3e5hlo3emjatase31gvgq2s39c3k.apps.googleusercontent.com">
+
         <!-- Favicons -->
         <link href="assets/img/favicon1.png" rel="icon">
         <link href="assets/img/apple-touch-icon_1.png" rel="apple-touch-icon">
@@ -49,11 +52,11 @@
 
                                 <div class="form-outline form-white">
                                     <label class="form-label " for="username">Username/Email</label>
-                                    <input required type="text" id="username" name="username" class="form-control form-control-lg" />
+                                    <input  type="text" id="username" name="username" class="form-control form-control-lg" />
                                 </div>
                                 <div class="form-outline form-white mb-4">
                                     <label class="form-label" for="password">Password</label>
-                                    <input required type="password" id="password" name="password" class="form-control form-control-lg" />
+                                    <input  type="password" id="password" name="password" class="form-control form-control-lg" />
                                 </div>
                                 <div>
                                     <input type="checkbox" name="Remember" id="Remenber" />
@@ -67,9 +70,20 @@
                                     OR
                                 </div>
                                 <div class="d-flex justify-content-center text-center mt-2 pt-1">
-                                    <a href="#!"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#!"><i class="fab fa-twitter mx-4 px-2"></i></a>
-                                    <a href="#!"><i class="fab fa-google"></i></a>
+                                    <script src="https://accounts.google.com/gsi/client" async defer></script>
+                                    <div id="g_id_onload"
+         data-client_id="668452761339-j6gv3e5hlo3emjatase31gvgq2s39c3k.apps.googleusercontent.com"
+         data-login_uri="https://localhost:8080/HSS/Controller?page=login"
+         data-auto_prompt="false">
+      </div>
+      <div class="g_id_signin"
+         data-type="standard"
+         data-size="large"
+         data-theme="outline"
+         data-text="sign_in_with"
+         data-shape="rectangular"
+         data-logo_alignment="left">
+      </div>
                                 </div>
                                 <div class="text-center mt-2">
                                     <p class="mb-0">Don't have an account? <a href="Controller?page=registerPage" class=" fw-bold">Sign Up</a>
@@ -85,5 +99,6 @@
         </div>
     </div>
 </section>
+
 </body>
 </html>

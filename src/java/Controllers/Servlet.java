@@ -129,7 +129,6 @@ public class Servlet extends HttpServlet {
                 String UserName = users.getName();
                 String Role = users.getRole().toString();
                 String Password = password;
-                System.out.println(Role);
                 String user = URLEncoder.encode(UserName, "UTF-8");
                 String role = URLEncoder.encode(Role, "UTF-8");
 

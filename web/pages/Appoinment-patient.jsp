@@ -94,11 +94,11 @@
                             <form action="Controller?page=addAppoinment" method="post" role="form" class="needs-validation">
                                 <div class="row">
                                     <div class="col-md-6 form-group mt-3">
-                                        <input type="date" name="date" class="form-control datepicker" id="date" required/>
+                                        <input required type="date" name="date" class="form-control datepicker" id="date" required/>
                                         <div class="validate"></div>
                                     </div>
                                     <div class="col-md-6 form-group mt-3">
-                                        <input type="time" name="time" class="form-control datepicker" id="time" required/>
+                                        <input required type="time" name="time" class="form-control datepicker" id="time" required/>
                                         <div class="validate"></div>
                                     </div>
                                 </div>
@@ -190,7 +190,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <form action="Controller?page=deleteAppoinment" method="post">
-                                <input type="hidden"  name="delete" id="myInput" />
+                                <input required type="hidden"  name="delete" id="myinput required" />
                                 <button type="submit" class="btn btn-danger">Confirm</button>
                             </form> 
                         </div>
@@ -202,7 +202,7 @@
     </section>
     <script>
         function DeleteAction(a) {
-            const deleteForm = document.getElementById("myInput");
+            const deleteForm = document.getElementById("myinput required");
             deleteForm.value = a;
         }
     </script>

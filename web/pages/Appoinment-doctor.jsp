@@ -93,7 +93,7 @@ r<%--
                                         <td>${appoinment.sechedule.visitTime} - ${appoinment.sechedule.endTime}</td>
                                         <td>
                                             <form method="post" action="Controller?page=record">
-                                                <input type="hidden"  name="record" value="${appoinment.user.id}" id="myInput" />
+                                                <input required type="hidden"  name="record" value="${appoinment.user.id}" id="myinput required" />
                                                 <button type="submit" class="btn btn-info">View Record</button>
                                             </form>
                                         </td>

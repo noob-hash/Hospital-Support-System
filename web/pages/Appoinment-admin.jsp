@@ -84,7 +84,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="Name">Full Name</label>
-                                        <input
+                                        <input required
                                             type="text"
                                             class="form-control"
                                             name="Name"
@@ -96,14 +96,14 @@
                                     <div class="form-group col-md-6">
                                         <label for="Gender">Gender</label><br />
                                         <div class="mt-2">
-                                            <input
+                                            <input required
                                                 type="radio"
                                                 name="Gender"
                                                 id="Male"
                                                 value="M"
                                                 />
                                             <label for="Male">Male</label>
-                                            <input
+                                            <input required
                                                 type="radio"
                                                 name="Gender"
                                                 id="Female"
@@ -117,7 +117,7 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <label for="Email1">Email address</label>
-                                            <input
+                                            <input required
                                                 type="email"
                                                 class="form-control"
                                                 name="Email"
@@ -128,9 +128,9 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="Phone">Contact</label>
-                                            <input
+                                            <input required
                                                 type="text"
-                                                inputmode="numeric"
+                                                input requiredmode="numeric"
                                                 pattern="[0-9]+"
                                                 class="form-control"
                                                 name="Phone"
@@ -148,11 +148,11 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label for="dob">Birth Date</label>
-                                        <input type="date" name="DOB" class="form-control" id="dob" />
+                                        <input required type="date" name="DOB" class="form-control" id="dob" />
                                     </div>
                                     <div class="col-lg-6">
                                         <label for="address">Address</label>
-                                        <input
+                                        <input required
                                             type="text"
                                             class="form-control"
                                             id="address"
@@ -164,12 +164,12 @@
                                 <div class="row">
                                     <div class="col-md-6 form-group mt-3">
                                         <label for="date">Date</label>
-                                        <input type="date" name="date" class="form-control datepicker" id="date" required/>
+                                        <input required type="date" name="date" class="form-control datepicker" id="date" required/>
                                         <div class="validate"></div>
                                     </div>
                                     <div class="col-md-6 form-group mt-3">
                                         <label for="time">Time</label>
-                                        <input type="time" name="time" class="form-control datepicker" id="time" required/>
+                                        <input required type="time" name="time" class="form-control datepicker" id="time" required/>
                                         <div class="validate"></div>
                                     </div>
                                 </div>
@@ -263,7 +263,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <form action="Controller?page=deleteAppoinment" method="post">
-                            <input type="hidden"  name="delete" id="myInput" />
+                            <input required type="hidden"  name="delete" id="myinput required" />
                             <button type="submit" class="btn btn-danger">Confirm</button>
                         </form> 
                     </div>
@@ -273,7 +273,7 @@
 
         <script>
             function DeleteAction(a) {
-                const deleteForm = document.getElementById("myInput");
+                const deleteForm = document.getElementById("myinput required");
                 deleteForm.value = a;
             }
         </script>
