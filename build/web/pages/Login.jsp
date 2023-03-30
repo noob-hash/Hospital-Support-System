@@ -39,6 +39,7 @@
 </head>
 <body>
     <section class="vh-100 gradient-custom">
+        
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -58,9 +59,14 @@
                                     <label class="form-label" for="password">Password</label>
                                     <input  type="password" id="password" name="password" class="form-control form-control-lg" />
                                 </div>
-                                <div>
-                                    <input type="checkbox" name="Remember" id="Remenber" />
-                                    <label for="Remenber">Remember me</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="checkbox" name="Remember" id="Remenber" />
+                                        <label for="Remenber">Remember me</label>
+                                    </div>
+                                    <div class="col-6 text-right" style="text-align:right">
+                                        <a href="${pageContext.request.contextPath}/Controller?page=forget">Forget Password</a>
+                                    </div>
                                 </div>
                                 <p class="small mb-2 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
                                 <div class=" text-center">
@@ -72,18 +78,18 @@
                                 <div class="d-flex justify-content-center text-center mt-2 pt-1">
                                     <script src="https://accounts.google.com/gsi/client" async defer></script>
                                     <div id="g_id_onload"
-         data-client_id="668452761339-j6gv3e5hlo3emjatase31gvgq2s39c3k.apps.googleusercontent.com"
-         data-login_uri="https://localhost:8080/HSS/Controller?page=login"
-         data-auto_prompt="false">
-      </div>
-      <div class="g_id_signin"
-         data-type="standard"
-         data-size="large"
-         data-theme="outline"
-         data-text="sign_in_with"
-         data-shape="rectangular"
-         data-logo_alignment="left">
-      </div>
+                                         data-client_id="668452761339-j6gv3e5hlo3emjatase31gvgq2s39c3k.apps.googleusercontent.com"
+                                         data-login_uri="https://localhost:8080/HSS/Controller?page=login"
+                                         data-auto_prompt="false">
+                                    </div>
+                                    <div class="g_id_signin"
+                                         data-type="standard"
+                                         data-size="large"
+                                         data-theme="outline"
+                                         data-text="sign_in_with"
+                                         data-shape="rectangular"
+                                         data-logo_alignment="left">
+                                    </div>
                                 </div>
                                 <div class="text-center mt-2">
                                     <p class="mb-0">Don't have an account? <a href="Controller?page=registerPage" class=" fw-bold">Sign Up</a>

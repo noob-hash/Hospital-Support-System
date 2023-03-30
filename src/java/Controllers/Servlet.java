@@ -464,6 +464,11 @@ public class Servlet extends HttpServlet {
             dispacher.forward(request, response);
         }
         
+        if(page.equalsIgnoreCase("forget")){
+            RequestDispatcher dispacher = request.getRequestDispatcher("pages/ForgetPassword.html");
+            dispacher.forward(request, response);
+        }
+        
         if (page.equalsIgnoreCase("logout")) {
             new UserService().logOut(request, response);
         }
