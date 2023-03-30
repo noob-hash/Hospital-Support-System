@@ -14,6 +14,7 @@ import Models.TableData;
 import Models.User;
 import Services.DatabaseServices.DatabaseConnection;
 import Services.DatabaseServices.DatabaseService;
+import Services.EmailServices.EmailSender;
 import Services.ModelServices.DoctorService;
 import Services.ModelServices.PatientService;
 import Services.ModelServices.UserService;
@@ -102,14 +103,14 @@ public class Servlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Register.jsp");
             dispatcher.include(request, response);
         }
-        
+
         if (page.equalsIgnoreCase("addRecord")) {
             Patient p = new PatientService().GetPatient(Integer.parseInt(request.getParameter("record")));
 //            Patient patient, String bloodPressure, String heartPressure, String height, int weight, String[] symptoms, String[] diagnosis, String[] treatment
 
-            MedicalRecord rc = new MedicalRecord( p, request.getParameter("bp"),request.getParameter("hb"),request.getParameter("height"),Integer.parseInt(request.getParameter("weight")),request.getParameter("symptons"),request.getParameter("diagnostics"),request.getParameter("tp"));
+            MedicalRecord rc = new MedicalRecord(p, request.getParameter("bp"), request.getParameter("hb"), request.getParameter("height"), Integer.parseInt(request.getParameter("weight")), request.getParameter("symptons"), request.getParameter("diagnostics"), request.getParameter("tp"));
             new PatientService().addRecord(rc);
-            
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("Controller?page=record");
             dispatcher.include(request, response);
         }
@@ -187,7 +188,7 @@ public class Servlet extends HttpServlet {
                         User userP = new User(Integer.parseInt(result.getString("Id")), result.getString("Name"), User.Gender.valueOf(result.getString("Gender")), result.getString("D_O_B"), result.getString("Phone"), result.getString("email"), result.getString("Address"), User.Role.valueOf(result.getString("Role")));
                         userData.add(userP);
                     }
-                    
+
                     request.setAttribute("UserData", userData);
                     RequestDispatcher dispacher = request.getRequestDispatcher("pages/Dashboard-admin.jsp");
                     dispacher.forward(request, response);
@@ -195,7 +196,7 @@ public class Servlet extends HttpServlet {
                     ex.printStackTrace();
                 }
             } else if (sRole.equalsIgnoreCase("P") || cRole.equalsIgnoreCase("P")) {
-                
+
                 RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=appoinmentPage");
                 dispacher.forward(request, response);
             } else if (sRole.equalsIgnoreCase("D") || cRole.equalsIgnoreCase("D")) {
@@ -271,9 +272,9 @@ public class Servlet extends HttpServlet {
                     dispacher.include(request, response);
                 } else {
                     User userInfo = new User(
-                            Name, gender, DOB, Phone,Email, Address, User.Role.P, Phone,Password
+                            Name, gender, DOB, Phone, Email, Address, User.Role.P, Phone, Password
                     );
-                    
+
                     new UserService().SaveNewUserCredentials(userInfo);
                     RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
                     dispacher.forward(request, response);
@@ -284,7 +285,7 @@ public class Servlet extends HttpServlet {
                 dispacher.include(request, response);
             }
         }
-        
+
         if (page.equalsIgnoreCase("appoinmentPage")) {
 
             String sRole = "", cRole = "", cId = "", sId = "";
@@ -302,7 +303,7 @@ public class Servlet extends HttpServlet {
                     }
                 }
             }
-            if(!cId.isBlank()){
+            if (!cId.isBlank()) {
                 sId = cId;
             }
             if (sRole == null && cRole == null) {
@@ -313,7 +314,7 @@ public class Servlet extends HttpServlet {
 
                 List<Appoinment> appoinmentList = new PatientService().AppoinmentList();
                 request.setAttribute("appoinmentList", appoinmentList);
-                                
+
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Appoinment-admin.jsp");
                 dispacher.forward(request, response);
             }
@@ -321,19 +322,19 @@ public class Servlet extends HttpServlet {
 
                 List<Appoinment> appoinmentList = new PatientService().AppoinmentList();
                 request.setAttribute("appoinmentList", appoinmentList);
-                
+
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Appoinment-doctor.jsp");
                 dispacher.forward(request, response);
-                
+
             }
             if (sRole.equalsIgnoreCase("P") || cRole.equalsIgnoreCase("P")) {
 
                 List<Appoinment> appoinmentList = new PatientService().AppoinmentList(sId);
                 request.setAttribute("appoinmentList", appoinmentList);
-                
+
                 List<Doctor> doctorList = new DoctorService().DoctorList();
                 request.setAttribute("doctorList", doctorList);
-                
+
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Appoinment-patient.jsp");
                 dispacher.forward(request, response);
             } else {
@@ -343,7 +344,7 @@ public class Servlet extends HttpServlet {
         }
 
         if (page.equalsIgnoreCase("addAppoinment")) {
-            String sRole = "", cRole = "",sId="", cId="";
+            String sRole = "", cRole = "", sId = "", cId = "";
             HttpSession session = request.getSession();
             if (new UserService().LoggedIn(request)) {
                 sRole = (session.getAttribute("Role") != null) ? (String) session.getAttribute("Role") : "";
@@ -369,10 +370,10 @@ public class Servlet extends HttpServlet {
                 String time = request.getParameter("time");
                 int doctor = Integer.parseInt(request.getParameter("doctor"));
 //                int docId = Integer.parseInt(request.getParameter("doctor"));
-                if(cId != null){
+                if (cId != null) {
                     sId = cId;
                 }
-                Appoinment appoinment = new Appoinment(new UserService().GetUser(sId), new Schedule(date,time),new DoctorService().GetDoctor(doctor));
+                Appoinment appoinment = new Appoinment(new UserService().GetUser(sId), new Schedule(date, time), new DoctorService().GetDoctor(doctor));
                 new PatientService().MakeAppoinment(appoinment);
 
                 RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=appoinmentPage");
@@ -448,42 +449,77 @@ public class Servlet extends HttpServlet {
             }
         }
 
-        if(page.equalsIgnoreCase("deleteAppoinment")){
-            
+        if (page.equalsIgnoreCase("deleteAppoinment")) {
+
             new PatientService().DeleteAppoinment(Integer.parseInt(request.getParameter("delete")));
             RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=appoinmentPage");
             dispacher.forward(request, response);
         }
-        
-        if(page.equalsIgnoreCase("record")){
-            
+
+        if (page.equalsIgnoreCase("record")) {
+
             List<MedicalRecord> recordList = new PatientService().PatientHistory(Integer.parseInt(request.getParameter("record")));
             request.setAttribute("recordList", recordList);
-            
+
             RequestDispatcher dispacher = request.getRequestDispatcher("pages/Record-doctor.jsp");
             dispacher.forward(request, response);
         }
-        
-        if(page.equalsIgnoreCase("forget")){
+
+        if (page.equalsIgnoreCase("forget")) {
             RequestDispatcher dispacher = request.getRequestDispatcher("pages/ForgetPassword.html");
             dispacher.forward(request, response);
         }
-        
-        if(page.equalsIgnoreCase("sendOTP")){
+
+        if (page.equalsIgnoreCase("sendOTP")) {
             PrintWriter out = response.getWriter();
             User user = new UserService().GetUser(request.getParameter("email"));
-            
-            if(user != null && user.getRole().toString().equalsIgnoreCase("P")){
-                RequestDispatcher dispacher = request.getRequestDispatcher("pages/enterOTP.html");
+
+            String OTP = (request.getParameter("OTP") != null) ? request.getParameter("OTP") : "0";
+
+            if (Integer.parseInt(OTP) == 256734) {
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/ResetPassword.html");
+                dispacher.forward(request, response);
+
+            } else {
+                if (user != null && user.getRole().toString().equalsIgnoreCase("P")) {
+
+                    HttpSession s = request.getSession(true);
+                    s.setAttribute("Email", user.getPhone());
+                    System.out.println(user.getPhone());
+                    new EmailSender().EmailSpecifier(user.getEmail(), "One Time Password", "Your OTP is: 256734");
+                    RequestDispatcher dispacher = request.getRequestDispatcher("pages/enterOTP.html");
+                    dispacher.forward(request, response);
+                } else {
+                    out.println("No user with such email exists");
+                    RequestDispatcher dispacher = request.getRequestDispatcher("pages/Register.jsp");
+                    dispacher.forward(request, response);
+                }
+            }
+
+        }
+
+        if (page.equalsIgnoreCase("resetPassword")) {
+
+            PrintWriter out = response.getWriter();
+
+            String nPassword = request.getParameter("NewPassword");
+            String cPassword = request.getParameter("ConfirmPassword");
+
+            if (nPassword.equals(cPassword)) {
+                HttpSession s = request.getSession();
+                System.out.println(s.getAttribute("Email"));
+                
+                new UserService().ResetPassword(nPassword, s.getAttribute("Email").toString());
+                
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
                 dispacher.forward(request, response);
             } else {
-                out.println("No user with such email exists");
-                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Register.jsp");
+                out.println("Password do not match");
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/ResetPassword.html");
                 dispacher.forward(request, response);
             }
-            
         }
-        
+
         if (page.equalsIgnoreCase("logout")) {
             new UserService().logOut(request, response);
         }

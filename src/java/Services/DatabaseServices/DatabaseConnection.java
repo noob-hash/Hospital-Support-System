@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import Models.TableData;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatabaseConnection {
 
@@ -45,5 +47,15 @@ public class DatabaseConnection {
     // if connection is needed in other places
     public Connection ConnectionEstablishment() {
         return con;
+    }
+    
+    public PreparedStatement Statement(String statement){
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(statement);
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ps;
     }
 }

@@ -149,6 +149,67 @@ public class UserService extends SecureAuth  implements Authentication {
         return userList;
     }
     
+    public void UpdateUser(String identifier, User user){
+        DatabaseService databaseService = new DatabaseService();
+        String salt = null, Hash = null;
+        try {
+            String stmt = "Update `user` set Name = ?, Gender = ?, D_O_B = ?, Phone = ?, email = ? , Address = ? where Id = ?; ";
+            PreparedStatement ps = new DatabaseConnection().Statement(stmt);
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getGender().toString());
+            ps.setString(3, user.getDob().toString());
+            ps.setString(5, user.getPhone());
+            ps.setString(6, user.getEmail());
+            ps.setString(7, user.getAddress());
+            ps.setInt(8, user.getId());
+            ps.executeUpdate();
+            
+            ResultSet s = databaseService.GetData("sea", new TableData("SaltId", String.valueOf(user.getId())), "Salt");
+            s.next();
+            salt = s.getString("Salt");
+            
+            Hash = createHash(user.getPassword(), salt);
+
+            String stmt1 = "Update user_credentials set Password = ? where Username = ?";
+            
+            PreparedStatement ps1 = new DatabaseConnection().Statement(stmt1);
+            ps1.setString(1, Hash);
+            ps1.setString(2, identifier);
+            ps1.executeUpdate();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
+    public void ResetPassword(String newPassword, String identifier) {
+        DatabaseService databaseService = new DatabaseService();
+        String salt = null, Hash = null;
+        boolean Result = false;
+        try {
+            ResultSet UId = databaseService.GetData("user_credentials", new TableData("username", identifier), "UniqueId");
+            
+            while(UId.next()) {
+                String UniqueId = UId.getString("UniqueId");
+                ResultSet s = databaseService.GetData("sea", new TableData("SaltId", UniqueId), "Salt");
+                s.next();
+                salt = s.getString("Salt");
+            }
+            
+            Hash = createHash(newPassword, salt);
+
+            String stmt = "Update user_credentials set Password = ? where Username = ?";
+            
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            PreparedStatement ps = con.prepareStatement(stmt);
+            ps.setString(1, Hash);
+            ps.setString(2, identifier);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
     
     private static String getStoredHash(String username) {
         try {
