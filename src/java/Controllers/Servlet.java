@@ -469,6 +469,21 @@ public class Servlet extends HttpServlet {
             dispacher.forward(request, response);
         }
         
+        if(page.equalsIgnoreCase("sendOTP")){
+            PrintWriter out = response.getWriter();
+            User user = new UserService().GetUser(request.getParameter("email"));
+            
+            if(user != null && user.getRole().toString().equalsIgnoreCase("P")){
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/enterOTP.html");
+                dispacher.forward(request, response);
+            } else {
+                out.println("No user with such email exists");
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Register.jsp");
+                dispacher.forward(request, response);
+            }
+            
+        }
+        
         if (page.equalsIgnoreCase("logout")) {
             new UserService().logOut(request, response);
         }
