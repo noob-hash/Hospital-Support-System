@@ -153,6 +153,13 @@ public class UserService extends SecureAuth  implements Authentication {
         DatabaseService databaseService = new DatabaseService();
         String salt = null, Hash = null;
         try {
+            
+            ResultSet UId = databaseService.GetData("user_credentials", new TableData("username", identifier), "UniqueId");
+            
+            while(UId.next()) {
+                user.setId(UId.getInt("UniqueId"));
+            }
+            
             String stmt = "Update `user` set Name = ?, Gender = ?, D_O_B = ?, Phone = ?, email = ? , Address = ? where Id = ?; ";
             PreparedStatement ps = new DatabaseConnection().Statement(stmt);
             ps.setString(1, user.getName());
@@ -164,18 +171,7 @@ public class UserService extends SecureAuth  implements Authentication {
             ps.setInt(8, user.getId());
             ps.executeUpdate();
             
-            ResultSet s = databaseService.GetData("sea", new TableData("SaltId", String.valueOf(user.getId())), "Salt");
-            s.next();
-            salt = s.getString("Salt");
             
-            Hash = createHash(user.getPassword(), salt);
-
-            String stmt1 = "Update user_credentials set Password = ? where Username = ?";
-            
-            PreparedStatement ps1 = new DatabaseConnection().Statement(stmt1);
-            ps1.setString(1, Hash);
-            ps1.setString(2, identifier);
-            ps1.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

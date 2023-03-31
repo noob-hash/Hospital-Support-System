@@ -252,6 +252,19 @@ public class Servlet extends HttpServlet {
 
         }
 
+        if (page.equalsIgnoreCase("updateUser")) {
+            String Name = request.getParameter("Name");
+            User.Gender gender = User.Gender.valueOf(request.getParameter("Gender"));
+            String DOB = request.getParameter("DOB");
+            String Phone = request.getParameter("Phone");
+            String Email = request.getParameter("Email");
+            String Address = request.getParameter("Address");
+
+            User userInfo = new User(Name, gender, DOB, Phone, Email, Address, User.Role.P, Phone);
+
+            new UserService().UpdateUser(Phone, userInfo);
+        }
+
         if (page.equalsIgnoreCase("addUser")) {
             String Name = request.getParameter("Name");
             User.Gender gender = User.Gender.valueOf(request.getParameter("Gender"));
@@ -261,7 +274,6 @@ public class Servlet extends HttpServlet {
             String Address = request.getParameter("Address");
             String Password = request.getParameter("Password");
             String ConfirmPassword = request.getParameter("ConfirmPassword");
-            System.out.println(Password + "," + ConfirmPassword);
             int comparision = Password.compareTo(ConfirmPassword);
             PrintWriter out = response.getWriter();
 
@@ -286,20 +298,21 @@ public class Servlet extends HttpServlet {
             }
         }
 
-        if(page.equalsIgnoreCase("editProfile")){
+        if (page.equalsIgnoreCase("editProfile")) {
             Cookie cookies[] = request.getCookies();
             String identifier = null;
-            for(Cookie c:cookies){
-                if(c.getName().equalsIgnoreCase("Username")){
+            for (Cookie c : cookies) {
+                if (c.getName().equalsIgnoreCase("Username")) {
                     identifier = c.getValue();
                 }
             }
+
             User user = new UserService().GetUser(identifier);
             request.setAttribute("User", user);
             RequestDispatcher dispacher = request.getRequestDispatcher("pages/EditProfile.jsp");
             dispacher.include(request, response);
         }
-        
+
         if (page.equalsIgnoreCase("appoinmentPage")) {
 
             String sRole = "", cRole = "", cId = "", sId = "";
@@ -512,6 +525,47 @@ public class Servlet extends HttpServlet {
 
         }
 
+        if (page.equalsIgnoreCase("updatePassword")) {
+
+            PrintWriter out = response.getWriter();
+
+            String oPassword = request.getParameter("CurrentPassword");
+            String nPassword = request.getParameter("NewPassword");
+            String cPassword = request.getParameter("ConfirmPassword");
+
+            if (nPassword.equals(cPassword)) {
+                Cookie cookies[] = request.getCookies();
+                String identifier = null;
+                for (Cookie c : cookies) {
+                    if (c.getName().equalsIgnoreCase("Username")) {
+                        identifier = c.getValue();
+                    }
+                }
+                HttpSession s = request.getSession();
+                
+                identifier = (s.getAttribute("Username").toString()!="")?s.getAttribute("Username").toString():identifier;
+                if (new UserService().LogIn(identifier, oPassword)) {
+                    System.out.println("Pass");
+                    new UserService().ResetPassword(nPassword, s.getAttribute("Username").toString());
+
+                    s.invalidate();
+
+                    RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
+                    dispacher.forward(request, response);
+                } else {
+                    System.out.println("Gas");
+                    out.println("Invalid credentials");
+                    RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=editProfile");
+                    dispacher.forward(request, response);
+                }
+            } else {
+                out.println("Password do not match");
+                System.out.println("s");
+                RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=editProfile");
+                dispacher.forward(request, response);
+            }
+        }
+
         if (page.equalsIgnoreCase("resetPassword")) {
 
             PrintWriter out = response.getWriter();
@@ -520,11 +574,11 @@ public class Servlet extends HttpServlet {
             String cPassword = request.getParameter("ConfirmPassword");
 
             if (nPassword.equals(cPassword)) {
-                HttpSession s = request.getSession();                
+                HttpSession s = request.getSession();
                 new UserService().ResetPassword(nPassword, s.getAttribute("Email").toString());
-                
+
                 s.invalidate();
-                
+
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
                 dispacher.forward(request, response);
             } else {

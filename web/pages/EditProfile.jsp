@@ -158,7 +158,7 @@
             </div>
         </div>
         <div>
-            <form>
+            <form action="Controller?page=updatePassword" method="post">
                 <div class="row">
                     <div class="row">
                                                
@@ -180,7 +180,7 @@
                         <input required
                                type="password"
                                class="form-control"
-                               name="Password"
+                               name="NewPassword"
                                id="Password"
                                placeholder="Enter Password"
                                />

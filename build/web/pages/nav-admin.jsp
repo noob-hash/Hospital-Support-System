@@ -22,10 +22,10 @@
         <a href="" class="nav-item">
             <i class="fa-sharp fa-regular fa-bell"></i>
         </a>
-        <div class="navbar d-flex nav-item">
+        <a href="Controller?page=editProfile" class="navbar d-flex nav-item">
             <i class="fa-solid fa-user-doctor"></i>
             <i class="fa-sharp fa-solid fa-chevron-down"></i>
-        </div>
+        </a>
     </div>
 </header>
 <!--auzaar-->
