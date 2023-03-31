@@ -309,11 +309,13 @@ public class Servlet extends HttpServlet {
                 }
             }
 
+            String sRole=null, cRole=null;
+            HttpSession session = request.getSession();
+            identifier = (session.getAttribute("Username") !=null && session.getAttribute("Username").toString()!="")?session.getAttribute("Username").toString():identifier;
+            
             User user = new UserService().GetUser(identifier);
             request.setAttribute("User", user);
             
-            String sRole=null, cRole=null;
-            HttpSession session = request.getSession();
             if (new UserService().LoggedIn(request)) {
                 sRole = (session.getAttribute("Role") != null) ? (String) session.getAttribute("Role") : "";
                 Cookie[] cookie = request.getCookies();
