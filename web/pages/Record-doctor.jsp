@@ -68,110 +68,124 @@
                             <small>Doctor > Medical Record</small>
                         </div>
                     </div>
+                    <div class="col-auto page-action">
+                        <button id="add">Add Record</button>
+                    </div>
+                </div>
+                <div class="row justify-space-between">
+                    <div id="record" class="col-lg-12 col-md-12 col-sm-12">
+                        <c:choose>
+                            <c:when test="${empty recordList}">
+                                <span class="text-danger">No report available</span>
 
-                    <div class="row justify-space-between">
-                        <div class="col-lg-6 col-md-4 col-sm-12">
-                            <c:choose>
-                                <c:when test="${empty recordList}">
-                                    <span class="text-danger">No report available</span>
-
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach var="record" items="${recordList}">
-                                        <div>
-                                            <div class="row">
-                                                <h1>${record.patient.name}</h1>
-                                                <small>${record.date}</small>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="record" items="${recordList}">
+                                    <div class="">
+                                        <div class="row p-4">
+                                            <h1>${record.patient.name}</h1>
+                                            <small>${record.date}</small>
+                                        </div>
+                                        <div class="row p-4">
+                                            <div class="col-3">
+                                                Blood Pressure<br>
+                                                ${record.bloodPressure}
                                             </div>
-                                            <div class="row">
-                                                <div class="col-3">
-                                                    Blood Pressure<br>
-                                                    ${record.bloodPressure}
-                                                </div>
-                                                <div class="col-3">
-                                                    Heart Beat<br>
-                                                    ${record.heartPressure}
-                                                </div>
-                                                <div class="col-3">
-                                                    Height<br>
-                                                    ${record.height}
-                                                </div>
-                                                <div class="col-3">
-                                                    Weight<br>
-                                                    ${record.weight}
-                                                </div>
+                                            <div class="col-3">
+                                                Heart Beat<br>
+                                                ${record.heartPressure}
                                             </div>
-                                            <div class="row">
-                                                <b>Symptoms</b>
-                                                ${record.symptoms}
+                                            <div class="col-3">
+                                                Height<br>
+                                                ${record.height}
                                             </div>
-                                            <div class="row">
-                                                <b>Diagnosis</b>
-                                                ${record.diagnosis}
-                                            </div>
-                                            <div class="row">
-                                                <b>Treatment</b>
-                                                ${record.treatment}
-                                            </div>
-                                            <div class="row">
-                                                <b>Medication</b>
-                                                ${record.medicines}
+                                            <div class="col-3">
+                                                Weight<br>
+                                                ${record.weight}
                                             </div>
                                         </div>
-                                    </c:forEach>
-                                </c:otherwise>
-                            </c:choose>
+                                        <div class="row p-4">
+                                            <b>Symptoms</b>
+                                            ${record.symptoms}
+                                        </div>
+                                        <div class="row p-4">
+                                            <b>Diagnosis</b>
+                                            ${record.diagnosis}
+                                        </div>
+                                        <div class="row p-4">
+                                            <b>Treatment</b>
+                                            ${record.treatment}
+                                        </div>
+                                        <div class="row p-4">
+                                            <b>Medication</b>
+                                            ${record.medicines}
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
 
+                    </div>
+                    <div id="form" class="col-lg-6 col-md-4 col-sm-12" style="display:none">
+                        <div class="d-flex">
+                            <div class="vr"></div>
+                            
+                            <form method="post" class="mb-md-2 mt-md-4 p-4" action="Controller?page=addRecord">
+                            <input required type="hidden" name="record" value="<%=request.getParameter("record")%>"/>
+                            <div class="row gap-3">
+                                <div class="form-outline form-white col-4">
+                                    <label for="bp">Blood Pressure</label>
+                                    <input required type="text" name="bp" id="bp"" placeholder="BP" required/>
+                                </div>
+                                <div class="form-outline form-white col-4 gap-3">
+                                    <label for="hb">Heart Beat</label>
+                                    <input required type="text" id="hb" name="hb" placeholder="HB" required/>
+                                </div>
+                            </div>
+                            <div class="row space-between">
+                                <div class="form-outline form-white col-4">
+                                    <label for="beight">Height</label>
+                                    <input required type="text" id="height" name="height" placeholder="height" required/>
+                                </div>
+                                <div class="form-outline form-white col-4 gap-3">
+                                    <label for="weight">Weight</label>
+                                    <input required type="number" id="weight" name="weight" placeholder="weight" required/>
+                                </div>
+                            </div>
+                            <div class="form-outline form-white row">
+                                <label for="symptoms">Symptoms</label>
+                                <textarea name="symptons" id="symptoms" placeholder="symptoms"></textarea>
+                            </div>
+                            <div class="form-outline form-white row">
+                                <label for="diag">Diagnostics</label>
+                                <textarea name="diagnostics" id="diag" placeholder="Diagnostics" ></textarea>
+                            </div>
+                            <div class="form-outline form-white row">
+                                <label for="report">Report</label>
+                                <textarea name="report" id="report" placeholder="report" ></textarea>
+                            </div>
+                            <div class="form-outline form-white row">
+                                <label for="tp">Treatment plan</label>
+                                <textarea name="tp" id="tp" placeholder="tp"></textarea>
+                            </div>
+                            <div class="form-outline form-white row">
+                                <label for="med">Medication</label>
+                                <textarea name="medication" id="med" placeholder="medication"></textarea><br>
+                            </div>
+                            <input type="submit" value="Submit" />
+                        </form>
                         </div>
-                        <div class="col-lg-6 col-md-4 col-sm-12">
-                            <form method="post" class="mb-md-2 mt-md-4 pb-2" action="Controller?page=addRecord">
-                                <input required type="hidden" name="record" value="<%=request.getParameter("record")%>"/>
-                                <div class="row gap-3">
-                                    <div class="form-outline form-white col-4">
-                                        <label for="bp">Blood Pressure</label>
-                                        <input required type="text" name="bp" id="bp"" placeholder="BP" required/>
-                                    </div>
-                                    <div class="form-outline form-white col-4 gap-3">
-                                        <label for="hb">Heart Beat</label>
-                                        <input required type="text" id="hb" name="hb" placeholder="HB" required/>
-                                    </div>
-                                </div>
-                                <div class="row space-between">
-                                    <div class="form-outline form-white col-4">
-                                        <label for="beight">Height</label>
-                                        <input required type="text" id="height" name="height" placeholder="height" required/>
-                                    </div>
-                                    <div class="form-outline form-white col-4 gap-3">
-                                        <label for="weight">Weight</label>
-                                        <input required type="number" id="weight" name="weight" placeholder="weight" required/>
-                                    </div>
-                                </div>
-                                <div class="form-outline form-white row">
-                                    <label for="symptoms">Symptoms</label>
-                                    <textarea name="symptons" id="symptoms" placeholder="symptoms"></textarea>
-                                </div>
-                                <div class="form-outline form-white row">
-                                    <label for="diag">Diagnostics</label>
-                                    <textarea name="diagnostics" id="diag" placeholder="Diagnostics" ></textarea>
-                                </div>
-                                <div class="form-outline form-white row">
-                                    <label for="report">Report</label>
-                                    <textarea name="report" id="report" placeholder="report" ></textarea>
-                                </div>
-                                <div class="form-outline form-white row">
-                                    <label for="tp">Treatment plan</label>
-                                    <textarea name="tp" id="tp" placeholder="tp"></textarea>
-                                </div>
-                                <div class="form-outline form-white row">
-                                    <label for="med">Medication</label>
-                                    <textarea name="medication" id="med" placeholder="medication"></textarea><br>
-                                </div>
-                                <input type="submit" value="Submit" />
-                            </form>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
-        </section>
-    </body>
+        </div>
+    </section>
+    <script>
+        document.getElementById("add").addEventListener('click', () => {
+            document.getElementById("form").style.display = "block";
+            document.getElementById("record").className = "col-lg-6 col-md-4 col-sm-12";
+        });
+    </script>
+</body>
 </html>
