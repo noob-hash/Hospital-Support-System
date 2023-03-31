@@ -286,6 +286,20 @@ public class Servlet extends HttpServlet {
             }
         }
 
+        if(page.equalsIgnoreCase("editProfile")){
+            Cookie cookies[] = request.getCookies();
+            String identifier = null;
+            for(Cookie c:cookies){
+                if(c.getName().equalsIgnoreCase("Username")){
+                    identifier = c.getValue();
+                }
+            }
+            User user = new UserService().GetUser(identifier);
+            request.setAttribute("User", user);
+            RequestDispatcher dispacher = request.getRequestDispatcher("pages/EditProfile.jsp");
+            dispacher.include(request, response);
+        }
+        
         if (page.equalsIgnoreCase("appoinmentPage")) {
 
             String sRole = "", cRole = "", cId = "", sId = "";
@@ -506,10 +520,10 @@ public class Servlet extends HttpServlet {
             String cPassword = request.getParameter("ConfirmPassword");
 
             if (nPassword.equals(cPassword)) {
-                HttpSession s = request.getSession();
-                System.out.println(s.getAttribute("Email"));
-                
+                HttpSession s = request.getSession();                
                 new UserService().ResetPassword(nPassword, s.getAttribute("Email").toString());
+                
+                s.invalidate();
                 
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
                 dispacher.forward(request, response);
