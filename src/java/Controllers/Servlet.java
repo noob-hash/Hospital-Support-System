@@ -263,6 +263,8 @@ public class Servlet extends HttpServlet {
             User userInfo = new User(Name, gender, DOB, Phone, Email, Address, User.Role.P, Phone);
 
             new UserService().UpdateUser(Phone, userInfo);
+            RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=editProfile");
+            dispacher.forward(request, response);
         }
 
         if (page.equalsIgnoreCase("addUser")) {
@@ -309,8 +311,38 @@ public class Servlet extends HttpServlet {
 
             User user = new UserService().GetUser(identifier);
             request.setAttribute("User", user);
-            RequestDispatcher dispacher = request.getRequestDispatcher("pages/EditProfile.jsp");
-            dispacher.include(request, response);
+            
+            String sRole=null, cRole=null;
+            HttpSession session = request.getSession();
+            if (new UserService().LoggedIn(request)) {
+                sRole = (session.getAttribute("Role") != null) ? (String) session.getAttribute("Role") : "";
+                Cookie[] cookie = request.getCookies();
+                for (Cookie c : cookie) {
+                    if (c.getName().equalsIgnoreCase("Role")) {
+                        cRole = c.getValue();
+                    }
+                }
+            }
+            if (sRole == null && cRole == null) {
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
+                dispacher.forward(request, response);
+            }
+            if (sRole.equalsIgnoreCase("A") || cRole.equalsIgnoreCase("A")) {
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/EditProfile-admin.jsp");
+                dispacher.forward(request, response);
+            }
+            if (sRole.equalsIgnoreCase("D") || cRole.equalsIgnoreCase("D")) {
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/EditProfile-doctor.jsp");
+                dispacher.forward(request, response);
+            }
+            if (sRole.equalsIgnoreCase("P") || cRole.equalsIgnoreCase("P")) {
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/EditProfile-patient.jsp");
+                dispacher.forward(request, response);
+            }
+             else {
+                RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=logout");
+                dispacher.forward(request, response);
+            }
         }
 
         if (page.equalsIgnoreCase("appoinmentPage")) {
@@ -560,7 +592,6 @@ public class Servlet extends HttpServlet {
                 }
             } else {
                 out.println("Password do not match");
-                System.out.println("s");
                 RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=editProfile");
                 dispacher.forward(request, response);
             }

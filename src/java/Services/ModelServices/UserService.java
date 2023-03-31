@@ -165,10 +165,10 @@ public class UserService extends SecureAuth  implements Authentication {
             ps.setString(1, user.getName());
             ps.setString(2, user.getGender().toString());
             ps.setString(3, user.getDob().toString());
-            ps.setString(5, user.getPhone());
-            ps.setString(6, user.getEmail());
-            ps.setString(7, user.getAddress());
-            ps.setInt(8, user.getId());
+            ps.setString(4, user.getPhone());
+            ps.setString(5, user.getEmail());
+            ps.setString(6, user.getAddress());
+            ps.setInt(7, user.getId());
             ps.executeUpdate();
             
             
