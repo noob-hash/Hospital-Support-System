@@ -135,6 +135,25 @@ public class PatientService {
         return recordList;
     }
     
+    public List<MedicalRecord> PatientHistory(String identifier) {
+        List<MedicalRecord> recordList = new ArrayList<>();
+        try {
+            User u = new UserService().GetUser(identifier);
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            String statement = "Select * from history where U_ID = ? ORDER by DOD DESC;";
+            PreparedStatement ps = con.prepareStatement(statement);
+            ps.setInt(1, u.getId());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                MedicalRecord record = new MedicalRecord( new PatientService().GetPatient(Integer.parseInt(rs.getString("U_ID"))), rs.getString("BP"),rs.getString("HB"),rs.getString("Height"),Integer.parseInt(rs.getString("Weight")),rs.getString("Symptoms"),rs.getString("Diagnostics"),rs.getString("TP"), rs.getString("DOD"));
+                recordList.add(record);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return recordList;
+    }
+    
     
     
     /**

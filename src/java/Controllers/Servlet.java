@@ -309,13 +309,13 @@ public class Servlet extends HttpServlet {
                 }
             }
 
-            String sRole=null, cRole=null;
+            String sRole = null, cRole = null;
             HttpSession session = request.getSession();
-            identifier = (session.getAttribute("Username") !=null && session.getAttribute("Username").toString()!="")?session.getAttribute("Username").toString():identifier;
-            
+            identifier = (session.getAttribute("Username") != null && session.getAttribute("Username").toString() != "") ? session.getAttribute("Username").toString() : identifier;
+
             User user = new UserService().GetUser(identifier);
             request.setAttribute("User", user);
-            
+
             if (new UserService().LoggedIn(request)) {
                 sRole = (session.getAttribute("Role") != null) ? (String) session.getAttribute("Role") : "";
                 Cookie[] cookie = request.getCookies();
@@ -340,8 +340,7 @@ public class Servlet extends HttpServlet {
             if (sRole.equalsIgnoreCase("P") || cRole.equalsIgnoreCase("P")) {
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/EditProfile-patient.jsp");
                 dispacher.forward(request, response);
-            }
-             else {
+            } else {
                 RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=logout");
                 dispacher.forward(request, response);
             }
@@ -518,12 +517,44 @@ public class Servlet extends HttpServlet {
         }
 
         if (page.equalsIgnoreCase("record")) {
+            String sRole = "", cRole = "", sId = "", cId = "";
+            HttpSession session = request.getSession();
+            if (new UserService().LoggedIn(request)) {
+                sRole = (session.getAttribute("Role") != null) ? (String) session.getAttribute("Role") : "";
+                sId = (session.getAttribute("Username") != null) ? (String) session.getAttribute("Username") : "";
+                Cookie[] cookie = request.getCookies();
+                for (Cookie c : cookie) {
+                    if (c.getName().equalsIgnoreCase("Role")) {
+                        cRole = c.getValue();
+                    }
+                    if (c.getName().equalsIgnoreCase("Username")) {
+                        cId = c.getValue();
+                    }
+                }
+            }
 
-            List<MedicalRecord> recordList = new PatientService().PatientHistory(Integer.parseInt(request.getParameter("record")));
-            request.setAttribute("recordList", recordList);
+            if (sRole == null && cRole == null) {
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
+                dispacher.forward(request, response);
+            }
+            if (sRole.equalsIgnoreCase("P") || cRole.equalsIgnoreCase("P")) {
+                List<MedicalRecord> recordList = new PatientService().PatientHistory((cId != "") ? cId : sId);
+                request.setAttribute("recordList", recordList);
 
-            RequestDispatcher dispacher = request.getRequestDispatcher("pages/Record-doctor.jsp");
-            dispacher.forward(request, response);
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Record-patient.jsp");
+                dispacher.forward(request, response);
+            }
+
+            if (sRole.equalsIgnoreCase("A") || cRole.equalsIgnoreCase("A")) {
+                List<MedicalRecord> recordList = new PatientService().PatientHistory(Integer.parseInt(request.getParameter("record")));
+                request.setAttribute("recordList", recordList);
+
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Record-doctor.jsp");
+                dispacher.forward(request, response);
+            } else {
+                RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=logout");
+                dispacher.forward(request, response);
+            }
         }
 
         if (page.equalsIgnoreCase("forget")) {
@@ -576,8 +607,8 @@ public class Servlet extends HttpServlet {
                     }
                 }
                 HttpSession s = request.getSession();
-                
-                identifier = (s.getAttribute("Username").toString()!="")?s.getAttribute("Username").toString():identifier;
+
+                identifier = (s.getAttribute("Username").toString() != "") ? s.getAttribute("Username").toString() : identifier;
                 if (new UserService().LogIn(identifier, oPassword)) {
                     System.out.println("Pass");
                     new UserService().ResetPassword(nPassword, s.getAttribute("Username").toString());
