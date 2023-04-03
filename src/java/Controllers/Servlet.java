@@ -371,7 +371,6 @@ public class Servlet extends HttpServlet {
                 dispacher.forward(request, response);
             }
             if (sRole.equalsIgnoreCase("A") || cRole.equalsIgnoreCase("A")) {
-
                 List<Appoinment> appoinmentList = new PatientService().AppoinmentList();
                 request.setAttribute("appoinmentList", appoinmentList);
 
@@ -380,7 +379,7 @@ public class Servlet extends HttpServlet {
             }
             if (sRole.equalsIgnoreCase("D") || cRole.equalsIgnoreCase("D")) {
 
-                List<Appoinment> appoinmentList = new PatientService().AppoinmentList();
+                List<Appoinment> appoinmentList = new DoctorService().AppoinmentList(sId);
                 request.setAttribute("appoinmentList", appoinmentList);
 
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Appoinment-doctor.jsp");
@@ -477,8 +476,7 @@ public class Servlet extends HttpServlet {
 
         }
 
-        if (page.equalsIgnoreCase("patient")) {
-
+        if(page.equalsIgnoreCase("Search")){
             String sRole = "", cRole = "";
             HttpSession session = request.getSession();
             if (new UserService().LoggedIn(request)) {
@@ -495,15 +493,53 @@ public class Servlet extends HttpServlet {
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
                 dispacher.forward(request, response);
             }
+            if (sRole.equalsIgnoreCase("A") || cRole.equalsIgnoreCase("A")){
+                System.out.println(request.getParameter("Search"));
+            }
+        }
+        
+        if (page.equalsIgnoreCase("patient")) {
+
+            String sRole = "", cRole = "", cId = "", sId = "";
+            HttpSession session = request.getSession();
+            if (new UserService().LoggedIn(request)) {
+                sRole = (session.getAttribute("Role") != null) ? (String) session.getAttribute("Role") : "";
+                sId = (session.getAttribute("Username") != null) ? (String) session.getAttribute("Username") : "";
+                Cookie[] cookie = request.getCookies();
+                for (Cookie c : cookie) {
+                    if (c.getName().equalsIgnoreCase("Role")) {
+                        cRole = c.getValue();
+                    }
+                    if (c.getName().equalsIgnoreCase("Username")) {
+                        cId = c.getValue();
+                    }
+                }
+            }
+            if (!cId.isBlank()) {
+                sId = cId;
+            }
+
+            if (sRole == null && cRole == null) {
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
+                dispacher.forward(request, response);
+            }
 
             if (sRole.equalsIgnoreCase("A") || cRole.equalsIgnoreCase("A")) {
 
                 List<User> patientList = new PatientService().PatientList();
                 request.setAttribute("patientList", patientList);
-
+                System.out.println("a");
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Patient-admin.jsp");
                 dispacher.forward(request, response);
-            } else {
+            }
+            if (sRole.equalsIgnoreCase("D") || cRole.equalsIgnoreCase("D")) {
+
+                List<User> patientList = new DoctorService().PatientList(sId);
+                request.setAttribute("patientList", patientList);
+
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Patient-doctor.jsp");
+                dispacher.forward(request, response);
+            }else {
                 RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=logout");
                 dispacher.forward(request, response);
             }
@@ -549,12 +585,20 @@ public class Servlet extends HttpServlet {
                 List<MedicalRecord> recordList = new PatientService().PatientHistory(Integer.parseInt(request.getParameter("record")));
                 request.setAttribute("recordList", recordList);
 
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Record-admin.jsp");
+                dispacher.forward(request, response);
+            }
+            if (sRole.equalsIgnoreCase("D") || cRole.equalsIgnoreCase("D")) {
+                List<MedicalRecord> recordList = new PatientService().PatientHistory(Integer.parseInt(request.getParameter("record")));
+                request.setAttribute("recordList", recordList);
+
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Record-doctor.jsp");
                 dispacher.forward(request, response);
             } else {
                 RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=logout");
                 dispacher.forward(request, response);
             }
+            
         }
 
         if (page.equalsIgnoreCase("forget")) {

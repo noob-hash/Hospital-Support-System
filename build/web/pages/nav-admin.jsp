@@ -23,7 +23,7 @@
             />
         <datalist id="datalist">
             <c:forEach items="${List}" var="list">
-                <<option value="${list.name}">${list.name}</option>
+                <option value="${list.name}">${list.name}</option>
             </c:forEach>
         </datalist>
 

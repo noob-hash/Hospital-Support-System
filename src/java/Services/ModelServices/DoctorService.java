@@ -4,8 +4,10 @@
  */
 package Services.ModelServices;
 
+import Models.Appoinment;
 import Models.Department;
 import Models.Doctor;
+import Models.Schedule;
 import Models.User;
 import Services.DatabaseServices.DatabaseConnection;
 import java.sql.Connection;
@@ -88,6 +90,45 @@ public class DoctorService {
         }
         
         return department;
+    }
+    
+    public List<User> PatientList(String identifier) {
+        List<User> patientList = new ArrayList<>();
+        try {
+            User doctor = new UserService().GetUser(identifier);
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            String statement = "Select * from appoinment inner join user on appoinment.user_id = user.Id and appoinment.doctor_id = ? where Role = 'P'";
+            PreparedStatement ps = con.prepareStatement(statement);
+            ps.setInt(1,doctor.getId());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User patient = new User(rs.getInt("Id"), rs.getString("Name"), User.Gender.valueOf(rs.getString("Gender")), rs.getString("D_O_B"), rs.getString("Phone"), rs.getString("email"), rs.getString("Address"), User.Role.valueOf(rs.getString("Role")), rs.getString("Phone"));
+                patientList.add(patient);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return patientList;
+    }
+    
+    public List<Appoinment> AppoinmentList(String identifier) {
+        List<Appoinment> appoinmentList = new ArrayList<>();
+        try {
+            User user = new UserService().GetUser(identifier);
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            String statement = "Select * from schedule inner join user on schedule.user = user.Id inner join appoinment on appoinment.doctor_id = ? and appoinment.id = schedule.id where role='P';";
+            PreparedStatement ps = con.prepareStatement(statement);
+            ps.setInt(1, user.getId());
+            System.out.println(ps);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Appoinment appoinment = new Appoinment(new User(rs.getInt("user.Id"), rs.getString("Name"), User.Gender.valueOf(rs.getString("Gender")), rs.getString("D_O_B"), rs.getString("Phone"), rs.getString("email"), rs.getString("Address"), User.Role.valueOf(rs.getString("Role"))), new Schedule(rs.getInt("schedule.id"),rs.getString("date"), rs.getString("startTime"), rs.getString("endTime")), new Doctor());
+                appoinmentList.add(appoinment);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return appoinmentList;
     }
     
     /**

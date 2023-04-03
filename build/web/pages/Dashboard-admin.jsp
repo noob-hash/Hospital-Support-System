@@ -63,6 +63,8 @@
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" ></script>
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
@@ -70,6 +72,13 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
         />
+    
+    <link
+        rel="stylesheet"
+        href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
+        
+        />
+
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
@@ -88,22 +97,28 @@
                     </div>
                 </div>
                 <div class="p-4 d-flex justify-content-around row">
-                    <div class="shadow bg-white rounded col-lg-2 col-sm-12 p-3 mb-4">
-                        <div></div>
+                    <div class="shadow bg-white rounded col-lg-2 col-sm-12 p-3 mb-4 d-flex gap-2 align-items-center">
+                        <div>
+                            <i class="fa-sharp fa-solid fa-stethoscope"></i>
+                        </div>
                         <div>
                             <div><b>Appoinments</b></div>
                             <div><b>213</b></div>
                         </div>
                     </div>
-                    <div class="shadow bg-white rounded col-lg-2 col-sm-12 p-3 mb-4">
-                        <div></div>
+                    <div class="shadow bg-white rounded col-lg-2 col-sm-12 p-3 mb-4 d-flex gap-2 align-items-center">
+                        <div>
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
                         <div>
                             <div><b>New Patients</b></div>
                             <div><b>213</b></div>
                         </div>
                     </div>
-                    <div class="shadow bg-white rounded col-lg-2 col-sm-12 p-3 mb-4">
-                        <div></div>
+                    <div class="shadow bg-white rounded col-lg-2 col-sm-12 p-3 mb-4 d-flex gap-2 align-items-center">
+                        <div>
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
                         <div>
                             <div><b>Total Patients</b></div>
                             <div><b>213</b></div>
@@ -136,32 +151,43 @@
                     </div>
                 </div>
                 <div class="m-4">
-                    <table class="table">
-                        <tr>
-                            <th>Photo</th>
-                            <th>Name</th>
-                            <!--<th>Email</th>-->
-                            <th>Number</th>
-                            <th>Date</th>
-                            <th>Visit Time</th>
-                            <th>Doctor</th>
-                        </tr>
-                        <c:forEach var="user" items="${UserData}">
+                    <table id="tableData" class="table display">
+                        <thead>
                             <tr>
-                                <td>${user.id }</td>
-                                <td>${user.name}</td>
-                                <td>${user.phone}</td>
-                                <td>${user.role}</td>
-                                <td>${user.address}</td>
-                                <td>${user.gender}</td>
-                                <td>${user.age}</td>
-                                <td><a href="UserServlet?id="${user.id}>Delete</a></td>
+                                <th>Photo</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Address</th>
+                                <th>Gender</th>
+                                <th>Age</th>
                             </tr>
-                        </c:forEach>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="user" items="${UserData}">
+                                <tr>
+                                    <td>${user.id }</td>
+                                    <td>${user.name}</td>
+                                    <td>${user.phone}</td>
+                                    <td>${user.email}</td>
+                                    <td>${user.role}</td>
+                                    <td>${user.address}</td>
+                                    <td>${user.gender}</td>
+                                    <td>${user.age}</td>
+                                    
+                                </tr>
+                            </c:forEach>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </section>
+        <script>
+            $(document).ready(function () {
+                $('#tableData').DataTable();
+            });
+        </script>
         <script type="module" src="pages/acquisitions.js"></script>
     </body>
 </html>

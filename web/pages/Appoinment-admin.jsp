@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Doctor-list
-    Created on : Mar 5, 2023, 9:16:37 AM
+    Document   : Appoinment-patient
+    Created on : Mar 15, 2023, 7:00:05 AM
     Author     : Subin
 --%>
 
@@ -11,164 +11,100 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Appoinment</title>
+        <title>Hospital</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
 
         <!-- Favicons -->
         <link href="assets/img/favicon1.png" rel="icon">
         <link href="assets/img/apple-touch-icon_1.png" rel="apple-touch-icon">
-    </head>
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: "Montserrat", sans-serif;
-        }
-        a{
-            text-decoration: none;
-            color: #000;
-        }
 
-        header {
-            position: fixed;
-            z-index: 2;
-            left: 0%;
-            top: 0%;
-            width: 100%;
-            height: 10%;
-        }
-        nav {
-            position: fixed;
-            z-index: 2;
-            left: 0%;
-            top: 10%;
-            width: 15%;
-            height: 90%;
-        }
-        main {
-            position: absolute;
-            left: 15%;
-            top: 10%;
-            width: 85%;
-            height: 90%;
-            overflow-x: hidden
-        }
-    </style>
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-    </style>
-    <script
-        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"
-    ></script>
-    <script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"
-    ></script>
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+        <!-- Vendor CSS Files -->
+        <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+        <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: "Montserrat", sans-serif;
+            }
+            a{
+                text-decoration: none;
+                color: #000;
+            }
+
+            header {
+                position: fixed;
+                z-index: 2;
+                left: 0%;
+                top: 0%;
+                width: 100%;
+                height: 10%;
+            }
+            nav {
+                position: fixed;
+                z-index: 2;
+                left: 0%;
+                top: 10%;
+                width: 15%;
+                height: 90%;
+            }
+            main {
+                position: absolute;
+                left: 15%;
+                top: 10%;
+                width: 85%;
+                height: 90%;
+                overflow-x: hidden
+            }
+        </style>
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+        </style>
+        <link
+            rel="stylesheet"
+            href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
+
+            />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" ></script>
+    </head>
     <body>
-        <section class="container-fluid">
-            <%@include  file="nav-admin.jsp"%>
-            <div class="collapse position-absolute w-100 top-0" id="collapseExample">
+        <section class="container-fluid bg-light">
+            <%@include file="nav-admin.jsp" %>
+            <div class="collapse position-absolute" id="collapseExample">
                 <div class="card card-body bg-light bg-opacity-75">
                     <div class="container py-5 h-100">
-                        <div class="p-4 d-flex justify-content-center align-items-center">
+                        <div class="p-4 d-flex justify-content-around">
                             <form action="Controller?page=addAppoinment" method="post" role="form" class="needs-validation">
                                 <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="Name">Full Name</label>
-                                        <input required
-                                            type="text"
-                                            class="form-control"
-                                            name="Name"
-                                            id="Name"
-                                            aria-describedby="emailHelp"
-                                            placeholder="Enter fullname"
-                                            />
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="Gender">Gender</label><br />
-                                        <div class="mt-2">
-                                            <input required
-                                                type="radio"
-                                                name="Gender"
-                                                id="Male"
-                                                value="M"
-                                                />
-                                            <label for="Male">Male</label>
-                                            <input required
-                                                type="radio"
-                                                name="Gender"
-                                                id="Female"
-                                                value="F"
-                                                />
-                                            <label for="Female">Female</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <label for="Email1">Email address</label>
-                                            <input required
-                                                type="email"
-                                                class="form-control"
-                                                name="Email"
-                                                id="Email"
-                                                aria-describedby="emailHelp"
-                                                placeholder="Enter email"
-                                                />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label for="Phone">Contact</label>
-                                            <input required
-                                                type="text"
-                                                input requiredmode="numeric"
-                                                pattern="[0-9]+"
-                                                class="form-control"
-                                                name="Phone"
-                                                id="Phnoe"
-                                                aria-describedby="emailHelp"
-                                                placeholder="Enter phone"
-                                                />
-                                        </div>
-                                    </div>
-                                    <small id="emailHelp" class="form-text text-muted"
-                                           >We'll never share your email and contact with anyone
-                                        else.</small
-                                    >
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <label for="dob">Birth Date</label>
-                                        <input required type="date" name="DOB" class="form-control" id="dob" />
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <label for="address">Address</label>
-                                        <input required
-                                            type="text"
-                                            class="form-control"
-                                            id="address"
-                                            name="Address"
-                                            placeholder="Enter address"
-                                            />
-                                    </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6 form-group mt-3">
-                                        <label for="date">Date</label>
                                         <input required type="date" name="date" class="form-control datepicker" id="date" required/>
                                         <div class="validate"></div>
                                     </div>
                                     <div class="col-md-6 form-group mt-3">
-                                        <label for="time">Time</label>
                                         <input required type="time" name="time" class="form-control datepicker" id="time" required/>
                                         <div class="validate"></div>
                                     </div>
@@ -197,12 +133,13 @@
                     </div>
                 </div>
             </div>
+
             <div class="p-4">
                 <div class="row">
                     <div class="col">
                         <div class="">
                             <h5>Appoinment</h5>
-                            <small>Admin > Appoinment list</small>
+                            <small>Patient > Appoinment</small>
                         </div>
                     </div>
                     <div class="col-auto page-action">
@@ -216,7 +153,7 @@
                         </button>
                     </div>
                 </div>
-                <table class="table">
+                <table id="tableData" class="table display">
                     <thead>
                     <td>Image</td>
                     <td>Name</td>
@@ -241,42 +178,43 @@
                             <td>
                                 <button type="button" class="btn btn-primary" onclick="DeleteAction(${appoinment.sechedule.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
                             </td>
-                            </td>
                         </tr>
                     </c:forEach>
-
                 </table>
             </div>
-        </section>
 
-        <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Conform Action</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure you want to delete?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <form action="Controller?page=deleteAppoinment" method="post">
-                            <input required type="hidden"  name="delete" id="myinput required" />
-                            <button type="submit" class="btn btn-danger">Confirm</button>
-                        </form> 
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form action="Controller?page=deleteAppoinment" method="post">
+                                <input required type="hidden"  name="delete" id="myinput" />
+                                <button type="submit" class="btn btn-danger">Confirm</button>
+                            </form> 
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
-
-        <script>
-            function DeleteAction(a) {
-                const deleteForm = document.getElementById("myinput required");
-                deleteForm.value = a;
-            }
-        </script>
-
-    </body>
+    </section>
+    <script>
+        function DeleteAction(a) {
+            const deleteForm = document.getElementById("myinput");
+            deleteForm.value = a;
+        }
+        $(document).ready(function () {
+            $('#tableData').DataTable();
+        });
+    </script>
+</body>
 </html>
