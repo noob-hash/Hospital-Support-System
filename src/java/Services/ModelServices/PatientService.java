@@ -253,7 +253,7 @@ public class PatientService {
         int[] Result = new int[12];
         try {
             Connection con = new DatabaseConnection().ConnectionEstablishment();
-            String statement = "Select count(Id) from user Role = 'P'";
+            String statement = "SELECT DATE_FORMAT(date, ‘%Y-%m’) AS production_month,COUNT(id) AS count FROM schedule GROUP BY MONTH(date), YEAR(date);";
             PreparedStatement ps = con.prepareStatement(statement);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

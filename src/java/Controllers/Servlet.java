@@ -215,7 +215,7 @@ public class Servlet extends HttpServlet {
                     ex.printStackTrace();
                 }
             } else {
-                RequestDispatcher dispacher = request.getRequestDispatcher("index.jsp");
+                RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=logout");
                 dispacher.forward(request, response);
             }
         }
@@ -253,18 +253,36 @@ public class Servlet extends HttpServlet {
         }
 
         if (page.equalsIgnoreCase("updateUser")) {
-            String Name = request.getParameter("Name");
-            User.Gender gender = User.Gender.valueOf(request.getParameter("Gender"));
-            String DOB = request.getParameter("DOB");
-            String Phone = request.getParameter("Phone");
-            String Email = request.getParameter("Email");
-            String Address = request.getParameter("Address");
 
-            User userInfo = new User(Name, gender, DOB, Phone, Email, Address, User.Role.P, Phone);
+            String sRole = "", cRole = "";
+            HttpSession session = request.getSession();
+            if (new UserService().LoggedIn(request)) {
+                sRole = (session.getAttribute("Role") != null) ? (String) session.getAttribute("Role") : "";
+                Cookie[] cookie = request.getCookies();
+                for (Cookie c : cookie) {
+                    if (c.getName().equalsIgnoreCase("Role")) {
+                        cRole = c.getValue();
+                    }
+                }
+            }
 
-            new UserService().UpdateUser(Phone, userInfo);
-            RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=editProfile");
-            dispacher.forward(request, response);
+            if (sRole == null && cRole == null) {
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
+                dispacher.forward(request, response);
+            } else {
+                String Name = request.getParameter("Name");
+                User.Gender gender = User.Gender.valueOf(request.getParameter("Gender"));
+                String DOB = request.getParameter("DOB");
+                String Phone = request.getParameter("Phone");
+                String Email = request.getParameter("Email");
+                String Address = request.getParameter("Address");
+
+                User userInfo = new User(Name, gender, DOB, Phone, Email, Address, User.Role.P, Phone);
+
+                new UserService().UpdateUser(Phone, userInfo);
+                RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=editProfile");
+                dispacher.forward(request, response);
+            }
         }
 
         if (page.equalsIgnoreCase("addUser")) {
@@ -476,7 +494,7 @@ public class Servlet extends HttpServlet {
 
         }
 
-        if(page.equalsIgnoreCase("Search")){
+        if (page.equalsIgnoreCase("Search")) {
             String sRole = "", cRole = "";
             HttpSession session = request.getSession();
             if (new UserService().LoggedIn(request)) {
@@ -493,11 +511,11 @@ public class Servlet extends HttpServlet {
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
                 dispacher.forward(request, response);
             }
-            if (sRole.equalsIgnoreCase("A") || cRole.equalsIgnoreCase("A")){
+            if (sRole.equalsIgnoreCase("A") || cRole.equalsIgnoreCase("A")) {
                 System.out.println(request.getParameter("Search"));
             }
         }
-        
+
         if (page.equalsIgnoreCase("patient")) {
 
             String sRole = "", cRole = "", cId = "", sId = "";
@@ -528,9 +546,8 @@ public class Servlet extends HttpServlet {
 
                 List<User> patientList = new PatientService().PatientList();
                 request.setAttribute("patientList", patientList);
-                System.out.println("a");
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Patient-admin.jsp");
-                dispacher.forward(request, response);
+                dispacher.include(request, response);
             }
             if (sRole.equalsIgnoreCase("D") || cRole.equalsIgnoreCase("D")) {
 
@@ -539,9 +556,9 @@ public class Servlet extends HttpServlet {
 
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Patient-doctor.jsp");
                 dispacher.forward(request, response);
-            }else {
+            } else {
                 RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=logout");
-                dispacher.forward(request, response);
+                dispacher.include(request, response);
             }
         }
 
@@ -598,7 +615,7 @@ public class Servlet extends HttpServlet {
                 RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=logout");
                 dispacher.forward(request, response);
             }
-            
+
         }
 
         if (page.equalsIgnoreCase("forget")) {

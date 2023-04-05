@@ -23,7 +23,7 @@
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <style>
         * {
@@ -71,8 +71,13 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
         />
+    <link
+        rel="stylesheet"
+        href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
 
-</head>
+        />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" ></script>
 <body>
     <section class="container-fluid">
         <%@include  file="nav-admin.jsp"%>
@@ -85,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <table class="table">
+            <table id="tableData" class="table display">
                 <thead>
                     <tr>
                         <th>Photo</th>
@@ -101,16 +106,16 @@
                 <tbody>
                     <c:forEach var="patient" items="${patientList}">
                         <tr>
-                            <td class="p-2">${patient.id}</td>
-                            <td>${patient.name}</td>
-                            <td>${patient.age}</td>
-                            <td>${patient.address}</td>
-                            <td>${patient.phone}</td>
+                            <td class="p-2"><c:out value="${patient.id}" /></td>
+                            <td><c:out value="${patient.name}"/></td>
+                            <td><c:out value="${patient.age}" /></td>
+                            <td><c:out value="${patient.address}" /></td>
+                            <td><c:out value="${patient.phone}" /></td>
                             <td>
 
                                 <c:choose>
                                     <c:when test="${patient.email !=null}">
-                                        ${patient.email}
+                                        <c:out value="${patient.email}" />
                                     </c:when>
                                     <c:otherwise>
                                         -
@@ -158,7 +163,9 @@
             const deleteForm = document.getElementById("myInput");
             deleteForm.value = a;
         }
-
+        $(document).ready(function () {
+            $('#tableData').DataTable();
+        });
     </script>
 
 </body>

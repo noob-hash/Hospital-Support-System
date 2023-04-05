@@ -39,13 +39,12 @@
 </head>
 <body>
     <section class="vh-100 gradient-custom">
-        
+
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card bg-light text-dark border-1">
                         <div class="card-body p-4">
-
                             <form action="Controller?page=login" method="post" class="mb-md-2 mt-md-4 pb-2">
 
                                 <h2 class="fw-bold mb-2  text-center text-uppercase">Login</h2>
