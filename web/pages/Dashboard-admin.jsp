@@ -102,8 +102,8 @@
                             <i class="fa-sharp fa-solid fa-stethoscope"></i>
                         </div>
                         <div>
-                            <div><b>Appoinments</b></div>
-                            <div><b>213</b></div>
+                            <div><b>Doctors</b></div>
+                            <div><b>${TotalDoc}</b></div>
                         </div>
                     </div>
                     <div class="shadow bg-white rounded col-lg-2 col-sm-12 p-3 mb-4 d-flex gap-2 align-items-center">
@@ -111,8 +111,8 @@
                             <i class="fa-solid fa-user-doctor"></i>
                         </div>
                         <div>
-                            <div><b>New Patients</b></div>
-                            <div><b>213</b></div>
+                            <div><b>Total Appoinments</b></div>
+                            <div><b>${TotalAppoinment}</b></div>
                         </div>
                     </div>
                     <div class="shadow bg-white rounded col-lg-2 col-sm-12 p-3 mb-4 d-flex gap-2 align-items-center">
@@ -121,7 +121,7 @@
                         </div>
                         <div>
                             <div><b>Total Patients</b></div>
-                            <div><b>213</b></div>
+                            <div><b>${TotalNo}</b></div>
                         </div>
                     </div>
                 </div>

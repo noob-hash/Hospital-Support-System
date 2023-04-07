@@ -34,6 +34,23 @@ import java.util.logging.Logger;
  * @author Subin
  */
 public class UserService extends SecureAuth  implements Authentication {
+    
+    public int TotalAppoinment(){
+        int Result = 0;
+        try {
+            String statement = "Select Count(Id) as total from appoinment;";
+            
+            PreparedStatement ps = new DatabaseConnection().Statement(statement);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Result = rs.getInt("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PatientService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Result;
+    }
+    
     public User GetUser(int id){
         User user = null;
         try {
@@ -62,6 +79,7 @@ public class UserService extends SecureAuth  implements Authentication {
             ps.setString(2, identifier);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
+                System.out.println("a"+ rs.getInt("Id"));
                 user = new User(rs.getInt("Id"),rs.getString("Name"), User.Gender.valueOf(rs.getString("Gender")),rs.getString("D_O_B"),rs.getString("Phone"),rs.getString("email"),rs.getString("Address"),User.Role.valueOf(rs.getString("Role")));         
             }
             
@@ -70,7 +88,7 @@ public class UserService extends SecureAuth  implements Authentication {
         }
         return user;
     }
-//    ham tumare hai sanam
+
     public void SaveNewUserCredentials(User userParent) {
         DatabaseService databaseService = new DatabaseService();
         
@@ -123,7 +141,7 @@ public class UserService extends SecureAuth  implements Authentication {
             PreparedStatement ps = con.prepareStatement(statement);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                User user = new User(rs.getString("Name"), User.Gender.valueOf(rs.getString("Gender")),rs.getString("D_O_B"),rs.getString("Phone"),rs.getString("email"),rs.getString("Address"),User.Role.valueOf(rs.getString("Role")));         
+                User user = new User(rs.getInt("Id"),rs.getString("Name"), User.Gender.valueOf(rs.getString("Gender")),rs.getString("D_O_B"),rs.getString("Phone"),rs.getString("email"),rs.getString("Address"),User.Role.valueOf(rs.getString("Role")));         
                 userList.add(user);
             }
         } catch (SQLException ex) {

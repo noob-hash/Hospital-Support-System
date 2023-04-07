@@ -6,28 +6,137 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html>
     <head>
         <title>OTP</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="" name="description">
         <meta content="" name="keywords">
 
         <!-- Favicons -->
         <link href="assets/img/favicon1.png" rel="icon">
         <link href="assets/img/apple-touch-icon_1.png" rel="apple-touch-icon">
-         <!-- Vendor CSS Files -->
+        <!-- Vendor CSS Files -->
         <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
         <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
         <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <style>
+            .card{
+                width:400px;
+                border:none;
+                height:300px;
+                box-shadow: 0px 5px 20px 0px #d2dae3;
+                z-index:1;
+                display:flex;
+                justify-content:center;
+                align-items:center
+            }
+            .card h6{
+                color:red;
+                font-size:20px
+            }
+            .inputs input{
+                width:40px;
+                height:40px
+            }
+            input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                margin: 0
+            }
+            .card-2{
+                background-color:#fff;
+                padding:10px;
+                width:350px;
+                height:100px;
+                bottom:-50px;
+                left:20px;
+                position:absolute;
+                border-radius:5px
+            }
+            .card-2 .content{
+                margin-top:50px
+            }
+            .card-2 .content a{
+                color:red
+            }
+            .form-control:focus{
+                box-shadow:none;
+                border:2px solid red
+            }
+            .validate{
+                border-radius:20px;
+                height:40px;
+                background-color:red;
+                border:1px solid red;
+                width:140px
+            }
+        </style>
     </head>
     <body>
-        <div class="container">
-            <div class="form">
-                <form action="Controller?page=sendOTP" method="post">
-                    <span>Enter OTP send on your email.</span>
-                    <input required type="number" name="OTP" maxlength="6" minlength="6" required />
-                    <input type="submit" value="Submit" />
-                </form>
+        <div class="container h-100 d-flex justify-content-center align-items-center py-5"> 
+            <div class="position-relative"> <div class="card p-2 text-center"> 
+                    <h6>Please enter the one time password <br> to verify your account</h6> 
+                    <div> <span>A code has been sent to your email </div>
+                    <form autocomplete="off" id="OTPform" action="Controller?page=sendOTP" method="post">
+                        <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> 
+                            <input required name="1" class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" /> 
+                            <input required name="2" class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" /> 
+                            <input required name="3" class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" /> 
+                            <input required name="4" class="m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" /> 
+                            <input required name="5" class="m-2 text-center form-control rounded" type="text" id="fifth" maxlength="1" /> 
+                            <input required name="6" class="m-2 text-center form-control rounded" type="text" id="sixth" maxlength="1" /> 
+                        </div> 
+                        <div class="mt-4"> 
+                            <input type="submit" value="Validate" class="btn btn-danger px-4 validate"/>
+                        </div> 
+                    </form>
+                </div> 
+                <div class="card-2"> 
+                    <div class="content d-flex justify-content-center align-items-center"> 
+                        <span>Didn't get the code</span> 
+                        <a href="#" onclick="document.location.reload();" class="text-decoration-none ms-3">Resend</a> 
+                    </div> 
+                </div> 
             </div>
         </div>
+        <script>
+            
+            
+
+            document.addEventListener("DOMContentLoaded", function (event) {
+
+                function OTPInput() {
+                    const inputs = document.querySelectorAll('#otp > *[id]');
+                    for (let i = 0; i < inputs.length; i++) {
+                        inputs[i].addEventListener('keydown', function (event) {
+                            if (event.key === "Backspace") {
+                                inputs[i].value = '';
+                                if (i !== 0)
+                                    inputs[i - 1].focus();
+                            } else {
+                                if (i === inputs.length - 1 && inputs[i].value !== '') {
+                                    return true;
+                                } else if (event.keyCode > 47 && event.keyCode < 58) {
+                                    inputs[i].value = event.key;
+                                    if (i !== inputs.length - 1)
+                                        inputs[i + 1].focus();
+                                    event.preventDefault();
+                                } else if (event.keyCode > 64 && event.keyCode < 91) {
+                                    inputs[i].value = String.fromCharCode(event.keyCode);
+                                    if (i !== inputs.length - 1)
+                                        inputs[i + 1].focus();
+                                    event.preventDefault();
+                                }
+                            }
+                        });
+                    }
+                }
+                OTPInput();
+
+
+            });
+        </script>
     </body>
 </html>

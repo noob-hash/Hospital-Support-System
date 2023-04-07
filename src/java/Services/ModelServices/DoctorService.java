@@ -144,6 +144,7 @@ public class DoctorService {
             System.out.println(ps);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
+                System.out.println("b"+rs.getInt("Id"));
                 Doctor doctor = new Doctor(rs.getInt("Id"), rs.getString("Name"), rs.getString("D_O_B"), User.Gender.valueOf(rs.getString("Gender")),rs.getString("Phone"),rs.getString("email"),rs.getString("Address"),User.Role.valueOf(rs.getString("Role")),rs.getString("Phone"),rs.getString("Specialization"), rs.getString("Education"));         
                 doctorList.add(doctor);
             }
@@ -151,5 +152,21 @@ public class DoctorService {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return doctorList;
+    }
+    
+    public int TotalNumber(){
+        int Result = 0;
+        try {
+            String statement = "Select Count(Id) as total from user where Role = 'D';";
+            
+            PreparedStatement ps = new DatabaseConnection().Statement(statement);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Result = rs.getInt("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PatientService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Result;
     }
 }

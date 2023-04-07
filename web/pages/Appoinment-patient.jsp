@@ -107,7 +107,7 @@
                                         <select name="doctor" id="doctor" class="form-select">
                                             <option value="">Select Doctor</option>
                                             <c:forEach var="Doctor" items="${doctorList}">
-                                                <option value="${Doctor.user.id}"> - ${Doctor.user.name}</option>
+                                                <option value="${Doctor.id}"> - ${Doctor.user.name}</option>
                                             </c:forEach>    
                                         </select>
                                         <div class="validate"></div>

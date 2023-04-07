@@ -181,20 +181,21 @@ public class Servlet extends HttpServlet {
                 dispacher.forward(request, response);
             }
             if (sRole.equalsIgnoreCase("A") || cRole.equalsIgnoreCase("A")) {
-                List<User> userData = new ArrayList<>();
-                try {
-                    ResultSet result = new DatabaseService().GetData("user", new TableData("Role", "P"), new TableData("Role", "P"));
-                    while (result.next()) {
-                        User userP = new User(Integer.parseInt(result.getString("Id")), result.getString("Name"), User.Gender.valueOf(result.getString("Gender")), result.getString("D_O_B"), result.getString("Phone"), result.getString("email"), result.getString("Address"), User.Role.valueOf(result.getString("Role")));
-                        userData.add(userP);
-                    }
+                List<User> userData = new UserService().GetUserList();
+                request.setAttribute("UserData", userData);
+                
+                int total = new PatientService().TotalNumber();
+                request.setAttribute("TotalNo", total);
+                
+                int totalAppoinment = new UserService().TotalAppoinment();
+                request.setAttribute("TotalAppoinment", totalAppoinment);
+                
+                int totalDoc = new DoctorService().TotalNumber();
+                request.setAttribute("TotalDoc", totalDoc);
+                
+                RequestDispatcher dispacher = request.getRequestDispatcher("pages/Dashboard-admin.jsp");
+                dispacher.forward(request, response);
 
-                    request.setAttribute("UserData", userData);
-                    RequestDispatcher dispacher = request.getRequestDispatcher("pages/Dashboard-admin.jsp");
-                    dispacher.forward(request, response);
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
             } else if (sRole.equalsIgnoreCase("P") || cRole.equalsIgnoreCase("P")) {
 
                 RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=appoinmentPage");
@@ -446,7 +447,7 @@ public class Servlet extends HttpServlet {
                 String date = request.getParameter("date");
                 String time = request.getParameter("time");
                 int doctor = Integer.parseInt(request.getParameter("doctor"));
-//                int docId = Integer.parseInt(request.getParameter("doctor"));
+
                 if (cId != null) {
                     sId = cId;
                 }
@@ -626,19 +627,18 @@ public class Servlet extends HttpServlet {
         if (page.equalsIgnoreCase("sendOTP")) {
             PrintWriter out = response.getWriter();
             User user = new UserService().GetUser(request.getParameter("email"));
-
-            String OTP = (request.getParameter("OTP") != null) ? request.getParameter("OTP") : "0";
-
+            String OTP = (request.getParameter("1") != null) ? request.getParameter("1") + request.getParameter("2") + request.getParameter("3") 
+                    + request.getParameter("4") + request.getParameter("5") + request.getParameter("6") : "0";
+            
             if (Integer.parseInt(OTP) == 256734) {
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/ResetPassword.html");
                 dispacher.forward(request, response);
 
             } else {
-                if (user != null && user.getRole().toString().equalsIgnoreCase("P")) {
+                if (user != null) {
 
                     HttpSession s = request.getSession(true);
                     s.setAttribute("Email", user.getPhone());
-                    System.out.println(user.getPhone());
                     new EmailSender().EmailSpecifier(user.getEmail(), "One Time Password", "Your OTP is: 256734");
                     RequestDispatcher dispacher = request.getRequestDispatcher("pages/enterOTP.html");
                     dispacher.forward(request, response);
@@ -679,7 +679,6 @@ public class Servlet extends HttpServlet {
                     RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
                     dispacher.forward(request, response);
                 } else {
-                    System.out.println("Gas");
                     out.println("Invalid credentials");
                     RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=editProfile");
                     dispacher.forward(request, response);

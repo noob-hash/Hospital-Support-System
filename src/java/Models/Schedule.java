@@ -42,6 +42,7 @@ public class Schedule {
 
     public Schedule(String date, String visitTime) {
         setDate(date);
+        System.out.println(this.getDate());
         this.visitTime = LocalTime.parse(visitTime);
         this.endTime = this.visitTime.plusMinutes(45);
     }
@@ -60,13 +61,15 @@ public class Schedule {
 
     public void setDate(String dateApp) {
         try {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+            System.out.println("date:"+dateApp);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             //formatting user input date and saving it as Date type
-            Date date = dateFormat.parse(dateApp);
-            //converting obrained Date object abve to LocalDate Object as it is data type we need
-            Instant instant = date.toInstant();
+            Date datea = dateFormat.parse(dateApp);
+            //converting obtained Date object above to LocalDate Object as it is data type we need
+            Instant instant = datea.toInstant();
             ZonedDateTime zone = instant.atZone(ZoneId.systemDefault());
             LocalDate dateAppoinment = zone.toLocalDate();
+            System.out.println("format:"+dateAppoinment);
             //setting dob
             this.date = dateAppoinment;
         } catch (ParseException ex) {

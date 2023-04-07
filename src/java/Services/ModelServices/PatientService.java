@@ -253,7 +253,7 @@ public class PatientService {
         int[] Result = new int[12];
         try {
             Connection con = new DatabaseConnection().ConnectionEstablishment();
-            String statement = "SELECT DATE_FORMAT(date, ‘%Y-%m’) AS production_month,COUNT(id) AS count FROM schedule GROUP BY MONTH(date), YEAR(date);";
+            String statement = "SELECT DATE_FORMAT(date, '%Y-%M') AS month,COUNT(id) AS patient_no FROM schedule GROUP BY MONTH(date), YEAR(date);";
             PreparedStatement ps = con.prepareStatement(statement);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -261,6 +261,22 @@ public class PatientService {
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Result;
+    }
+    
+    public int TotalNumber(){
+        int Result = 0;
+        try {
+            String statement = "Select Count(Id) as total from user where Role = 'P';";
+            
+            PreparedStatement ps = new DatabaseConnection().Statement(statement);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Result = rs.getInt("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PatientService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Result;
     }
