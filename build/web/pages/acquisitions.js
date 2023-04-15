@@ -44,7 +44,7 @@ new Chart(genderChart, {
   data: {
     labels: ['Male', 'Female'],
     datasets: [{
-      data: [400,340],
+      data: [${gender[1]},${gender[0]}],
     }]
   },
   options: {

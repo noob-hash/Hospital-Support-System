@@ -12,7 +12,6 @@ import Models.Patient;
 import Models.Schedule;
 import Models.TableData;
 import Models.User;
-import Services.DatabaseServices.DatabaseConnection;
 import Services.DatabaseServices.DatabaseService;
 import Services.EmailServices.EmailSender;
 import Services.ModelServices.DoctorService;
@@ -192,6 +191,12 @@ public class Servlet extends HttpServlet {
                 
                 int totalDoc = new DoctorService().TotalNumber();
                 request.setAttribute("TotalDoc", totalDoc);
+                
+                int[] PGender = new PatientService().GendersCount();
+                request.setAttribute("gender", PGender);
+                
+                List<Integer> PAge = new PatientService().AgeCount();
+                request.setAttribute("age", PAge);
                 
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Dashboard-admin.jsp");
                 dispacher.forward(request, response);

@@ -253,11 +253,46 @@ public class PatientService {
         int[] Result = new int[12];
         try {
             Connection con = new DatabaseConnection().ConnectionEstablishment();
-            String statement = "SELECT DATE_FORMAT(date, '%Y-%M') AS month,COUNT(id) AS patient_no FROM schedule GROUP BY MONTH(date), YEAR(date);";
+            String statement = "SELECT DATE_FORMAT(date, '%Y') AS year, DATE_FORMAT(date, '%M') as month, COUNT(id) AS patient_no FROM schedule GROUP BY MONTH(date), YEAR(date);";
             PreparedStatement ps = con.prepareStatement(statement);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Patient patient = new Patient(rs.getInt("Id"), rs.getString("Name"), rs.getString("D_O_B"), User.Gender.valueOf(rs.getString("Gender")), rs.getString("Phone"), rs.getString("email"), rs.getString("Address"), User.Role.valueOf(rs.getString("Role")), rs.getString("Phone"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Result;
+    }
+    
+    public int[] GendersCount() {
+        int[] Result = new int[2];
+        try {
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            String statement = "SELECT user.Gender,COUNT(id) AS patient_no FROM `user` where Role ='P' GROUP BY user.Gender;";
+            PreparedStatement ps = con.prepareStatement(statement);
+            ResultSet rs = ps.executeQuery();
+            int i=0;
+            while (rs.next()) {
+                Result[i] = rs.getInt("patient_no");
+                i++;
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Result;
+    }
+    
+    public List<Integer> AgeCount() {
+        List<Integer> Result = new ArrayList<>();
+        try {
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            String statement = "SELECT TIMESTAMPDIFF(YEAR, user.D_O_B, CURDATE()) AS age ,COUNT(id) AS patient_no FROM `user` GROUP BY user.D_O_B;";
+            PreparedStatement ps = con.prepareStatement(statement);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Result.add(rs.getInt("patient_no"));                
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
