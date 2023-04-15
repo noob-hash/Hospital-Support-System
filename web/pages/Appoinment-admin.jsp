@@ -23,17 +23,11 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
         <!-- Vendor CSS Files -->
+        <!-- Vendor CSS Files -->
         <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
         <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
         <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-        <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-        <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
         <style>
             * {
                 margin: 0;
@@ -94,42 +88,41 @@
     <body>
         <section class="container-fluid bg-light">
             <%@include file="nav-admin.jsp" %>
-            <div class="collapse position-absolute" id="collapseExample">
+            <div class="collapse position-absolute top-0" style="left:25%" id="collapseExample">
                 <div class="card card-body bg-light bg-opacity-75">
                     <div class="container py-5 h-100">
-                        <div class="p-4 d-flex justify-content-around">
-                            <form action="Controller?page=addAppoinment" method="post" role="form" class="needs-validation">
-                                <div class="row">
-                                    <div class="col-md-6 form-group mt-3">
-                                        <input required type="date" name="date" class="form-control datepicker" id="date" required/>
-                                        <div class="validate"></div>
-                                    </div>
-                                    <div class="col-md-6 form-group mt-3">
-                                        <input required type="time" name="time" class="form-control datepicker" id="time" required/>
-                                        <div class="validate"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 form-group mt-3">
-                                        <select name="doctor" id="doctor" class="form-select">
-                                            <option value="">Select Doctor</option>
-                                            <c:forEach var="Doctor" items="${doctorList}">
-                                                <option value="${Doctor.user.id}"> - ${Doctor.user.name}</option>
-                                            </c:forEach>    
-                                        </select>
-                                        <div class="validate"></div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group mt-3">
-                                    <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+                        <h4 class="text-center">Add Appointment</h4>
+                        <form action="Controller?page=addAppoinment" method="post" role="form" class="needs-validation">
+                            <div class="row">
+                                <div class="col-md-6 form-group mt-3">
+                                    <input required type="date" name="date" class="form-control datepicker" id="date" required/>
                                     <div class="validate"></div>
                                 </div>
-                                <div class="text-center mt-4 ">
-                                    <button type="submit" class="btn bg-info p-2">Make an Appointment</button>
+                                <div class="col-md-6 form-group mt-3">
+                                    <input required type="time" name="time" class="form-control datepicker" id="time" required/>
+                                    <div class="validate"></div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 form-group mt-3">
+                                    <select name="doctor" id="doctor" class="form-select">
+                                        <option value="">Select Doctor</option>
+                                        <c:forEach var="Doctor" items="${doctorList}">
+                                            <option value="${Doctor.user.id}"> - ${Doctor.user.name}</option>
+                                        </c:forEach>    
+                                    </select>
+                                    <div class="validate"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+                                <div class="validate"></div>
+                            </div>
+                            <div class="text-center mt-4 ">
+                                <button type="submit" class="btn bg-info p-2">Make an Appointment</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

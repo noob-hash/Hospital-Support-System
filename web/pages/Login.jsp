@@ -36,6 +36,8 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
         />
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
     <section class="vh-100 gradient-custom">
@@ -45,19 +47,29 @@
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card bg-light text-dark border-1">
                         <div class="card-body p-4">
-                            <form action="Controller?page=login" method="post" class="mb-md-2 mt-md-4 pb-2">
+                            <form action="Controller?page=login" method="post" class="mb-md-2 mt-md-4 pb-2 needs-validation" novalidate>
 
                                 <h2 class="fw-bold mb-2  text-center text-uppercase">Login</h2>
                                 <p class="text-white-50 mb-2">Please enter your login and password!</p>
 
                                 <div class="form-outline form-white">
-                                    <label class="form-label " for="username">Username/Email</label>
-                                    <input  type="text" id="username" name="username" class="form-control form-control-lg" />
+                                    <label class="form-label " for="username">Username</label>
+                                    <input  type="text" id="username" name="username" class="form-control form-control-lg" pattern="[0-9]{10}" required/>
+                                    <div class="valid-feedback">Valid Username</div>
+                                    <div class="invalid-feedback">
+                                        Username must be your phone number
+                                    </div>
                                 </div>
+
                                 <div class="form-outline form-white mb-4">
                                     <label class="form-label" for="password">Password</label>
-                                    <input  type="password" id="password" name="password" class="form-control form-control-lg" />
+                                    <input  type="password" id="password" name="password" class="form-control form-control-lg" minlength="8" required/>
+                                    <div class="valid-feedback">Valid password</div>
+                                    <div class="invalid-feedback">
+                                        Password field cannot less than 8 character
+                                    </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-6">
                                         <input type="checkbox" name="Remember" id="Remenber" />
@@ -104,6 +116,26 @@
         </div>
     </div>
 </section>
+<script>
+    (function () {
+        'use strict'
 
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+// Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+    })()
+</script>
 </body>
 </html>

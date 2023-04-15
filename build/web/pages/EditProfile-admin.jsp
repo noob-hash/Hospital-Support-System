@@ -124,6 +124,7 @@
                                                                    name="Gender"
                                                                    id="Male"
                                                                    value="M"
+                                                                   checked
                                                                    />
                                                             <label for="Male">Male</label>
                                                             <input required

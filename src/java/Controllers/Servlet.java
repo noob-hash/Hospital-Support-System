@@ -547,8 +547,9 @@ public class Servlet extends HttpServlet {
 
                 List<User> patientList = new PatientService().PatientList();
                 request.setAttribute("patientList", patientList);
+                
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Patient-admin.jsp");
-                dispacher.include(request, response);
+                dispacher.forward(request, response);
             }
             if (sRole.equalsIgnoreCase("D") || cRole.equalsIgnoreCase("D")) {
 

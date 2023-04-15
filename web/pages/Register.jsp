@@ -34,6 +34,9 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
             />
+
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
     </head>
     <body>
         <div class="center top-0">
@@ -56,36 +59,42 @@
                                 <div class="card-body p-md-3">
                                     <h3>Registration Info</h3>
 
-                                    <form method="post" action="Controller?page=addUser" class="px-md-2">
+                                    <form method="post" action="Controller?page=addUser" class="px-md-2 needs-validation" novalidate>
                                         <div class="row">
                                             <div class="form-group col-md-6">
                                                 <label for="Name">Full Name</label>
                                                 <input required
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="Name"
-                                                    name="Name"
-                                                    aria-describedby="emailHelp"
-                                                    placeholder="Enter fullname"
-                                                    />
+                                                       type="text"
+                                                       class="form-control"
+                                                       id="Name"
+                                                       name="Name"
+                                                       aria-describedby="Full name"
+                                                       placeholder="Enter fullname"
+                                                       />
+                                                <div class="invalid-feedback">
+                                                    Please enter your name
+                                                </div>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="Email1">Gender</label><br />
                                                 <div class="mt-2">
                                                     <input required
-                                                        type="radio"
-                                                        name="Gender"
-                                                        id="Male"
-                                                        value="M"
-                                                        />
+                                                           type="radio"
+                                                           name="Gender"
+                                                           id="Male"
+                                                           value="M"
+                                                           />
                                                     <label for="Male">Male</label>
                                                     <input required
-                                                        type="radio"
-                                                        name="Gender"
-                                                        id="Female"
-                                                        value="F"
-                                                        />
+                                                           type="radio"
+                                                           name="Gender"
+                                                           id="Female"
+                                                           value="F"
+                                                           />
                                                     <label for="Female">Female</label>
+                                                </div>
+                                                <div class="invalid-feedback">
+                                                    Please select your gender
                                                 </div>
                                             </div>
                                         </div>
@@ -94,26 +103,32 @@
                                                 <div class="col-lg-6">
                                                     <label for="Email1">Email address</label>
                                                     <input required
-                                                        type="email"
-                                                        class="form-control"
-                                                        id="Email"
-                                                        name="Email"
-                                                        aria-describedby="emailHelp"
-                                                        placeholder="Enter email"
-                                                        />
+                                                           type="email"
+                                                           class="form-control"
+                                                           id="Email"
+                                                           name="Email"
+                                                           aria-describedby="emailHelp"
+                                                           placeholder="Enter email"
+                                                           />
+                                                    <div class="invalid-feedback">
+                                                    Please enter your email
+                                                </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="Phone">Contact</label>
                                                     <input required
-                                                        type="text"
-                                                        inputmode="numeric"
-                                                        pattern="[0-9]+"
-                                                        class="form-control"
-                                                        id="Phone"
-                                                        name="Phone"
-                                                        aria-describedby="emailHelp"
-                                                        placeholder="Enter phone"
-                                                        />
+                                                           type="text"
+                                                           inputmode="numeric"
+                                                           pattern="[0-9]{10}"
+                                                           class="form-control"
+                                                           id="Phone"
+                                                           name="Phone"
+                                                           aria-describedby="emailHelp"
+                                                           placeholder="Enter phone"
+                                                           />
+                                                    <div class="invalid-feedback">
+                                                    Please enter your contact
+                                                </div>
                                                 </div>
                                             </div>
                                             <small id="emailHelp" class="form-text text-muted"
@@ -129,34 +144,44 @@
                                             <div class="col-lg-6">
                                                 <label for="address">Address</label>
                                                 <input required
-                                                    type="text"
-                                                    class="form-control"
-                                                    name="Address"
-                                                    id="address"
-                                                    placeholder="Enter address"
-                                                    />
+                                                       type="text"
+                                                       class="form-control"
+                                                       name="Address"
+                                                       id="address"
+                                                       placeholder="Enter address"
+                                                       />
+                                                <div class="invalid-feedback">
+                                                    Please enter your DOB
+                                                </div>
                                             </div>
                                         </div>
-                                         <div class="row">
+                                        <div class="row">
                                             <div class="col-lg-6">
                                                 <label for="Password">Password</label>
                                                 <input required
-                                                    type="password"
-                                                    class="form-control"
-                                                    name="Password"
-                                                    id="Password"
-                                                    placeholder="Enter Password"
-                                                    />
+                                                       type="password"
+                                                       class="form-control"
+                                                       name="Password"
+                                                       id="Password"
+                                                       placeholder="Enter Password"
+                                                       pattern="(?=.*?[~`!@#$%^&amp;*()_=+\[\]{};:&apos;.,&quot;\\|\/?&gt;&lt;-])(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                                       />
+                                                <div class="invalid-feedback">
+                                                    At least 8 character with uppercase, lowercase and special character
+                                                </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <label for="confirmPwd">Confirm Password</label>
                                                 <input required
-                                                    type="password"
-                                                    class="form-control"
-                                                    name="ConfirmPassword"
-                                                    id="confirmPwd"
-                                                    placeholder="Confirm Password"
-                                                    />
+                                                       type="password"
+                                                       class="form-control"
+                                                       name="ConfirmPassword"
+                                                       id="confirmPwd"
+                                                       placeholder="Confirm Password"
+                                                       />
+                                                <div class="invalid-feedback">
+                                                    Please repeat your password
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row ">
@@ -180,4 +205,25 @@
             </div>
         </div>
     </body>
+    <script>
+    (function () {
+        'use strict'
+
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+// Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+    })()
+</script>
 </html>
