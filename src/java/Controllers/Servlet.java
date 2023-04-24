@@ -198,6 +198,15 @@ public class Servlet extends HttpServlet {
                 List<Integer> PAge = new PatientService().AgeCount();
                 request.setAttribute("age", PAge);
                 
+                List<TableData> PDep = new PatientService().DepartmentPCount();
+                request.setAttribute("depPatient", PDep);
+                
+                List<Integer> YAppoinment = new PatientService().PatientCountCurr();
+                request.setAttribute("YearAppoinment", YAppoinment);
+                
+                List<Integer> PAppoinment = new PatientService().PatientCountPre();
+                request.setAttribute("PYearAppoinment", PAppoinment);
+                
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Dashboard-admin.jsp");
                 dispacher.forward(request, response);
 

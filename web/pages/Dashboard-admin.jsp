@@ -187,7 +187,6 @@
             $(document).ready(function () {
                 $('#tableData').DataTable();
             });
-            console.log(${gender[0]})
         </script>
         <!--        <script type="module" src="pages/acquisitions.js"></script>-->
         <script>
@@ -201,13 +200,13 @@
                 data: {
                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
                     datasets: [{
-                            label: '2021',
-                            data: [120, 65, 130, 50, 200, 133, 230, 130, 90, 120, 150, 125],
+                            label: new Date().getFullYear(),
+                            data: ${YearAppoinment},
                             borderWidth: 1
                         },
                         {
-                            label: '2022',
-                            data: [210, 52, 53, 68, 180, 126, 230, 110, 98, 90, 150],
+                            label: new Date().getFullYear() -1,
+                            data: ${PYearAppoinment},
                             borderWidth: 1
                         }]
                 },
@@ -256,10 +255,8 @@
                 data: {
                     labels: ['0-15', '15-30', '30-45', '45-60', '60-75', '75-90', '90+'],
                     datasets: [{
-                        <c:forEach var="age" items="${age}">
-                          console.log(${age})     
-                        </c:forEach>
-                            data: [50, 90, 60, 120, 100, 40, 15, 90],
+                        
+                            data: ${age},
                         }]
                 },
                 options: {
@@ -276,6 +273,7 @@
                     }
                 }
             });
+
 
             new Chart(depGraph, {
                 type: 'polarArea',
