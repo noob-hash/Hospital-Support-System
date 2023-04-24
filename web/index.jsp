@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="google-site-verification" content="YJ_s_nhMk6FZt8aJUOtoCJ_ggpmE9yKTWoeOoh-rWII" />
 
   <title>Hospital</title>
   <meta content="" name="description">
