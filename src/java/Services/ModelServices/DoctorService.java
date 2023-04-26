@@ -185,7 +185,6 @@ public class DoctorService {
         }
         return Result;
     }
-
     
     public List<String> DepartmentNames() {
         List<String> Result = new ArrayList<>();
@@ -263,6 +262,22 @@ public class DoctorService {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return doctorList;
+    }
+    
+    public void addDoctor(Doctor doc){
+        try {
+            new UserService().SaveNewUserCredentials(doc.getUser());
+            int id = new UserService().GetUser(doc.getUser().getPhone()).getId();
+            String st = "Insert into doctor(Specialization, Education, User_Id) values(?,?,?);";
+            PreparedStatement stmt = new DatabaseConnection().Statement(st);
+            stmt.setString(1, doc.getSpeacialization());
+            stmt.setString(2, doc.getEducation());
+            stmt.setInt(3, id);
+            System.out.println(stmt);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DoctorService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public int TotalNumber(){

@@ -44,7 +44,7 @@
 
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="col-sm-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card bg-light text-dark border-1">
                         <div class="card-body p-4">
                             <form action="Controller?page=login" method="post" class="mb-md-2 mt-md-4 pb-2 needs-validation" novalidate>

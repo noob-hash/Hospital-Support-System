@@ -40,21 +40,21 @@
             left: 0%;
             top: 0%;
             width: 100%;
-            height: 10%;
+            min-height: 10%;
         }
         nav {
             position: fixed;
             z-index: 2;
             left: 0%;
             top: 10%;
-            width: 15%;
+            max-width: 15%;
             height: 90%;
         }
         main {
             position: absolute;
             left: 15%;
             top: 10%;
-            width: 85%;
+            min-width: 85%;
             height: 90%;
             overflow-x: hidden
         }

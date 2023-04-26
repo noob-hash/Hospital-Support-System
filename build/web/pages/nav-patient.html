@@ -30,23 +30,25 @@
 </header>
 
 <nav class="nav p-4">
-    <ul class="nav navbar-nav gap-4 mt-4">
-        <li class="nav-item">
+    <ul class="nav navbar-nav gap-4 mt-4 justify-content-between">
+        <div class="nav navbar-nav gap-4">
+            <li class="nav-item">
             <a href="Controller?page=appoinmentPage">
                 <i class="fa-sharp fa-solid fa-stethoscope"></i>
-                Appoinment
+                <span class="d-none d-lg-inline ">Appointment</span>
             </a>
         </li>
         <li class="nav-item">
             <a href="Controller?page=record">
                 <i class="fa-sharp fa-solid fa-user-doctor"></i>
-                Reports
+                <span class="d-none d-lg-inline ">Reports</span>
             </a>
         </li>
+        </div>
         <li class="nav-item">
             <a href="Controller?page=logout" onclick="preventBack()">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                Logout
+                <span class="d-none d-lg-inline ">Logout</span>
             </a>
         </li>
     </ul>

@@ -19,7 +19,7 @@
             list="datalist"
             />
         <datalist id="datalist">
-            
+
         </datalist>
     </form>
     <div class="navbar d-flex gap-4">
@@ -34,31 +34,35 @@
 </header>
 
 <nav class="nav p-4">
-    <ul class="nav navbar-nav gap-4 mt-4">
-        <li class="nav-item">
-            <a href="Controller?page=dashboard">
-                <i class="fa-solid fa-temperature-half"></i>
-                Dashboard
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="Controller?page=appoinmentPage">
-                <i class="fa-sharp fa-solid fa-stethoscope"></i>
-                Appoinment
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="Controller?page=patient">
-                <i class="fa-solid fa-hospital"></i>
-                Patients
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="Controller?page=logout" onclick="preventBack()">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                Logout
-            </a>
-        </li>
+    <ul class="nav navbar-nav justify-content-between">
+        <div class="nav navbar-nav gap-4"> 
+            <li class="nav-item">
+                <a href="Controller?page=dashboard">
+                    <i class="fa-solid fa-temperature-half"></i>
+                    <span class="d-none d-lg-inline ">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Controller?page=appoinmentPage">
+                    <i class="fa-sharp fa-solid fa-stethoscope"></i>
+                    <span class="d-none d-lg-inline ">Appointment</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Controller?page=patient">
+                    <i class="fa-solid fa-hospital"></i>
+                    <span class="d-none d-lg-inline ">Patients</span>
+                </a>
+            </li>
+        </div>
+        <div>
+            <li class="nav-item">
+                <a href="Controller?page=logout" onclick="preventBack()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="d-none d-lg-inline ">Logout</span>
+                </a>
+            </li>
+        </div>
     </ul>
 </nav>
 <script>
