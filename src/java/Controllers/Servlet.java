@@ -163,14 +163,18 @@ public class Servlet extends HttpServlet {
         }
 
         if (page.equalsIgnoreCase("Dashboard")) {
-            String sRole = "", cRole = "";
+            String sRole = "", cRole = "", username="";
             HttpSession session = request.getSession();
             if (new UserService().LoggedIn(request)) {
                 sRole = (session.getAttribute("Role") != null) ? (String) session.getAttribute("Role") : "";
+                username = (session.getAttribute("Username") != null) ? (String) session.getAttribute("Username") : "";
                 Cookie[] cookie = request.getCookies();
                 for (Cookie c : cookie) {
                     if (c.getName().equalsIgnoreCase("Role")) {
                         cRole = c.getValue();
+                    }
+                    if (c.getName().equalsIgnoreCase("Username")) {
+                        username = c.getValue();
                     }
                 }
             }
@@ -198,8 +202,11 @@ public class Servlet extends HttpServlet {
                 List<Integer> PAge = new PatientService().AgeCount();
                 request.setAttribute("age", PAge);
                 
-                List<TableData> PDep = new PatientService().DepartmentPCount();
-                request.setAttribute("depPatient", PDep);
+                List<String> departmentName = new DoctorService().DepartmentNames();
+                request.setAttribute("depName", departmentName);
+                
+                List<Integer> PDep = new PatientService().DepartmentPCount();
+                request.setAttribute("depPCount", PDep);
                 
                 List<Integer> YAppoinment = new PatientService().PatientCountCurr();
                 request.setAttribute("YearAppoinment", YAppoinment);
@@ -215,7 +222,19 @@ public class Servlet extends HttpServlet {
                 RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=appoinmentPage");
                 dispacher.forward(request, response);
             } else if (sRole.equalsIgnoreCase("D") || cRole.equalsIgnoreCase("D")) {
-
+                
+                int[] PGender = new DoctorService().GendersCount(username);
+                request.setAttribute("gender", PGender);
+                
+                List<Integer> PAge = new DoctorService().AgeCount(username);
+                request.setAttribute("age", PAge);
+                
+                List<Integer> YAppoinment = new DoctorService().PatientCountCurr(username);
+                request.setAttribute("YearAppoinment", YAppoinment);
+                
+                List<Integer> PAppoinment = new DoctorService().PatientCountPre(username);
+                request.setAttribute("PYearAppoinment", PAppoinment);
+                
                 List<User> userData = new ArrayList<>();
                 try {
                     ResultSet result = new DatabaseService().GetData("user", new TableData("Role", "P"), new TableData("Role", "P"));
@@ -241,11 +260,15 @@ public class Servlet extends HttpServlet {
             if (new UserService().LoggedIn(request)) {
                 sRole = (session.getAttribute("Role") != null) ? (String) session.getAttribute("Role") : "";
                 Cookie[] cookie = request.getCookies();
+                System.out.println("logged in");
                 for (Cookie c : cookie) {
                     if (c.getName().equalsIgnoreCase("Role")) {
                         cRole = c.getValue();
                     }
                 }
+            }
+            else{
+                System.out.println("not logged in");
             }
 
             if (sRole == null && cRole == null) {

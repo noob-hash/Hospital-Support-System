@@ -92,6 +92,117 @@ public class DoctorService {
         return department;
     }
     
+    public int[] GendersCount(String identifier) {
+        int[] Result = new int[2];
+        try {
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            String statement = "SELECT user.Gender,COUNT(user.Id) AS patient_no FROM `user`  inner join appoinment on user.Id = appoinment.user_id and appoinment.doctor_id = (SELECT user.Id from user where user.Phone='"+identifier+"')  where Role ='P' GROUP BY user.Gender;";
+            PreparedStatement ps = con.prepareStatement(statement);
+            System.out.println(ps);
+            ResultSet rs = ps.executeQuery();
+            int i = 0;
+            while (rs.next()) {
+                Result[i] = rs.getInt("patient_no");
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Result;
+    }
+    
+    public List<Integer> AgeCount(String identifier) {
+        List<Integer> Result = new ArrayList<>();
+        try {
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            String statement = "SELECT\n"
+                    + "    SUM(IF(TIMESTAMPDIFF(YEAR, user.D_O_B, CURDATE()) < 20,1,0)) as '15-',\n"
+                    + "    SUM(IF(TIMESTAMPDIFF(YEAR, user.D_O_B, CURDATE()) BETWEEN 15 and 29,1,0)) as '15-30',\n"
+                    + "    SUM(IF(TIMESTAMPDIFF(YEAR, user.D_O_B, CURDATE()) BETWEEN 30 and 44,1,0)) as '30 - 45',\n"
+                    + "    SUM(IF(TIMESTAMPDIFF(YEAR, user.D_O_B, CURDATE()) BETWEEN 45 and 59,1,0)) as '45 - 60',\n"
+                    + "    SUM(IF(TIMESTAMPDIFF(YEAR, user.D_O_B, CURDATE()) BETWEEN 60 and 74,1,0)) as '60-75',\n"
+                    + "    SUM(IF(TIMESTAMPDIFF(YEAR, user.D_O_B, CURDATE()) BETWEEN 75 and 89,1,0)) as '75 - 90',\n"
+                    + "    SUM(IF(TIMESTAMPDIFF(YEAR, user.D_O_B, CURDATE()) > 90,1,0)) as '90+'\n"
+                    + "FROM `user` inner join appoinment on user.Id = appoinment.user_id and appoinment.doctor_id = (SELECT user.Id from user where user.Phone='"+identifier+"') where Role='P';";
+            PreparedStatement ps = con.prepareStatement(statement);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                for(int i=1; i<=7; i++){
+                    Result.add(rs.getInt(i));
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Result;
+    }
+    
+    public List<Integer> PatientCountCurr(String identifier) {
+        List<Integer> Result = new ArrayList<>();
+        try {
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            String statement = "SELECT DATE_FORMAT(date, '%Y') AS year, Month(date) as month, COUNT(schedule.id) AS patient_no FROM schedule inner join appoinment on schedule.user = appoinment.user_id and appoinment.id=schedule.id inner join user on appoinment.doctor_id = user.Id where YEAR(date)=Year(CurDate()) and user.Phone = '"+identifier+"' GROUP BY MONTH(date), YEAR(date);";
+            PreparedStatement ps = con.prepareStatement(statement);
+            ResultSet rs = ps.executeQuery();
+            int i=1;
+            while (rs.next()) {
+                if(rs.getInt(2)>i){
+                    for(;i<rs.getInt(2);i++){
+                        Result.add(0);
+                    }
+                }
+                Result.add(rs.getInt(3));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Result;
+    }
+    
+    /**
+     *
+     * @return array of patient count for a year in month wise (needs to
+     * complete sql)
+     */
+    public List<Integer> PatientCountPre(String identifier) {
+        List<Integer> Result = new ArrayList<>();
+        try {
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            String statement = "SELECT DATE_FORMAT(date, '%Y') AS year, Month(date) as month, COUNT(schedule.id) AS patient_no FROM schedule  inner join appoinment on schedule.user = appoinment.user_id and appoinment.id=schedule.id inner join user on appoinment.doctor_id = user.Id where YEAR(date)=Year(CurDate())-1 and user.Phone = '"+identifier+"' GROUP BY MONTH(date), YEAR(date);";
+            PreparedStatement ps = con.prepareStatement(statement);
+            ResultSet rs = ps.executeQuery();
+            int i=1;
+            while (rs.next()) {
+                if(rs.getInt(2)>i){
+                    for(;i<rs.getInt(2);i++){
+                        Result.add(0);
+                    }
+                }
+                Result.add(rs.getInt(3));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Result;
+    }
+
+    
+    public List<String> DepartmentNames() {
+        List<String> Result = new ArrayList<>();
+        try {
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            String statement = "Select department.Name, COUNT(appoinment.user_id) as Pcount from department INNER JOIN appoinment INNER JOIN doctor on appoinment.doctor_id = doctor.User_Id AND doctor.id = department.id GROUP BY department.Name";
+            PreparedStatement ps = con.prepareStatement(statement);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Result.add(rs.getString("Name"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Result;
+    }
+    
     public List<User> PatientList(String identifier) {
         List<User> patientList = new ArrayList<>();
         try {

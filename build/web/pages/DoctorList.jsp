@@ -4,11 +4,11 @@
     Author     : Subin
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <title>Doctor</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
@@ -16,6 +16,7 @@
         <!-- Favicons -->
         <link href="assets/img/favicon1.png" rel="icon">
         <link href="assets/img/apple-touch-icon_1.png" rel="apple-touch-icon">
+
     </head>
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -120,13 +121,13 @@
                                             <div class="form-group col-md-6">
                                                 <label for="Name">Full Name</label>
                                                 <input required
-                                                    type="text"
-                                                    class="form-control"
-                                                    name="Name"
-                                                    id="Name"
-                                                    aria-describedby="emailHelp"
-                                                    placeholder="Enter fullname"
-                                                    />
+                                                       type="text"
+                                                       class="form-control"
+                                                       name="Name"
+                                                       id="Name"
+                                                       aria-describedby="emailHelp"
+                                                       placeholder="Enter fullname"
+                                                       />
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="Gender">Gender</label><br />
@@ -153,26 +154,26 @@
                                                 <div class="col-lg-6">
                                                     <label for="Email1">Email address</label>
                                                     <input required
-                                                        type="email"
-                                                        class="form-control"
-                                                        name="Email"
-                                                        id="Email"
-                                                        aria-describedby="emailHelp"
-                                                        placeholder="Enter email"
-                                                        />
+                                                           type="email"
+                                                           class="form-control"
+                                                           name="Email"
+                                                           id="Email"
+                                                           aria-describedby="emailHelp"
+                                                           placeholder="Enter email"
+                                                           />
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="Phone">Contact</label>
                                                     <input required
-                                                        type="text"
-                                                        input requiredmode="numeric"
-                                                        pattern="[0-9]+"
-                                                        class="form-control"
-                                                        name="Phone"
-                                                        id="Phnoe"
-                                                        aria-describedby="emailHelp"
-                                                        placeholder="Enter phone"
-                                                        />
+                                                           type="text"
+                                                           input requiredmode="numeric"
+                                                           pattern="[0-9]+"
+                                                           class="form-control"
+                                                           name="Phone"
+                                                           id="Phnoe"
+                                                           aria-describedby="emailHelp"
+                                                           placeholder="Enter phone"
+                                                           />
                                                 </div>
                                             </div>
                                             <small id="emailHelp" class="form-text text-muted"
@@ -188,24 +189,24 @@
                                             <div class="col-lg-6">
                                                 <label for="address">Address</label>
                                                 <input required
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="address"
-                                                    name="Address"
-                                                    placeholder="Enter address"
-                                                    />
+                                                       type="text"
+                                                       class="form-control"
+                                                       id="address"
+                                                       name="Address"
+                                                       placeholder="Enter address"
+                                                       />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <label for="specialization">Specialization</label>
                                                 <input required
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="specialization"
-                                                    name="Specialization"
-                                                    placeholder="Enter Specialization"
-                                                    />
+                                                       type="text"
+                                                       class="form-control"
+                                                       id="specialization"
+                                                       name="Specialization"
+                                                       placeholder="Enter Specialization"
+                                                       />
                                             </div>
                                             <div class="col-lg-6">
                                                 <label for="department">Department</label>
@@ -264,36 +265,36 @@
             </div>
             <div class=" container-fluid">
                 <div class="row p-2 gap-2">
-                <c:forEach var="doctor" items="${doctorList}">
-                    <div class="col-sm-12 col-md-6 col-lg-4  p-4 border bg-white ">
-                        <div class="contact ">
-                            <div class="img-box">
-                                <img width="300" src="assets/img/doctors/doctors-1.jpg" height="300" alt="avatar">
-                            </div><div class="info-box">
-                                <h4 class="name">${doctor.name}</h4>
-                                <small class="name">${doctor.speacialization}</small>
-                                <div class="social">
-                                    <a href="#" class="link icofont-instagram"></a>
-                                    <a href="#" class="link icofont-facebook"></a>
-                                    <a href="#" class="link icofont-twitter"></a>
-                                </div>
-                                <p class="address">${doctor.address}</p>
-                                <div class="button-box row">
-                                    <button type="button" class="btn btn-primary">
-                                        <span>View profile</span>
-                                    </button>
+                    <c:forEach var="doctor" items="${doctorList}">
+                        <div class="col-sm-12 col-md-6 col-lg-4  p-4 border bg-white ">
+                            <div class="contact ">
+                                <div class="img-box">
+                                    <img width="300" src="assets/img/doctors/doctors-1.jpg" height="300" alt="avatar">
+                                </div><div class="info-box">
+                                    <h4 class="name">${doctor.name}</h4>
+                                    <small class="name">${doctor.speacialization}</small>
+                                    <div class="social">
+                                        <a href="#" class="link icofont-instagram"></a>
+                                        <a href="#" class="link icofont-facebook"></a>
+                                        <a href="#" class="link icofont-twitter"></a>
+                                    </div>
+                                    <p class="address">${doctor.address}</p>
+                                    <div class="button-box row">
+                                        <button type="button" class="btn btn-primary">
+                                            <span>View profile</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
 
+                </div>
             </div>
-            </div>
-            
+
         </div>
 
     </section>
-
+    
 </body>
 </html>

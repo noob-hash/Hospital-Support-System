@@ -44,6 +44,9 @@
             width: 100%;
             height: 10%;
         }
+        .hidden-depvalue{
+            display: none !important;
+        }
         nav {
             position: fixed;
             z-index: 2;
@@ -150,6 +153,13 @@
                         </div>
                     </div>
                 </div>
+                <div id="dep">
+                <c:forEach var="dep" items="${depName}">
+                    <div class="hidden-depvalue">
+                        ${dep}
+                    </div>
+                </c:forEach>
+                    </div>
                 <div class="m-4">
                     <table id="tableData" class="table display">
                         <thead>
@@ -178,6 +188,9 @@
 
                                 </tr>
                             </c:forEach>
+                                <c:forEach var="user" items="${depPatient}">
+                                <script>console.log(${user.columnName});</script>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -190,6 +203,12 @@
         </script>
         <!--        <script type="module" src="pages/acquisitions.js"></script>-->
         <script>
+            
+            arr = [];
+            var element=document.querySelectorAll(".hidden-depvalue");
+            for(let i=0 ; i< element.length;i++){
+                arr.push(element[i].innerText);
+            }
             const numChart = document.getElementById('numberChart');
             const ageGraph = document.getElementById('ageGraph');
             const genderChart = document.getElementById('genderGraph');
@@ -249,7 +268,6 @@
 
 
             });
-
             new Chart(ageGraph, {
                 type: 'doughnut',
                 data: {
@@ -273,14 +291,12 @@
                     }
                 }
             });
-
-
             new Chart(depGraph, {
                 type: 'polarArea',
                 data: {
-                    labels: ['General', 'Laboratory', 'Surgical', 'Emergency', 'Radiology', 'Eye Care'],
+                    labels: arr,
                     datasets: [{
-                            data: [150, 120, 90, 125, 121, 80],
+                            data: ${depPCount},
                             backgroundColor: ["#36A2EB", "#18a3ac", "#178ccb", "#99a164", "#7cd4f4", "#d7c7ac"]
                         }],
                 },

@@ -44,11 +44,20 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="Controller?page=logout">
+            <a href="Controller?page=logout" onclick="preventBack()">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 Logout
             </a>
         </li>
     </ul>
 </nav>
+<script>
+    function preventBack() {
+        window.history.forward();
+    }
+    setTimeout("preventBack()", 0);
+    window.onunload = function () {
+        null;
+    };
+</script>
 <main class=" bg-light">
