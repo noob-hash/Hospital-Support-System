@@ -317,16 +317,16 @@ public class PatientService {
         }
         return Result;
     }
-
-    public List<TableData> DepartmentPCount() {
-        List<TableData> Result = new ArrayList<>();
+    
+    public List<Integer> DepartmentPCount() {
+        List<Integer> Result = new ArrayList<>();
         try {
             Connection con = new DatabaseConnection().ConnectionEstablishment();
             String statement = "Select department.Name, COUNT(appoinment.user_id) as Pcount from department INNER JOIN appoinment INNER JOIN doctor on appoinment.doctor_id = doctor.User_Id AND doctor.id = department.id GROUP BY department.Name";
             PreparedStatement ps = con.prepareStatement(statement);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Result.add(new TableData(rs.getString("Name"), rs.getString("Pcount")));
+                Result.add(rs.getInt("Pcount"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);

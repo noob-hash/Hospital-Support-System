@@ -59,6 +59,12 @@ r<%--
             overflow-x: hidden;
         }
     </style>
+    
+    
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+    
     <body>
         <section>
             <%@ include  file="nav-doctor.html" %>
@@ -72,19 +78,112 @@ r<%--
                     </div>
                     
                 </div>
-                <div class="flex">
-
-                    <div class="small-grid">
-                        <div class="NewPatient">
-
-                        </div>
-                        <div class="Calender">
-
+                <!-- chart of total no. of patients each year -->
+                <div>
+                    <div><canvas id="numberChart"></canvas></div>
+                </div>
+                
+                <!-- chart of patient division -->
+                <div width="100%" class="" style="overflow: hidden;">
+                    <h3 class="m-4">Patients Classification By:</h3>
+                    <div width="100%" class="row p-2 d-flex justify-content-around">
+                        <!-- division by Age -->
+                        <div class="col-lg-3 col-sm-12 p-3 mb-4">
+                            <h5>Age</h5>
+                            <canvas id="ageGraph"></canvas>
+                        </div> 
+                        <!-- division by Gender -->
+                        <div class="col-lg-3 col-sm-12 p-3 mb-4">
+                            <h5>Gender</h5>
+                            <canvas id="genderGraph"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+            <script>
+                const numChart = document.getElementById('numberChart');
+            const ageGraph = document.getElementById('ageGraph');
+            const genderChart = document.getElementById('genderGraph');
+
+            new Chart(numChart, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                            label: new Date().getFullYear(),
+                            data: ${YearAppoinment},
+                            borderWidth: 1
+                        },
+                        {
+                            label: new Date().getFullYear() -1,
+                            data: ${PYearAppoinment},
+                            borderWidth: 1
+                        }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    elements: {
+                        arc: {
+                            hoverOffset: 15
+                        }
+                    }
+                }
+            });
+
+            new Chart(genderChart, {
+                type: 'pie',
+                data: {
+                    labels: ['Male', 'Female'],
+                    datasets: [{
+                            data: [${gender[1]},${gender[0]}],
+                        }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    },
+                    elements: {
+                        arc: {
+                            hoverOffset: 15
+                        }
+                    }
+                }
+
+
+            });
+            new Chart(ageGraph, {
+                type: 'doughnut',
+                data: {
+                    labels: ['0-15', '15-30', '30-45', '45-60', '60-75', '75-90', '90+'],
+                    datasets: [{
+                        
+                            data: ${age},
+                        }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    },
+                    elements: {
+                        arc: {
+                            hoverOffset: 15
+                        }
+                    }
+                }
+            });
+            </script>
 </body>
 </html>
