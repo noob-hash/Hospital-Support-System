@@ -254,6 +254,33 @@ public class Servlet extends HttpServlet {
             }
         }
 
+        if (page.equalsIgnoreCase("addDoctor")) {
+            String sRole = "", cRole = "";
+            HttpSession session = request.getSession();
+            if (new UserService().LoggedIn(request)) {
+                sRole = (session.getAttribute("Role") != null) ? (String) session.getAttribute("Role") : "";
+                Cookie[] cookie = request.getCookies();
+                System.out.println("logged in");
+                for (Cookie c : cookie) {
+                    if (c.getName().equalsIgnoreCase("Role")) {
+                        cRole = c.getValue();
+                    }
+                }
+            }
+//                public Doctor(String name, String dob, Gender gender, String phone, String email, String address, Role role, String username, String password, String Speacialization, String Education) {
+
+            Doctor doc = new Doctor(request.getParameter("Name"), request.getParameter("DOB"),User.Gender.valueOf(request.getParameter("Gender")),request.getParameter("Phone"),request.getParameter("Email"),request.getParameter("Address"), User.Role.D, request.getParameter("Phone"), "Password", request.getParameter("Specialization"),request.getParameter("education"));
+            User u = new UserService().GetUser(doc.getPhone());
+            String userRole = (u!=null)?u.getRole().toString():"";
+            if(userRole.equalsIgnoreCase("D")){
+                
+            }else{
+                new DoctorService().addDoctor(doc);
+                RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=doctorList");
+                dispacher.forward(request, response);
+            }
+        }
+        
         if (page.equalsIgnoreCase("doctorList")) {
             String sRole = "", cRole = "";
             HttpSession session = request.getSession();
@@ -279,6 +306,9 @@ public class Servlet extends HttpServlet {
 
                 List<Doctor> doctorList = new DoctorService().DoctorList();
                 request.setAttribute("doctorList", doctorList);
+                
+                List<Department> departmentList = new DoctorService().DepartmentList();
+                request.setAttribute("departments", departmentList);
 
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/DoctorList.jsp");
                 dispacher.forward(request, response);

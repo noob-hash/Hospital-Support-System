@@ -40,43 +40,47 @@
 </header>
 <!--auzaar-->
 <nav class="nav p-4">
-    <ul class="nav navbar-nav gap-4 mt-4">
-        <li class="nav-item">
+    <ul class="nav navbar-nav justify-content-between">
+        <div class="nav navbar-nav gap-4">
+            <li class="nav-item">
             <a href="Controller?page=dashboard">
                 <i class="fa-solid fa-temperature-half"></i>
-                Dashboard
+                <span class="d-none d-lg-inline ">Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
             <a href="Controller?page=appoinmentPage">
                 <i class="fa-sharp fa-solid fa-stethoscope"></i>
-                Appoinment
+                <span class="d-none d-lg-inline ">Appointment</span>
             </a>
         </li>
         <li class="nav-item">
             <a href="Controller?page=doctorList">
                 <i class="fa-sharp fa-solid fa-user-doctor"></i>
-                Doctors
+                <span class="d-none d-lg-inline ">Doctors</span>
             </a>
         </li>
         <li class="nav-item">
             <a href="Controller?page=department">
                 <i class="fa-solid fa-hospital"></i>
-                Departments
+                <span class="d-none d-lg-inline ">Departments</span>
             </a>
         </li>
         <li class="nav-item">
             <a href="Controller?page=patient">
                 <i class="fa-solid fa-bed-pulse"></i>
-                Patients
+                <span class="d-none d-lg-inline ">Patients</span>
             </a>
         </li>
-        <li class="nav-item">
+        </div>
+        <div>
+            <li class="nav-item">
             <a href="Controller?page=logout" onclick="preventBack()">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                Logout
+                <span class="d-none d-lg-inline ">Logout</span>
             </a>
         </li>
+        </div>
     </ul>
 </nav>
 <script>
