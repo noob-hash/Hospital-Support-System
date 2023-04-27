@@ -191,7 +191,6 @@ public class PatientService {
             ps.setString(2, appoinment.getSechedule().getVisitTime().toString());
             ps.setString(3, appoinment.getSechedule().getEndTime().toString());
             ps.setInt(4, appoinment.getUser().getId());
-            System.out.println(ps);
             ps.executeUpdate();
             ps.close();
 

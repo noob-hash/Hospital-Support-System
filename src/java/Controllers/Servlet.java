@@ -109,6 +109,8 @@ public class Servlet extends HttpServlet {
 
             MedicalRecord rc = new MedicalRecord(p, request.getParameter("bp"), request.getParameter("hb"), request.getParameter("height"), Integer.parseInt(request.getParameter("weight")), request.getParameter("symptons"), request.getParameter("diagnostics"), request.getParameter("tp"));
             new PatientService().addRecord(rc);
+            
+            new EmailSender().EmailSpecifier(p.getEmail(), "Report Alert", "A new report has been added for you. Kindly check your report through the user portal.");
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("Controller?page=record");
             dispatcher.include(request, response);
@@ -518,6 +520,9 @@ public class Servlet extends HttpServlet {
                 if (cId != null) {
                     sId = cId;
                 }
+                
+                new UserService().activateUser(sId);
+                
                 Appoinment appoinment = new Appoinment(new UserService().GetUser(sId), new Schedule(date, time), new DoctorService().GetDoctor(doctor));
                 new PatientService().MakeAppoinment(appoinment);
 

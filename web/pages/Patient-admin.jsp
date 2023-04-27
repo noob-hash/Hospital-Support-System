@@ -86,7 +86,7 @@
                     <div class="col">
                         <div class="">
                             <h5>Patient</h5>
-                            <small>Doctor > Patient List</small>
+                            <small>Admin > Patient List</small>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                     <table id="tableData" class="table display">
                         <thead>
                             <tr>
-                                <th>Photo</th>
+                                <th>Id</th>
                                 <th>Name</th>
                                 <th>Age</th>
                                 <th>Address</th>

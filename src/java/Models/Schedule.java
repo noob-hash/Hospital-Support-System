@@ -69,7 +69,6 @@ public class Schedule {
             Instant instant = datea.toInstant();
             ZonedDateTime zone = instant.atZone(ZoneId.systemDefault());
             LocalDate dateAppoinment = zone.toLocalDate();
-            System.out.println("format:"+dateAppoinment);
             //setting dob
             this.date = dateAppoinment;
         } catch (ParseException ex) {

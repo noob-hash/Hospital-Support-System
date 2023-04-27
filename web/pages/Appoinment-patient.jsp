@@ -70,16 +70,19 @@
                 overflow-x: hidden
             }
         </style>
+        
+        <!--Table dependencies-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" ></script>
+        <link
+        rel="stylesheet"
+        href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
+        
         <script
-        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"
-    ></script>
-    <script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"
-    ></script>
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
         <style>
             @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
         </style>
@@ -87,7 +90,7 @@
     <body>
         <section class="container-fluid bg-light">
             <%@include file="nav-patient.html" %>
-            <div class="collapse position-absolute" id="collapseExample">
+            <div class="collapse position-absolute focus" id="collapseExample" style="z-index:299;">
                 <div class="card card-body bg-light bg-opacity-75">
                     <div class="container py-5 h-100">
                         <div class="p-4 d-flex justify-content-around">
@@ -107,7 +110,7 @@
                                         <select name="doctor" id="doctor" class="form-select">
                                             <option value="">Select Doctor</option>
                                             <c:forEach var="Doctor" items="${doctorList}">
-                                                <option value="${Doctor.id}"> - ${Doctor.user.name}</option>
+                                                <option value="${Doctor.id}"> ${Doctor.speacialization} - ${Doctor.user.name}</option>
                                             </c:forEach>    
                                         </select>
                                         <div class="validate"></div>
@@ -131,8 +134,8 @@
                 <div class="row">
                     <div class="col">
                         <div class="">
-                            <h5>Appoinment</h5>
-                            <small>Patient > Appoinment</small>
+                            <h5>Appointment</h5>
+                            <small>Patient > Appointment</small>
                         </div>
                     </div>
                     <div class="col-auto page-action">
@@ -142,39 +145,51 @@
                                  data-target="#collapseExample"
                                  aria-expanded="false"
                                  aria-controls="collapseExample">
-                            Add Appoinment
+                            Add Appointment
                         </button>
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table">
-                    <thead>
-                    <td>Image</td>
-                    <td>Name</td>
-                    <td>Gender</td>
-                    <td>Age</td>
-                    <td>Phone</td>
-                    <td>Address</td>
-                    <td>Date</td>
-                    <td>Time</td>
-                    <td>Action</td>
-                    </thead>
-                    <c:forEach var="appoinment" items="${appoinmentList}">
-                        <tr>
-                            <td>${appoinment.user.id}</td>
-                            <td>${appoinment.user.name}</td>
-                            <td>${appoinment.user.gender}</td>
-                            <td>${appoinment.user.age}</td>
-                            <td>${appoinment.user.phone}</td>
-                            <td>${appoinment.user.address}</td>
-                            <td>${appoinment.sechedule.date}</td>
-                            <td>${appoinment.sechedule.visitTime} - ${appoinment.sechedule.endTime}</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" onclick="DeleteAction(${appoinment.sechedule.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </table>
+                    <table  id="tableData"  class="table">
+                        <thead>
+                        <td>Id</td>
+                        <td>Name</td>
+                        <td>Gender</td>
+                        <td>Age</td>
+                        <td>Phone</td>
+                        <td>Address</td>
+                        <td>Date</td>
+                        <td>Time</td>
+                        <td>Action</td>
+                        </thead>
+                        <tbody>
+                            <c:choose>
+                                <c:when test="${empty appoinmentList}">
+                                </tbody>
+                            </table>
+                            <span class="text-danger">You have not made any appointments yet.</span>
+
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="appoinment" items="${appoinmentList}">
+                                <tr>
+                                    <td>${appoinment.user.id}</td>
+                                    <td>${appoinment.user.name}</td>
+                                    <td>${appoinment.user.gender}</td>
+                                    <td>${appoinment.user.age}</td>
+                                    <td>${appoinment.user.phone}</td>
+                                    <td>${appoinment.user.address}</td>
+                                    <td>${appoinment.sechedule.date}</td>
+                                    <td>${appoinment.sechedule.visitTime} - ${appoinment.sechedule.endTime}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" onclick="DeleteAction(${appoinment.sechedule.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                    </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -202,6 +217,12 @@
 
         </div>
     </section>
+    <script>
+        $(document).ready(function () {
+            $('#tableData').DataTable();
+        });
+    </script>
+            
     <script>
         function DeleteAction(a) {
             const deleteForm = document.getElementById("myinput required");

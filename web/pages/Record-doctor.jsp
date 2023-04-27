@@ -81,6 +81,7 @@
                             </c:when>
                             <c:otherwise>
                                 <c:forEach var="record" items="${recordList}">
+                                    <a href="Record-patient.jsp"></a>
                                     <div class="">
                                         <div class="row p-4">
                                             <h1>${record.patient.name}</h1>
