@@ -239,7 +239,7 @@ public class Servlet extends HttpServlet {
                 try {
                     ResultSet result = new DatabaseService().GetData("user", new TableData("Role", "P"), new TableData("Role", "P"));
                     while (result.next()) {
-                        User userP = new User(Integer.parseInt(result.getString("Id")), result.getString("Name"), User.Gender.valueOf(result.getString("Gender")), result.getString("D_O_B"), result.getString("Phone"), result.getString("email"), result.getString("Address"), User.Role.valueOf(result.getString("Role")));
+                        User userP = new User(Integer.parseInt(result.getString("Id")), result.getString("Name"), User.Gender.valueOf(result.getString("Gender")), result.getString("D_O_B"), result.getString("Phone"), result.getString("email"), result.getString("Address"), result.getInt("Deleted"), User.Role.valueOf(result.getString("Role")));
                         userData.add(userP);
                     }
                     request.setAttribute("UserData", userData);
@@ -635,6 +635,13 @@ public class Servlet extends HttpServlet {
 
             new PatientService().DeleteAppoinment(Integer.parseInt(request.getParameter("delete")));
             RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=appoinmentPage");
+            dispacher.forward(request, response);
+        }
+        
+        if (page.equalsIgnoreCase("deletePatient")) {
+
+            new UserService().deleteUser(Integer.parseInt(request.getParameter("delete")));
+            RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=patient");
             dispacher.forward(request, response);
         }
 

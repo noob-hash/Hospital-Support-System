@@ -55,7 +55,7 @@ public class UserService extends SecureAuth implements Authentication {
         User user = null;
         try {
             Connection con = new DatabaseConnection().ConnectionEstablishment();
-            String statement = "Select * from user where id = ?";
+            String statement = "Select * from user where id = ? and Deleted = '0'";
             PreparedStatement ps = con.prepareStatement(statement);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -72,13 +72,13 @@ public class UserService extends SecureAuth implements Authentication {
         User user = null;
         try {
             Connection con = new DatabaseConnection().ConnectionEstablishment();
-            String statement = "Select * from user where Phone = ? or email = ?";
+            String statement = "Select * from user where Phone = ? or email = ? and Deleted = '0'";
             PreparedStatement ps = con.prepareStatement(statement);
             ps.setString(1, identifier);
             ps.setString(2, identifier);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                user = new User(rs.getInt("Id"), rs.getString("Name"), User.Gender.valueOf(rs.getString("Gender")), rs.getString("D_O_B"), rs.getString("Phone"), rs.getString("email"), rs.getString("Address"), User.Role.valueOf(rs.getString("Role")));
+                user = new User(rs.getInt("Id"), rs.getString("Name"), User.Gender.valueOf(rs.getString("Gender")), rs.getString("D_O_B"), rs.getString("Phone"), rs.getString("email"), rs.getString("Address"), rs.getInt("Deleted"), User.Role.valueOf(rs.getString("Role")));
             }
 
         } catch (SQLException ex) {
@@ -135,11 +135,11 @@ public class UserService extends SecureAuth implements Authentication {
         List<User> userList = new ArrayList<>();
         try {
             Connection con = new DatabaseConnection().ConnectionEstablishment();
-            String statement = "Select * from user";
+            String statement = "Select * from user where Deleted='0'";
             PreparedStatement ps = con.prepareStatement(statement);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                User user = new User(rs.getInt("Id"), rs.getString("Name"), User.Gender.valueOf(rs.getString("Gender")), rs.getString("D_O_B"), rs.getString("Phone"), rs.getString("email"), rs.getString("Address"), User.Role.valueOf(rs.getString("Role")));
+                User user = new User(rs.getInt("Id"), rs.getString("Name"), User.Gender.valueOf(rs.getString("Gender")), rs.getString("D_O_B"), rs.getString("Phone"), rs.getString("email"), rs.getString("Address"), rs.getInt("Deleted"), User.Role.valueOf(rs.getString("Role")));
                 userList.add(user);
             }
         } catch (SQLException ex) {
@@ -317,5 +317,18 @@ public class UserService extends SecureAuth implements Authentication {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public void deleteUser(int identifier) {
+        try {
+            String stmt = "Update user set Deleted = 1 where Id = ?";
+            
+            Connection con = new DatabaseConnection().ConnectionEstablishment();
+            PreparedStatement ps = con.prepareStatement(stmt);
+            ps.setInt(1, identifier);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

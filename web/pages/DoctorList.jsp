@@ -254,7 +254,7 @@
                         <small>Admin > Doctor List</small>
                     </div>
                 </div>
-                <div class="col-auto page-action">
+                <div class="col-auto page-action" style="position:inherit !important; z-index: auto">
                     <button  class="btn btn-light bg-info"
                              type="button"
                              data-toggle="collapse"

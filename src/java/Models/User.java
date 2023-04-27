@@ -36,6 +36,7 @@ public class User {
     private String email;
     private String address;
     private Role role;
+    public boolean active;
     
     //for login
     //guest user doesn't need to login
@@ -64,7 +65,7 @@ public class User {
         this.password = password;
     }
     
-    public User(int id, String name, Gender gender, String dob, String phone, String email, String address, Role role) {
+    public User(int id, String name, Gender gender, String dob, String phone, String email, String address, int active, Role role) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -74,6 +75,7 @@ public class User {
         this.email = email;
         this.address = address;
         this.role = role;
+        this.active = (active==1)?true:false;
     }
 
     public User(String name, Gender gender, String dob, String phone, String email, String address, Role role, String username, String password) {
@@ -242,6 +244,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
     
 }

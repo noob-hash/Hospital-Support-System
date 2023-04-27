@@ -160,7 +160,7 @@
                     </div>
                 </c:forEach>
                     </div>
-                <div class="m-4">
+                <div class="m-4 table-responsive">
                     <table id="tableData" class="table display ">
                         <thead>
                             <tr>

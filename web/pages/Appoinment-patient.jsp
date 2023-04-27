@@ -65,7 +65,7 @@
                 position: absolute;
                 left: 15%;
                 top: 10%;
-                max-width: 85%;
+                width: 85%;
                 height: 90%;
                 overflow-x: hidden
             }
@@ -146,7 +146,8 @@
                         </button>
                     </div>
                 </div>
-                <table class="table">
+                <div class="table-responsive">
+                    <table class="table">
                     <thead>
                     <td>Image</td>
                     <td>Name</td>
@@ -174,6 +175,7 @@
                         </tr>
                     </c:forEach>
                 </table>
+                </div>
             </div>
 
             <!-- Modal -->

@@ -52,7 +52,7 @@ r<%--
                 position: absolute;
                 left: 15%;
                 top: 10%;
-                max-width: 85%;
+                width: 85%;
                 overflow-x: hidden;
             }
         </style>
@@ -72,7 +72,7 @@ r<%--
                 </div>
                 <div class="flex">
                     <div class="Users">
-                        <div>
+                        <div class="table-responsive">
                             <table class="table">
                                 <tr>
                                     <th>Id</th>
