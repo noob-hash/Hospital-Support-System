@@ -67,6 +67,18 @@ public class UserService extends SecureAuth implements Authentication {
         }
         return user;
     }
+    
+    public void activateUser(String identifier){
+        try {
+            String statement = "Update user set Deleted = '0' where Phone = ? or email = ?";
+            PreparedStatement ps = new DatabaseConnection().Statement(statement);
+            ps.setString(1, identifier);
+            ps.setString(2, identifier);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public User GetUser(String identifier) {
         User user = null;

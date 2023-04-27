@@ -251,10 +251,8 @@ public class DoctorService {
             Connection con = new DatabaseConnection().ConnectionEstablishment();
             String statement = "Select * from user inner join doctor on user.Id = doctor.User_Id where Role = 'D' ;";
             PreparedStatement ps = con.prepareStatement(statement);
-            System.out.println(ps);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                System.out.println("b"+rs.getInt("Id"));
                 Doctor doctor = new Doctor(rs.getInt("Id"), rs.getString("Name"), rs.getString("D_O_B"), User.Gender.valueOf(rs.getString("Gender")),rs.getString("Phone"),rs.getString("email"),rs.getString("Address"),User.Role.valueOf(rs.getString("Role")),rs.getString("Phone"),rs.getString("Specialization"), rs.getString("Education"));         
                 doctorList.add(doctor);
             }

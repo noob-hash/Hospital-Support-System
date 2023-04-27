@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="col-auto page-action">
-                        <button id="gpdf">Download</button>
+                        <button id="gpdf" class="btn btn-primary">Download</button>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@
 
             <div class="ignoreContent">
 
-                <p>Only for display and not in pdf</p>
+                <p></p>
 
             </div>
         </div>

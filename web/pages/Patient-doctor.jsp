@@ -23,7 +23,7 @@
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <style>
         * {
@@ -61,6 +61,16 @@
             overflow-x: hidden
         }
     </style>
+    
+    <!--Table dependencies-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" ></script>
+        <link
+        rel="stylesheet"
+        href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
+
+        />
+        
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
     </style>
@@ -85,10 +95,10 @@
                     </div>
                 </div>
             </div>
-            <table class="table">
+            <table id="tableData" class="table">
                 <thead>
                     <tr>
-                        <th>Photo</th>
+                        <th>Id</th>
                         <th>Name</th>
                         <th>Age</th>
                         <th>Gender</th>
@@ -96,6 +106,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <c:choose>
+                        <c:when test="${empty patientList}">
+                        </tbody>
+                    </table>
+                    <span class="text-danger">No patients assigned.</span>
+                </c:when>
+                <c:otherwise>
                     <c:forEach var="patient" items="${patientList}">
                         <tr>
                             <td>${patient.id}</td>
@@ -107,7 +124,9 @@
                             </td>
                         </tr>
                     </c:forEach>
-                </tbody>
+                </c:otherwise>
+            </c:choose>
+            </tbody>
             </table>
         </div>
     </section>
@@ -134,6 +153,12 @@
         </div>
     </div>
 
+    <script>
+        $(document).ready(function () {
+            $('#tableData').DataTable();
+        });
+    </script>
+    
     <script>
         function DeleteAction(a) {
             const deleteForm = document.getElementById("myInput");

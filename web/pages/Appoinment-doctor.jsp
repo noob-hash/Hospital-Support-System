@@ -56,6 +56,16 @@ r<%--
                 overflow-x: hidden;
             }
         </style>
+        
+        <!--Table dependencies-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" ></script>
+        <link
+        rel="stylesheet"
+        href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
+
+        />
+        
     </head>
     <body>
         <section>
@@ -64,8 +74,8 @@ r<%--
                 <div class="row">
                     <div class="col">
                         <div class="">
-                            <h5>Appoinments</h5>
-                            <small>Doctor > Appoinments</small>
+                            <h5>Appointments</h5>
+                            <small>Doctor > Appointments</small>
                         </div>
                     </div>
 
@@ -73,33 +83,46 @@ r<%--
                 <div class="flex">
                     <div class="Users">
                         <div class="table-responsive">
-                            <table class="table">
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>Gender</th>
-                                    <th>Age</th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Action</th>
-                                </tr>
-                                <c:forEach var="appoinment" items="${appoinmentList}">
+                            <table id="tableData" class="table">
+                                <thead>
                                     <tr>
-                                        <td>${appoinment.user.id}</td>
-                                        <td>${appoinment.user.name}</td>
-                                        <td>${appoinment.user.gender}</td>
-                                        <td>${appoinment.user.age}</td>
-                                        <td>${appoinment.sechedule.date}</td>
-                                        <td>${appoinment.sechedule.visitTime} - ${appoinment.sechedule.endTime}</td>
-                                        <td>
-                                            <form method="post" action="Controller?page=record">
-                                                <input required type="hidden"  name="record" value="${appoinment.user.id}" id="myinput required" />
-                                                <button type="submit" class="btn btn-info">View Record</button>
-                                            </form>
-                                        </td>
-                                        </td>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Gender</th>
+                                        <th>Age</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Action</th>
                                     </tr>
-                                </c:forEach>
+                                </thead>
+                                <tbody>
+                                    <c:choose>
+                                        <c:when test="${empty appoinmentList}">
+                                        </tbody>
+                                </table>
+                                            <span class="text-danger">You currently do not have any appointments booked yet.</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:forEach var="appoinment" items="${appoinmentList}">
+                                                <tr>
+                                                    <td>${appoinment.user.id}</td>
+                                                    <td>${appoinment.user.name}</td>
+                                                    <td>${appoinment.user.gender}</td>
+                                                    <td>${appoinment.user.age}</td>
+                                                    <td>${appoinment.sechedule.date}</td>
+                                                    <td>${appoinment.sechedule.visitTime} - ${appoinment.sechedule.endTime}</td>
+                                                    <td>
+                                                        <form method="post" action="Controller?page=record">
+                                                            <input required type="hidden"  name="record" value="${appoinment.user.id}" id="myinput required" />
+                                                            <button type="submit" class="btn btn-info">View Record</button>
+                                                        </form>
+                                                    </td>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -115,5 +138,10 @@ r<%--
             </div>
         </div>
     </section>
+            <script>
+        $(document).ready(function () {
+            $('#tableData').DataTable();
+        });
+    </script>
 </body>
 </html>
