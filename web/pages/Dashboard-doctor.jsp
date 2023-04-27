@@ -55,7 +55,7 @@ r<%--
             position: absolute;
             left: 15%;
             top: 10%;
-            max-width: 85%;
+            width: 85%;
             overflow-x: hidden;
         }
     </style>

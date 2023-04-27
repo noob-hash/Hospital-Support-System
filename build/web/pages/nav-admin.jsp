@@ -21,11 +21,6 @@
             aria-label="Search"
             list ="datalist"
             />
-        <datalist id="datalist">
-            <c:forEach items="${List}" var="list">
-                <option value="${list.name}">${list.name}</option>
-            </c:forEach>
-        </datalist>
 
     </form>
     <div class="navbar d-flex gap-4">

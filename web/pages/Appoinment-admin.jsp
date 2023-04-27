@@ -23,11 +23,17 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
         <!-- Vendor CSS Files -->
-        <!-- Vendor CSS Files -->
         <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
         <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
         <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
         <style>
             * {
                 margin: 0;
@@ -60,69 +66,63 @@
                 left: 15%;
                 top: 10%;
                 width: 85%;
-                max-height: 90%;
+                height: 90%;
                 overflow-x: hidden
             }
         </style>
         <script
-            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"
-        ></script>
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+    ></script>
         <style>
             @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
         </style>
-        <link
-            rel="stylesheet"
-            href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
-
-            />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" ></script>
     </head>
     <body>
         <section class="container-fluid bg-light">
-            <%@include file="nav-admin.jsp" %>
-            <div class="collapse position-absolute top-0" style="left:25%" id="collapseExample">
+            <%@include file="admin-nav.html" %>
+            <div class="collapse position-absolute" id="collapseExample">
                 <div class="card card-body bg-light bg-opacity-75">
                     <div class="container py-5 h-100">
-                        <h4 class="text-center">Add Appointment</h4>
-                        <form action="Controller?page=addAppoinment" method="post" role="form" class="needs-validation">
-                            <div class="row">
-                                <div class="col-md-6 form-group mt-3">
-                                    <input required type="date" name="date" class="form-control datepicker" id="date" required/>
-                                    <div class="validate"></div>
+                        <div class="p-4 d-flex justify-content-around">
+                            <form action="Controller?page=addAppoinment" method="post" role="form" class="needs-validation">
+                                <div class="row">
+                                    <div class="col-md-6 form-group mt-3">
+                                        <input required type="date" name="date" class="form-control datepicker" id="date" required/>
+                                        <div class="validate"></div>
+                                    </div>
+                                    <div class="col-md-6 form-group mt-3">
+                                        <input required type="time" name="time" class="form-control datepicker" id="time" required/>
+                                        <div class="validate"></div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 form-group mt-3">
-                                    <input required type="time" name="time" class="form-control datepicker" id="time" required/>
-                                    <div class="validate"></div>
+                                <div class="row">
+                                    <div class="col-12 form-group mt-3">
+                                        <select name="doctor" id="doctor" class="form-select">
+                                            <option value="">Select Doctor</option>
+                                            <c:forEach var="Doctor" items="${doctorList}">
+                                                <option value="${Doctor.id}"> - ${Doctor.user.name}</option>
+                                            </c:forEach>    
+                                        </select>
+                                        <div class="validate"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 form-group mt-3">
-                                    <select name="doctor" id="doctor" class="form-select">
-                                        <option value="">Select Doctor</option>
-                                        <c:forEach var="Doctor" items="${doctorList}">
-                                            <option value="${Doctor.user.id}"> - ${Doctor.user.name}</option>
-                                        </c:forEach>    
-                                    </select>
-                                    <div class="validate"></div>
-                                </div>
-                            </div>
 
-                            <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
-                                <div class="validate"></div>
-                            </div>
-                            <div class="text-center mt-4 ">
-                                <button type="submit" class="btn bg-info p-2">Make an Appointment</button>
-                            </div>
-                        </form>
+                                <div class="form-group mt-3">
+                                    <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+                                    <div class="validate"></div>
+                                </div>
+                                <div class="text-center mt-4 ">
+                                    <button type="submit" class="btn bg-info p-2">Make an Appointment</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -132,7 +132,7 @@
                     <div class="col">
                         <div class="">
                             <h5>Appoinment</h5>
-                            <small>Patient > Appoinment</small>
+                            <small>Admin > Appoinment</small>
                         </div>
                     </div>
                     <div class="col-auto page-action">
@@ -146,7 +146,8 @@
                         </button>
                     </div>
                 </div>
-                <table id="tableData" class="table display">
+                <div class="table-responsive">
+                    <table class="table">
                     <thead>
                     <td>Image</td>
                     <td>Name</td>
@@ -174,6 +175,7 @@
                         </tr>
                     </c:forEach>
                 </table>
+                </div>
             </div>
 
             <!-- Modal -->
@@ -190,7 +192,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <form action="Controller?page=deleteAppoinment" method="post">
-                                <input required type="hidden"  name="delete" id="myinput" />
+                                <input required type="hidden"  name="delete" id="myinput required" />
                                 <button type="submit" class="btn btn-danger">Confirm</button>
                             </form> 
                         </div>
@@ -202,12 +204,9 @@
     </section>
     <script>
         function DeleteAction(a) {
-            const deleteForm = document.getElementById("myinput");
+            const deleteForm = document.getElementById("myinput required");
             deleteForm.value = a;
         }
-        $(document).ready(function () {
-            $('#tableData').DataTable();
-        });
     </script>
 </body>
 </html>

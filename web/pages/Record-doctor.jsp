@@ -52,7 +52,7 @@
                 position: absolute;
                 left: 15%;
                 top: 10%;
-                max-width: 85%;
+                width: 85%;
                 overflow-x: hidden;
             }
         </style>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="col-auto page-action">
-                        <button id="add">Add Record</button>
+                        <button id="add" class="btn btn-primary">Add Record</button>
                     </div>
                 </div>
                 <div class="row justify-space-between">
@@ -130,26 +130,32 @@
                         <div class="d-flex">
                             <div class="vr"></div>
                             
-                            <form method="post" class="mb-md-2 mt-md-4 p-4" action="Controller?page=addRecord">
+                            <form method="post" class="mb-md-2 mt-md-4 p-4 form-control" action="Controller?page=addRecord">
                             <input required type="hidden" name="record" value="<%=request.getParameter("record")%>"/>
-                            <div class="row gap-3">
+                            <div class="row justify-content-between">
+                                <h3 class="col">Add New Record</h3>
+                                <button type="button" class=" btn bg-danger col-auto" id="close">
+                                <i class="fa-solid fa-x"></i>
+                            </button>
+                            </div>
+                            <div class="row justify-content-around">
                                 <div class="form-outline form-white col-4">
                                     <label for="bp">Blood Pressure</label>
-                                    <input required type="text" name="bp" id="bp"" placeholder="BP" required/>
+                                    <input  type="text" name="bp" id="bp"" placeholder="BP" required/>
                                 </div>
                                 <div class="form-outline form-white col-4 gap-3">
                                     <label for="hb">Heart Beat</label>
-                                    <input required type="text" id="hb" name="hb" placeholder="HB" required/>
+                                    <input  type="text" id="hb" name="hb" placeholder="HB" required/>
                                 </div>
                             </div>
-                            <div class="row space-between">
+                            <div class="row justify-content-around">
                                 <div class="form-outline form-white col-4">
-                                    <label for="beight">Height</label>
-                                    <input required type="text" id="height" name="height" placeholder="height" required/>
+                                    <label for="height">Height</label>
+                                    <input  type="text" id="height" name="height" placeholder="height" required/>
                                 </div>
                                 <div class="form-outline form-white col-4 gap-3">
                                     <label for="weight">Weight</label>
-                                    <input required type="number" id="weight" name="weight" placeholder="weight" required/>
+                                    <input  type="number" id="weight" name="weight" placeholder="weight" required/>
                                 </div>
                             </div>
                             <div class="form-outline form-white row">
@@ -172,7 +178,9 @@
                                 <label for="med">Medication</label>
                                 <textarea name="medication" id="med" placeholder="medication"></textarea><br>
                             </div>
-                            <input type="submit" value="Submit" />
+                            <div class="row mt-4 justify-content-center">
+                                <input class="btn btn-primary col-auto" type="submit" value="Submit" />
+                            </div>
                         </form>
                         </div>
                         
@@ -185,6 +193,10 @@
         document.getElementById("add").addEventListener('click', () => {
             document.getElementById("form").style.display = "block";
             document.getElementById("record").className = "col-lg-6 col-md-4 col-sm-12";
+        });
+        document.getElementById("close").addEventListener('click', () => {
+            document.getElementById("form").style.display = "none";
+            document.getElementById("record").className = "col-lg-12 col-md-12 col-sm-12";
         });
     </script>
 </body>
