@@ -158,7 +158,7 @@ public class Servlet extends HttpServlet {
                 dispatcher.include(request, response);
 
             } else {
-                out.println("Incorrect username/ password");
+                out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">Incorrect username/ password</div>");
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
                 dispacher.include(request, response);
             }
@@ -269,7 +269,6 @@ public class Servlet extends HttpServlet {
                     }
                 }
             }
-//                public Doctor(String name, String dob, Gender gender, String phone, String email, String address, Role role, String username, String password, String Speacialization, String Education) {
 
             Doctor doc = new Doctor(request.getParameter("Name"), request.getParameter("DOB"),User.Gender.valueOf(request.getParameter("Gender")),request.getParameter("Phone"),request.getParameter("Email"),request.getParameter("Address"), User.Role.D, request.getParameter("Phone"), "Password", request.getParameter("Specialization"),request.getParameter("education"));
             User u = new UserService().GetUser(doc.getPhone());
@@ -295,9 +294,6 @@ public class Servlet extends HttpServlet {
                         cRole = c.getValue();
                     }
                 }
-            }
-            else{
-                System.out.println("not logged in");
             }
 
             if (sRole == null && cRole == null) {
@@ -369,7 +365,7 @@ public class Servlet extends HttpServlet {
 
             if (comparision == 0) {
                 if (new UserService().UserExists(Phone)) {
-                    out.println("User already exists");
+                    out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">User with the phone number already exists.</div>");
                     RequestDispatcher dispacher = request.getRequestDispatcher("pages/Register.jsp");
                     dispacher.include(request, response);
                 } else {
@@ -382,7 +378,7 @@ public class Servlet extends HttpServlet {
                     dispacher.forward(request, response);
                 }
             } else {
-                out.println("Your password do not match!");
+                out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">Passwords do not match</div>");
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Register.jsp");
                 dispacher.include(request, response);
             }
@@ -723,7 +719,7 @@ public class Servlet extends HttpServlet {
                     RequestDispatcher dispacher = request.getRequestDispatcher("pages/enterOTP.html");
                     dispacher.forward(request, response);
                 } else {
-                    out.println("No user with such email exists");
+                    out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">User with this email already exists.</div>");
                     RequestDispatcher dispacher = request.getRequestDispatcher("pages/Register.jsp");
                     dispacher.forward(request, response);
                 }
@@ -759,12 +755,12 @@ public class Servlet extends HttpServlet {
                     RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
                     dispacher.forward(request, response);
                 } else {
-                    out.println("Invalid credentials");
+                    out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">Invaid credentials</div>");
                     RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=editProfile");
                     dispacher.forward(request, response);
                 }
             } else {
-                out.println("Password do not match");
+                out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">Passwords do not match</div>");
                 RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=editProfile");
                 dispacher.forward(request, response);
             }
@@ -786,7 +782,7 @@ public class Servlet extends HttpServlet {
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/Login.jsp");
                 dispacher.forward(request, response);
             } else {
-                out.println("Password do not match");
+                out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">Passwords do not match</div>");
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/ResetPassword.html");
                 dispacher.forward(request, response);
             }

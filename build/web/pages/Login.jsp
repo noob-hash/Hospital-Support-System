@@ -41,7 +41,6 @@
 </head>
 <body>
     <section class="vh-100 gradient-custom">
-
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-sm-12 col-md-8 col-lg-6 col-xl-5">
@@ -115,6 +114,11 @@
             </div>
         </div>
     </div>
+    <script>
+        setTimeout(function hide() {
+            document.getElementById("loginalertmessage").style.display = 'none';
+        },2000);
+    </script>
 </section>
 <script>
     (function () {
