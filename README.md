@@ -1,6 +1,7 @@
 # Hospital-Support-System
 
 ##Introduction
+
 In hospital, it is difficult to keep track of every patient data. These data are specially related to patients’ 
 medical history, allergies, etc. Such data are important because they can be used as reference points for patients’ 
 health and for study purposes. 
