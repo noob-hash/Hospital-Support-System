@@ -70,7 +70,6 @@ public class DatabaseService implements DatabaseConn {
             for(int i = 0; i < conditions.length; i++){
                 preparedStatement.setString(i + 1, conditions[i].value);
             }
-                        System.out.println(preparedStatement);
 
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {

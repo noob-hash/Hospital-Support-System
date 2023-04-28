@@ -105,7 +105,6 @@ public class Servlet extends HttpServlet {
 
         if (page.equalsIgnoreCase("addRecord")) {
             Patient p = new PatientService().GetPatient(Integer.parseInt(request.getParameter("record")));
-//            Patient patient, String bloodPressure, String heartPressure, String height, int weight, String[] symptoms, String[] diagnosis, String[] treatment
 
             MedicalRecord rc = new MedicalRecord(p, request.getParameter("bp"), request.getParameter("hb"), request.getParameter("height"), Integer.parseInt(request.getParameter("weight")), request.getParameter("symptons"), request.getParameter("diagnostics"), request.getParameter("tp"));
             new PatientService().addRecord(rc);
@@ -262,7 +261,6 @@ public class Servlet extends HttpServlet {
             if (new UserService().LoggedIn(request)) {
                 sRole = (session.getAttribute("Role") != null) ? (String) session.getAttribute("Role") : "";
                 Cookie[] cookie = request.getCookies();
-                System.out.println("logged in");
                 for (Cookie c : cookie) {
                     if (c.getName().equalsIgnoreCase("Role")) {
                         cRole = c.getValue();
@@ -288,7 +286,6 @@ public class Servlet extends HttpServlet {
             if (new UserService().LoggedIn(request)) {
                 sRole = (session.getAttribute("Role") != null) ? (String) session.getAttribute("Role") : "";
                 Cookie[] cookie = request.getCookies();
-                System.out.println("logged in");
                 for (Cookie c : cookie) {
                     if (c.getName().equalsIgnoreCase("Role")) {
                         cRole = c.getValue();
@@ -719,9 +716,9 @@ public class Servlet extends HttpServlet {
                     RequestDispatcher dispacher = request.getRequestDispatcher("pages/enterOTP.html");
                     dispacher.forward(request, response);
                 } else {
-                    out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">User with this email already exists.</div>");
+                    out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">There is no user with your email.</div>");
                     RequestDispatcher dispacher = request.getRequestDispatcher("pages/Register.jsp");
-                    dispacher.forward(request, response);
+                    dispacher.include(request, response);
                 }
             }
 
@@ -747,7 +744,6 @@ public class Servlet extends HttpServlet {
 
                 identifier = (s.getAttribute("Username").toString() != "") ? s.getAttribute("Username").toString() : identifier;
                 if (new UserService().LogIn(identifier, oPassword)) {
-                    System.out.println("Pass");
                     new UserService().ResetPassword(nPassword, s.getAttribute("Username").toString());
 
                     s.invalidate();
@@ -757,12 +753,12 @@ public class Servlet extends HttpServlet {
                 } else {
                     out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">Invaid credentials</div>");
                     RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=editProfile");
-                    dispacher.forward(request, response);
+                    dispacher.include(request, response);
                 }
             } else {
                 out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">Passwords do not match</div>");
                 RequestDispatcher dispacher = request.getRequestDispatcher("Controller?page=editProfile");
-                dispacher.forward(request, response);
+                dispacher.include(request, response);
             }
         }
 
@@ -784,7 +780,7 @@ public class Servlet extends HttpServlet {
             } else {
                 out.println("<div class=\"alert alert-danger text-center\" id=\"loginalertmessage\" role=\"alert\">Passwords do not match</div>");
                 RequestDispatcher dispacher = request.getRequestDispatcher("pages/ResetPassword.html");
-                dispacher.forward(request, response);
+                dispacher.include(request, response);
             }
         }
 

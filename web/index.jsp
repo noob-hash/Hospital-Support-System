@@ -514,7 +514,9 @@
 
                     <div class="section-title">
                         <h2>Doctors</h2>
-                        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                        <p>
+                            Some of our quaility service providers.
+                        </p>
                     </div>
 
                     <div class="row">
@@ -787,7 +789,9 @@
 
                     <div class="section-title">
                         <h2>Gallery</h2>
-                        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                        <p>
+                            Some momemt of our excellence and achievement that we are proud to present with you all.
+                        </p>
                     </div>
                 </div>
 
@@ -869,7 +873,9 @@
 
                     <div class="section-title">
                         <h2>Contact</h2>
-                        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                        <p>
+                            How can you contact or find us.
+                        </p>
                     </div>
                 </div>
 
@@ -970,17 +976,36 @@
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Our Services</h4>
                             <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                                <li class="nav-item">
+                                    <i class="bx bx-chevron-right"></i>
+                                    <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">General</a>
+                                </li>
+                                <li class="nav-item">
+                                    <i class="bx bx-chevron-right"></i>
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Laboratory</a>
+                                </li>
+                                <li class="nav-item">
+                                    <i class="bx bx-chevron-right"></i>
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Surgical</a>
+                                </li>
+                                <li class="nav-item">
+                                    <i class="bx bx-chevron-right"></i>
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Emergency</a>
+                                </li>
+                                <li class="nav-item">
+                                    <i class="bx bx-chevron-right"></i>
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Radiology</a>
+                                </li>
+                                <li class="nav-item">
+                                    <i class="bx bx-chevron-right"></i>
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tab-6">Eye Care</a>
+                                </li>
                             </ul>
                         </div>
 
                         <div class="col-lg-4 col-md-6 footer-newsletter">
                             <h4>Join Our Newsletter</h4>
-                            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                            <p>Do you want to recieve regular update on our activities and offers?</p>
                             <form action="" method="post">
                                 <input type="email" name="email"><input type="submit" value="Subscribe">
                             </form>
