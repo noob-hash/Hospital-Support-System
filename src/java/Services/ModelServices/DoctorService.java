@@ -98,7 +98,6 @@ public class DoctorService {
             Connection con = new DatabaseConnection().ConnectionEstablishment();
             String statement = "SELECT user.Gender,COUNT(user.Id) AS patient_no FROM `user`  inner join appoinment on user.Id = appoinment.user_id and appoinment.doctor_id = (SELECT user.Id from user where user.Phone='"+identifier+"')  where Role ='P' GROUP BY user.Gender;";
             PreparedStatement ps = con.prepareStatement(statement);
-            System.out.println(ps);
             ResultSet rs = ps.executeQuery();
             int i = 0;
             while (rs.next()) {
@@ -229,7 +228,6 @@ public class DoctorService {
             String statement = "Select * from schedule inner join user on schedule.user = user.Id inner join appoinment on appoinment.doctor_id = ? and appoinment.id = schedule.id where role='P';";
             PreparedStatement ps = con.prepareStatement(statement);
             ps.setInt(1, user.getId());
-            System.out.println(ps);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Appoinment appoinment = new Appoinment(new User(rs.getInt("user.Id"), rs.getString("Name"), User.Gender.valueOf(rs.getString("Gender")), rs.getString("D_O_B"), rs.getString("Phone"), rs.getString("email"), rs.getString("Address"), rs.getInt("Deleted"), User.Role.valueOf(rs.getString("Role"))), new Schedule(rs.getInt("schedule.id"),rs.getString("date"), rs.getString("startTime"), rs.getString("endTime")), new Doctor());
@@ -271,7 +269,6 @@ public class DoctorService {
             stmt.setString(1, doc.getSpeacialization());
             stmt.setString(2, doc.getEducation());
             stmt.setInt(3, id);
-            System.out.println(stmt);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DoctorService.class.getName()).log(Level.SEVERE, null, ex);
