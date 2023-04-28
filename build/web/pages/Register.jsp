@@ -204,6 +204,12 @@
                 </div>
             </div>
         </div>
+        
+    <script>
+        setTimeout(function hide() {
+            document.getElementById("loginalertmessage").style.display = 'none';
+        },2000);
+    </script>
     </body>
     <script>
     (function () {

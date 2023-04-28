@@ -1,0 +1,233 @@
+[33mcommit 746c98e203a4baf5417b1bc16afe6b0ab15b71ff[m[33m ([m[1;36mHEAD -> [m[1;32mmaintainance[m[33m)[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Thu Apr 27 21:48:49 2023 +0545
+
+    [Email notification for report, schedule bug and bootstrap and other css issue fixed
+
+[33mcommit 6708c222a6991e471f98778622c00bae3bf3d9bb[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Thu Apr 27 08:14:09 2023 +0545
+
+    [fixed some bugs in deleting patients]
+
+[33mcommit c393a073e9d9449f10767600bc30703445789688[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Thu Apr 27 08:09:10 2023 +0545
+
+    [fixed some bugs in deleting patients]
+
+[33mcommit b5ee89777d093fd4306afe7645bfc854bdf3ccc2[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Wed Apr 26 08:31:08 2023 +0545
+
+    [Nav css and add doctor bug fixed]
+
+[33mcommit 1a38ea7598960e92d7638736fca086d5ae7bd9ae[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Wed Apr 26 06:09:56 2023 +0545
+
+    [Graphs real-time data replaced dummy data & added graph to doctor dashboard]
+
+[33mcommit b1d802171067cdf08f70e5c2162353496112fead[m[33m ([m[1;31morigin/Maintainance[m[33m)[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Mon Apr 24 18:44:54 2023 +0545
+
+    [Chart data]
+
+[33mcommit 5e374cff20ab6c04b53142d519de52a703816fcc[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Sat Apr 15 18:41:11 2023 +0545
+
+    [v0]
+
+[33mcommit e2d301b6f588012323cd485abbfe52338a06fece[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Sat Apr 15 13:18:53 2023 +0545
+
+    [jquery]
+
+[33mcommit bdfb9407b81384ad955ad35ff29a7742484f7f90[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Fri Apr 7 20:50:54 2023 +0545
+
+    [Id generated error for no reason in input tag?? fixed]
+
+[33mcommit a5b23d60e2447262b252a9759c673d3fd1ef831e[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Fri Apr 7 19:54:01 2023 +0545
+
+    [some fixes in css]
+
+[33mcommit 0f28ca3ca5aec980bcef6fdbc8cb1e517bd7050a[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Wed Apr 5 20:45:33 2023 +0545
+
+    [forget wat i did these two days]
+
+[33mcommit b3678a9273e7ce0c938e8afee8aa7e95fbc71393[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Mon Apr 3 15:16:26 2023 +0545
+
+    [Stable version fixed minior bugs and pagination in few tables]
+
+[33mcommit f54329105566524c6eaa349e19367f85e73fcedf[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Sun Apr 2 13:55:29 2023 +0545
+
+    [record data]
+
+[33mcommit 811f4c918eb8d42fb47e6a4994cdfd0de2c9a804[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Fri Mar 31 20:49:43 2023 +0545
+
+    [record]
+
+[33mcommit 40d1d807d92d8abdd825ba618d9c62c4d742daa7[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Fri Mar 31 09:41:27 2023 +0545
+
+    [edit profile]
+
+[33mcommit a4743477800274874e2b3ac76b8ef322a98715af[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Fri Mar 31 09:40:42 2023 +0545
+
+    [edit profile]
+
+[33mcommit b3cd47bca1167e5c420346c7ae15ba213cc78e9c[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Fri Mar 31 09:09:34 2023 +0545
+
+    [edit profile]
+
+[33mcommit 1d9c8b315e25633807c78d7188e8603845f8768a[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Fri Mar 31 08:27:00 2023 +0545
+
+    [edit profile]
+
+[33mcommit 2830243be7058afbaa9becbb6c38313b217de815[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Fri Mar 31 06:50:23 2023 +0545
+
+    [profile edit]
+
+[33mcommit ba58b6fe57804cb7739d391a60a583b588598862[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Thu Mar 30 18:21:38 2023 +0545
+
+    [forget password submittion fixed]
+
+[33mcommit 0d011689b8bdb469da63eb211d5f7c1c0d700bd1[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Thu Mar 30 08:34:17 2023 +0545
+
+    [email verification]
+
+[33mcommit a91a6cb9f4c21f2af9fd20c319cb83178dc29df6[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Thu Mar 30 08:13:01 2023 +0545
+
+    [Forget password maintinance 1]
+
+[33mcommit a22780505ce205cfb43e4cfbacaa38a3b14f0504[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Tue Mar 28 18:50:32 2023 +0545
+
+    [social media login test 1]
+
+[33mcommit fefccdc2cd5d95c0396903a4b13fef2e62c1cf76[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Sun Mar 26 11:08:36 2023 +0545
+
+    [record experimentation]
+
+[33mcommit 61978ee43c8c5d002c0a7d4463172a21d41ea259[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Sat Mar 25 18:33:48 2023 +0545
+
+    [Fixed wrong parameter input on weight field]
+
+[33mcommit 797624fc2a501a23709b959715a6d363e3a7d537[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Sat Mar 25 18:28:24 2023 +0545
+
+    [fixed adding record]
+
+[33mcommit baee169e5a32bc559517185556aa9e28413b2955[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Thu Mar 23 21:37:45 2023 +0545
+
+    [
+
+[33mcommit aeeca9862995a1d07a098d23c6653a4a89029ddc[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Wed Mar 22 11:06:38 2023 +0545
+
+    [I honestly don't know what i had done]
+
+[33mcommit 9e88dd30e6a38fe673caccdbcb9ff50f35106e98[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Tue Mar 21 20:35:07 2023 +0545
+
+    [Record viewing template created 2]
+
+[33mcommit 4c7e7395af47e93acc9a02dbafecfeb1b545d64b[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Tue Mar 21 18:07:16 2023 +0545
+
+    [Record viewing template created]
+
+[33mcommit 00c081dd1686c1f8818e226c305287ecf74e00e2[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Tue Mar 21 13:51:04 2023 +0545
+
+    [fixed deleting and adding appoinment(self)]
+
+[33mcommit bc66b94e374344ddae4f8bd8b975c838dfaf8b57[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Tue Mar 21 11:22:58 2023 +0545
+
+    [patient data formatting]
+
+[33mcommit 29ff0d1ec3081b5fc9668b8aa7a0a0712a032b73[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Sat Mar 18 13:14:36 2023 +0545
+
+    [fixing bootstraps and modals -2]
+
+[33mcommit ddc8c3d9e3196ca4b09ed0ea679ddf32cdf4d5f1[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Sat Mar 18 11:24:29 2023 +0545
+
+    [fixing bootstraps and services -1]
+
+[33mcommit 8774c0f01fb2c2b6e5b6b3a84bd65e6adae15ce9[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Fri Mar 17 20:10:46 2023 +0545
+
+    [comments2]
+
+[33mcommit 90f52ed3e8e7c8755fe89d5c72b2fa2891dd44aa[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Fri Mar 17 19:13:09 2023 +0545
+
+    [comments]
+
+[33mcommit 16af858224230811e59637fedb3bbb3ccec965a6[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Thu Mar 16 21:29:03 2023 +0545
+
+    [fixed broken links]
+
+[33mcommit db585c5e1b7812a1f8924ac38d63f9a6bef3929a[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Thu Mar 16 17:17:49 2023 +0545
+
+    [patient appoinment list fixed]
+
+[33mcommit f3fb71e544c7a597fd99e63f75521b9fcd974de6[m
+Author: Subin <subinsedhai002@gmail.com>
+Date:   Thu Mar 16 12:54:44 2023 +0545
+
+    [Push created to remote]
