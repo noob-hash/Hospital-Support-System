@@ -60,7 +60,7 @@ Systems design is the process of defining elements of a system like modules, arc
 ### High-Level Design
  ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/f47d5971-b9ef-420f-a53a-b9a5e3005c8b)
 
-Figure: High-level system design
+<p align="center">Figure: High-level system design</p>
 
 The working mechanics of the HSS is based on client-server architecture. The user can perform different actions based on their roles from different devices through the internet accessing the system on a certain location provided as an IP address. 
 
@@ -68,44 +68,47 @@ The working mechanics of the HSS is based on client-server architecture. The use
 * Use Case Diagram
 ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/223f9a2e-3399-4d1e-8482-0550bb7f2682)
 
-Figure: Use Case Diagram for HSS
+<p align="center">Figure: Use Case Diagram for HSS</p>
 
 * ER Diagram
 Entity Relationship diagram shows how data is kept in the database and the relationship between data. It helps in designing the database and the flow of data in the system. In ER diagram elements and the relation between elements are shown in pectoral format using lines, circles, rectangles, etc.
 
 ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/7e0e82ed-6fda-4074-9ff5-f139cc669fef)
 
-Figure: Entity Relationship Diagram for HSS
+<p align="center">Figure: Entity Relationship Diagram for HSS</p>
 
 *	Data Flow Diagram
 A data-flow diagram is a way of representing a flow of data through a process or a system. The DFD also provides information about the outputs and inputs of each entity and the process itself. A data-flow diagram has no control flow — there are no decision rules and no loops.
 
 ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/c0270200-8a10-481a-8280-79348b3417e2)
 
-Figure: Context diagram of the HSS
+<p align="center">Figure: Context diagram of the HSS</p>
  
 ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/8217ebd2-d7a9-47d8-a072-0113d20e78b3)
 
-Figure: Level 0 DFD of the HSS
+<p align="center">Figure: Level 0 DFD of the HSS</p>
 
 ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/10f0e5cb-749f-43d6-a0b5-a95bca9dbf9c)
 
+<p align="center">
 Figure: Level 1 DFD of HSS
+</p>
 
  ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/d1611966-8a7a-4423-8ffd-52d288cd674a)
- 
-Figure: Level 2 DFD of HSS
 
+<p align="center">
+Figure: Level 2 DFD of HSS
+</p>
+ 
 ## Testing
 Testing is the process of executing a program to find errors. To make our software perform well it should be error-free. If testing is dome successful, it will remove all the errors from the software. It is the process of evaluating and verifying that a software product or application does what it is supposed to do. The benefits of testing include preventing bugs, reducing development costs, and improving performance.
 
-<p align="center">
  
 ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/452f14d5-d221-4ace-9305-ca9e2aae5608)
 ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/29a0da93-f067-4ee5-b12c-7007079db17f)
 
+<p align="center">
 Table: Verification & Validation testing result 
-
 </p>
 
 For more comprehensive detail of the project check the project proposal and report.
