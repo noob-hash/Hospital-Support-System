@@ -84,7 +84,7 @@ Figure: Context diagram of the HSS
 ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/8217ebd2-d7a9-47d8-a072-0113d20e78b3)
 Figure: Level 0 DFD of the HSS
 
- ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/452f14d5-d221-4ace-9305-ca9e2aae5608)
+![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/10f0e5cb-749f-43d6-a0b5-a95bca9dbf9c)
 Figure: Level 1 DFD of HSS
 
  ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/d1611966-8a7a-4423-8ffd-52d288cd674a)
@@ -93,9 +93,9 @@ Figure: Level 2 DFD of HSS
 ## Testing
 Testing is the process of executing a program to find errors. To make our software perform well it should be error-free. If testing is dome successful, it will remove all the errors from the software. It is the process of evaluating and verifying that a software product or application does what it is supposed to do. The benefits of testing include preventing bugs, reducing development costs, and improving performance.
 
-![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/c9197239-d648-422b-a356-255ad08c4e74)
+![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/452f14d5-d221-4ace-9305-ca9e2aae5608)
 ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/29a0da93-f067-4ee5-b12c-7007079db17f)
 
-Table: Verification & Validation testing result
+<center>Table: Verification & Validation testing result</center>center>
 
 For more comprehensive detail of the project check the project proposal and report.
