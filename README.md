@@ -98,12 +98,14 @@ Figure: Level 2 DFD of HSS
 
 ## Testing
 Testing is the process of executing a program to find errors. To make our software perform well it should be error-free. If testing is dome successful, it will remove all the errors from the software. It is the process of evaluating and verifying that a software product or application does what it is supposed to do. The benefits of testing include preventing bugs, reducing development costs, and improving performance.
+
 <p align="center">
  
 ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/452f14d5-d221-4ace-9305-ca9e2aae5608)
 ![image](https://github.com/noob-hash/Hospital-Support-System/assets/80933227/29a0da93-f067-4ee5-b12c-7007079db17f)
 
+Table: Verification & Validation testing result 
+
 </p>
-<p align="center"> Table: Verification & Validation testing result </p>
 
 For more comprehensive detail of the project check the project proposal and report.
